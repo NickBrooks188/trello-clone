@@ -8,10 +8,11 @@ class Card(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")))
+    list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")))
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
     label = db.Column(db.String)
+    image_url = db.Column(db.String)
 
     list = db.relationship("List", back_populates="cards")
 
@@ -27,7 +28,8 @@ class Card(db.Model):
             'list_id':self.list_id,
             'name':self.name,
             'description':self.description,
-            'label':self.label
+            'label':self.label,
+            'image_url':self.image_url
         }
 
         return dictionary

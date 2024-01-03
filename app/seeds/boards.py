@@ -1,5 +1,6 @@
 from app.models import db, Board, environment, SCHEMA
 from sqlalchemy.sql import text
+from .users import demo, nick, other
 
 def seed_boards():
 
@@ -26,6 +27,10 @@ def seed_boards():
         description='Tasks for Nick',
         list_order='[7,8,9,10]'
     )
+
+    first_board.users.append(demo)
+    second_board.users.append(demo)
+    third_board.users.append(nick)
 
     db.session.add(first_board)
     db.session.add(second_board)

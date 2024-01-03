@@ -5,7 +5,7 @@ assignments = db.Table(
     db.Model.metadata,
     db.Column('id', db.Integer, primary_key=True),
     db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
-    db.Column("card_id", db.Integer, db.ForeignKey(add_prefix_for_prod("card.id")))
+    db.Column("card_id", db.Integer, db.ForeignKey(add_prefix_for_prod("cards.id")))
 )
 
 if environment == "production":

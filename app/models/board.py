@@ -12,11 +12,11 @@ class Board(db.Model):
     theme_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("themes.id")), nullable=False)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String(200))
-    list_order = db.Column(db.String)
+    list_order = db.Column(db.String, default='[]')
 
     user = db.relationship("User", back_populates="boards_owner")
     lists = db.relationship("List", back_populates="board")
-    theme = db.relationship("Theme", back_populates="boards_theme")
+    theme = db.relationship("Theme", back_populates="boards")
 
 
     users = db.relationship(

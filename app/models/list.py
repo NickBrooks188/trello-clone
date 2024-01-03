@@ -7,7 +7,7 @@ class List(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")))
+    board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")))
     name = db.Column(db.String, nullable=False)
 
     cards = db.relationship("Card", back_populates="list")
