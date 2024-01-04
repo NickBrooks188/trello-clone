@@ -17,7 +17,6 @@ function SignupFormPage() {
   const [errors, setErrors] = useState({});
   const [disabled, setDisabled] = useState(true)
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const validateEmail = (val) => {
     setEmail(val)
@@ -60,7 +59,7 @@ function SignupFormPage() {
     } else {
       setDisabled(true)
     }
-  })
+  }, [email, password, confirmPassword, last_name, first_name, errors])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,6 +84,8 @@ function SignupFormPage() {
       navigate("/");
     }
   };
+
+  if (sessionUser) return <Navigate to="/home" replace={true} />;
 
   return (
     <>

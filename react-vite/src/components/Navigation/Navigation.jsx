@@ -2,9 +2,6 @@ import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { useSelector } from "react-redux";
-import OpenModalMenuItem from "./OpenModalMenuItem";
-import SignupFormModal from "../SignupFormModal";
-import LoginFormModal from "../LoginFormModal";
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user)

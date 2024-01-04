@@ -12,7 +12,6 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +29,8 @@ function LoginFormPage() {
       navigate("/");
     }
   };
+
+  if (sessionUser) return <Navigate to="/" replace={true} />;
 
   return (
     <>
