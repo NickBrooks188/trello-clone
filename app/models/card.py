@@ -33,6 +33,4 @@ class Card(db.Model):
         }
         dictionary['users'] = [user.to_dict() for user in self.users]
 
-
-
         return dictionary
