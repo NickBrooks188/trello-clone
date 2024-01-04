@@ -1,1 +1,12 @@
 /* TODO: Add sitewide styles */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+span {
+    color: #F82770;
+    width: 100%;
+    text-align: left;
+    min-height: 16px;
+}
