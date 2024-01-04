@@ -268,11 +268,8 @@ const boardReducer = (state = initialState, action) => {
             newState.name = action.board.name
             newState.description = action.board.description
             newState.list_order = action.board.list_order
-            newState.users = {}
+            newState.users = action.board.users
             newState.lists = {}
-            for (let user of action.board.users) {
-                newState.users[user.id] = user
-            }
             for (let list of action.board.lists) {
                 newState.lists[list.id] = { ...list, cards: {} }
                 for (let card of list.cards) {
@@ -292,7 +289,7 @@ const boardReducer = (state = initialState, action) => {
             newState.name = action.board.name
             newState.description = action.board.description
             newState.list_order = "[]"
-            newState.users = {}
+            newState.users = action.board.users
             newState.lists = {}
             newState.users[action.board.users[0].id] = action.board.users[0]
             return newState

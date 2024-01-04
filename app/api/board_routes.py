@@ -10,7 +10,9 @@ board = Blueprint('board', __name__)
 @login_required
 def get_all_boards():
     boards = Board.query.all()
-    return { board.to_dict()['id']: board.to_dict() for board in boards }
+    print("6666666", {board.to_dict()['id']: board.to_dict() for board in boards})
+    print("00000000000", boards[0].id)
+    return {board.id: board.to_dict() for board in boards}
 
 @board.route('', methods=['POST'])
 @login_required
