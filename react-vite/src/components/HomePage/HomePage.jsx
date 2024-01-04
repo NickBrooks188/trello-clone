@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
 import './HomePage.css'
+import SideNavbar from '../SideNavbar';
 
 export default function HomePage() {
 
@@ -9,5 +10,10 @@ export default function HomePage() {
     if (!sessionUser) return <Navigate to="/" replace={true} />;
 
 
-    return "Home page"
+    return (
+        <div className='home-page-wrapper'>
+            <SideNavbar />
+            <h1>Home page</h1>
+        </div>
+    )
 }
