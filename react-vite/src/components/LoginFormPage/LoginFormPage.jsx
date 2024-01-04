@@ -46,7 +46,7 @@ function LoginFormPage() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <span>{errors.email}</span>}
         <label>
           Password
           <input
@@ -56,7 +56,7 @@ function LoginFormPage() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <span>{errors.password}</span>}
         <button type="submit">Log In</button>
       </form>
     </>

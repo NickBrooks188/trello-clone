@@ -17,14 +17,8 @@ function Navigation() {
         )}
         {!sessionUser && (
           <div className="login-signup-wrapper">
-            <OpenModalMenuItem
-              itemText="Log In"
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalMenuItem
-              itemText="Sign Up"
-              modalComponent={<SignupFormModal />}
-            />
+            <NavLink to='/login'>Log in</NavLink>
+            <NavLink to='/signup'>Sign up</NavLink>
           </div>
         )}
       </div>
