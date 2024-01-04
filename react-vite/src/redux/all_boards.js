@@ -57,12 +57,17 @@ const initialState = {
 const allBoardsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_BOARDS: {
+            console.log("~~~~~~~~~~~", action.boards)
             const newState = action.boards
-            newState.users = {}
-            for (board of Object.values(action.boards)) {
+            for (let board of Object.values(action.boards)) {
                 newState[board.id].users = {}
-                for (user of board.users) {
-                    newState[board.id].users[user.id] = user
+                console.log("---------", board.users)
+                if (board.users.length) {
+                    for (let user of board.users) {
+                        newState[board.id].users[user.id] = user
+                    }
+                } else {
+                    newState[board.id].users = {}
                 }
             }
             return newState

@@ -1,17 +1,17 @@
 const GET_ALL_THEMES = 'themes/getAllThemes'
 
-const getAllThemes = (themes) => {
+const loadAllThemes = (themes) => {
     return {
         type: GET_ALL_THEMES,
         themes
     }
 }
 
-export const thunkGetAllThemes = () => async (dispatch) => {
+export const thunkLoadAllThemes = () => async (dispatch) => {
     const res = await fetch('/api/themes')
     const data = await res.json()
     if (res.ok) {
-        dispatch(getAllThemes(data))
+        dispatch(loadAllThemes(data))
     }
     return data
 }

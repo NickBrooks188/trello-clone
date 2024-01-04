@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import allThemesReducer from "./themes";
 import allBoardsReducer from "./all_boards";
+import boardReducer from "./board";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   themes: allThemesReducer,
-  boards: allBoardsReducer
+  boards: allBoardsReducer,
+  board: boardReducer
 });
 
 let enhancer;
