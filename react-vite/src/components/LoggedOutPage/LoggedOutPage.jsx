@@ -8,10 +8,10 @@ import { useEffect } from 'react'
 export default function LoggedOutPage() {
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(thunkLoadAllBoards())
-    //     dispatch(thunkLoadAllThemes())
-    //     dispatch(thunkLoadBoard(1))
-    // })
+    useEffect(() => {
+        dispatch(thunkLoadAllBoards())
+        dispatch(thunkLoadAllThemes())
+        dispatch(thunkLoadBoard(1))
+    })
     return "Logged out page"
 }
