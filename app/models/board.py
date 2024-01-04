@@ -33,11 +33,9 @@ class Board(db.Model):
             'name':self.name,
             'description':self.description
         }
-
-        # if to_dict is called with Channels=True, load all channels
+        dictionary['users'] = [user.to_dict() for user in self.users]
+        
         if lists:
-            # Add all channels to dictionary as a list of dictionaries
             dictionary['lists'] = [list.to_dict(cards = True) for list in self.lists]
-            dictionary['users'] = [user.to_dict() for user in self.users]
 
         return dictionary

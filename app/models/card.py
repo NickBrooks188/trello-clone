@@ -31,5 +31,8 @@ class Card(db.Model):
             'label':self.label,
             'image_url':self.image_url
         }
+        dictionary['users'] = [user.to_dict() for user in self.users]
+
+
 
         return dictionary

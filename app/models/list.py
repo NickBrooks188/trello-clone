@@ -21,9 +21,7 @@ class List(db.Model):
 
         }
 
-        # if messages=True, add amount of messages equal to 'limit' to dictionary.
         if cards:
-            # runs sorting lambda that sorts by Year, Month, Day, Hour, Minute, Second and adds list of messages to the dictionary
             dictionary['cards'] = [card.to_dict() for card in self.cards]
 
         return dictionary
