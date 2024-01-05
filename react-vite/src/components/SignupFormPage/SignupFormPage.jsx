@@ -21,14 +21,18 @@ function SignupFormPage() {
   const validateEmail = (val) => {
     setEmail(val)
     let errorsTemp
-    (val.indexOf("@") === -1 || val.indexOf(".") === -1) ? errorsTemp = { ...errors, email: "Please provide a valid email" } : errorsTemp = { ...errors, email: null }
+    (val.indexOf("@") === -1 || val.indexOf(".") === -1) ?
+      errorsTemp = { ...errors, email: "Please provide a valid email" } :
+      errorsTemp = { ...errors, email: null }
     setErrors(errorsTemp)
   }
 
   const validateFirstName = (val) => {
     setFirstname(val)
     let errorsTemp
-    (/[^a-zA-Z]/.test(val)) ? errorsTemp = { ...errors, first_name: "First name must only contain letters" } : errorsTemp = { ...errors, first_name: null }
+    (/[^a-zA-Z]/.test(val)) ?
+      errorsTemp = { ...errors, first_name: "First name must only contain letters" } :
+      errorsTemp = { ...errors, first_name: null }
     setErrors(errorsTemp)
   }
 

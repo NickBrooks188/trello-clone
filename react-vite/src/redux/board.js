@@ -10,7 +10,8 @@ const EDIT_LIST = 'list/editList'
 const ADD_CARD = 'card/addCard'
 const REMOVE_CARD = 'card/removeCard'
 const EDIT_CARD = 'card/editCard'
-const ADD_USER_TO_CARD = 'session/addUserToCard'
+const ADD_USER_TO_CARD = 'card/addUserToCard'
+const MOVE_CARD = 'card/move'
 
 const loadBoard = (board) => {
     return {
@@ -93,6 +94,15 @@ const addUserToCard = (user, listId, cardId) => {
     }
 }
 
+export const moveCard = (cardId, destinationListId, sourceListId) => {
+    return {
+        type: MOVE_CARD,
+        cardId,
+        destinationListId,
+        sourceListId
+    }
+}
+
 export const thunkLoadBoard = (boardId) => async (dispatch) => {
     const res = await fetch(`/api/boards/${boardId}`)
     const data = await res.json()
@@ -138,7 +148,7 @@ export const thunkEditBoard = (board) => async (dispatch) => {
             "Content-Type": "application/json"
         }
     })
-    const data = res.json()
+    const data = await res.json()
     if (res.ok) {
         dispatch(editBoard(data))
         delete data.lists
@@ -219,7 +229,7 @@ export const thunkEditCard = (card, listId) => async (dispatch) => {
             "Content-Type": "application/json"
         }
     })
-    const data = res.json()
+    const data = await res.json()
     if (res.ok) {
         dispatch(editCard(data, listId))
     }
@@ -267,11 +277,12 @@ const boardReducer = (state = initialState, action) => {
             newState.theme_id = action.board.theme_id
             newState.name = action.board.name
             newState.description = action.board.description
-            newState.list_order = action.board.list_order
+            newState.list_order = JSON.parse(action.board.list_order)
             newState.users = action.board.users
             newState.lists = {}
             for (let list of action.board.lists) {
                 newState.lists[list.id] = { ...list, cards: {} }
+                newState.lists[list.id].card_order = JSON.parse(list.card_order)
                 for (let card of list.cards) {
                     newState.lists[list.id].cards[card.id] = { ...card, users: {} }
                     for (let user of card.users) {
@@ -289,7 +300,7 @@ const boardReducer = (state = initialState, action) => {
         //     newState.theme_id = action.board.theme_id
         //     newState.name = action.board.name
         //     newState.description = action.board.description
-        //     newState.list_order = "[]"
+        //     newState.list_order = []
         //     newState.users = action.board.users
         //     newState.lists = {}
         //     newState.users[action.board.users[0].id] = action.board.users[0]
@@ -303,16 +314,17 @@ const boardReducer = (state = initialState, action) => {
             newState.theme_id = action.board.theme_id
             newState.name = action.board.name
             newState.description = action.board.description
-            newState.list_order = action.board.list_order
+            newState.list_order = JSON.parse(action.board.list_order)
             return newState
         }
         case ADD_LIST: {
             const newState = { ...state }
             newState.lists[action.list.id] = action.list
             newState.lists[action.list.id].cards = {}
-            let oldList = JSON.parse(newState.list_order)
+            newState.lists[action.list.id].card_order = []
+            let oldList = newState.list_order
             oldList.push(action.list.id)
-            newState.list_order = JSON.stringify(oldList)
+            newState.list_order = oldList
             return newState
         }
         case REMOVE_LIST: {
@@ -323,12 +335,16 @@ const boardReducer = (state = initialState, action) => {
         case EDIT_LIST: {
             const newState = { ...state }
             newState.lists[action.list.id].name = action.list.name
+            newState.lists[action.list.id].card_order = JSON.parse(action.list.card_order)
             return newState
         }
         case ADD_CARD: {
             const newState = { ...state }
             newState.lists[action.listId].cards[action.card.id] = action.card
             newState.lists[action.listId].cards[action.card.id].users = {}
+            let oldList = newState.lists[listId].card_order
+            oldList.push(action.card.id)
+            newState.lists[listId].card_order = oldList
             return newState
         }
         case REMOVE_CARD: {
@@ -342,6 +358,7 @@ const boardReducer = (state = initialState, action) => {
             newState.lists[action.listId].cards[action.card.id].description = action.card.description
             newState.lists[action.listId].cards[action.card.id].label = action.card.label
             newState.lists[action.listId].cards[action.card.id].image_url = action.card.image_url
+            newState.lists[action.listId].cards[action.card.id].list_id = action.card.list_id
             for (let user of action.card.users) {
                 newState.lists[action.listId].cards[action.card.id].users[user.id] = user
             }
@@ -350,6 +367,12 @@ const boardReducer = (state = initialState, action) => {
         case ADD_USER_TO_CARD: {
             const newState = { ...state }
             newState.lists[action.listId].cards[action.cardId].users[action.user.id] = action.user
+            return newState
+        }
+        case MOVE_CARD: {
+            const newState = { ...state }
+            newState.lists[action.destinationListId].cards[action.cardId] = { ...newState.lists[action.sourceListId].cards[action.cardId] }
+            delete newState.lists[action.sourceListId].cards[action.cardId]
             return newState
         }
         default:

@@ -17,6 +17,7 @@ def update_card(cardId):
         card.label = data['label']
         card.description = data['description']
         card.image_url = data['image_url']
+        card.list_id = data['list_id']
         db.session.commit()
         return card.to_dict()
     return {'errors': form.errors}, 401

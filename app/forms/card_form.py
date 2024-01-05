@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired
 
 class CardForm(FlaskForm):
@@ -7,3 +7,4 @@ class CardForm(FlaskForm):
     description = StringField('description')
     label = StringField('label')
     image_url = StringField('image_url')
+    list_id = IntegerField('list_id')
