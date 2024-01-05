@@ -30,15 +30,17 @@ export default function BoardPage() {
         //         index: indexinCard_list
         //     }
         // }
+        const { destination, source } = result
 
         if (!(result.destination)) {
             return
         }
 
-        if (result.destination.droppableId === result.source.droppableId) {
-            const destIndex = result.destination.index
-            const sourceIndex = result.source.index
-            const listToEdit = board.lists[Number(result.destination.droppableId)]
+        if (destination.droppableId === source.droppableId) {
+            if (destination.index === source.index) return
+            const destIndex = destination.index
+            const sourceIndex = source.index
+            const listToEdit = board.lists[Number(destination.droppableId)]
             let cardListToEdit = listToEdit.card_order
             const cardId = cardListToEdit[sourceIndex]
             cardListToEdit.splice(sourceIndex, 1)
@@ -54,10 +56,10 @@ export default function BoardPage() {
                 return
             }
         } else {
-            const destIndex = result.destination.index
-            const sourceIndex = result.source.index
-            const sourceList = { ...board.lists[Number(result.source.droppableId)] }
-            const destinationList = { ...board.lists[Number(result.destination.droppableId)] }
+            const destIndex = destination.index
+            const sourceIndex = source.index
+            const sourceList = { ...board.lists[Number(source.droppableId)] }
+            const destinationList = { ...board.lists[Number(destination.droppableId)] }
             let sourceCards = sourceList.card_order
             let destinationCards = destinationList.card_order
             const cardId = sourceCards[sourceIndex]
