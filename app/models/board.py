@@ -34,6 +34,7 @@ class Board(db.Model):
             'description':self.description
         }
         dictionary['users'] = {user.id: user.to_dict() for user in self.users}
+        dictionary['theme'] = self.theme.to_dict()
         
         if lists:
             dictionary['lists'] = [list.to_dict(cards = True) for list in self.lists]

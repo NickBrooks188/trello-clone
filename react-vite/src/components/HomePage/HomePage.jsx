@@ -3,11 +3,12 @@ import { Navigate, Link } from 'react-router-dom';
 import './HomePage.css'
 import SideNavbar from '../SideNavbar';
 import { useEffect, useState } from 'react';
-import { addUserToBoards, thunkLoadAllBoards } from '../../redux/all_boards';
+import { thunkLoadAllBoards } from '../../redux/all_boards';
 import { thunkLoadAllThemes } from '../../redux/themes';
 import BoardTile from '../BoardTile';
 import BoardCreationModal from '../BoardCreationModal';
 import OpenModalButton from '../OpenModalButton';
+import { thunkAddUserToBoard } from '../../redux/board';
 
 export default function HomePage() {
     const dispatch = useDispatch()
@@ -25,16 +26,18 @@ export default function HomePage() {
     useEffect(() => {
         let userBoardArr = []
         let nonUserBoardArr = []
-        for (let board of Object.values(boards)) {
-            if (board.users[sessionUser.id]) userBoardArr.push(board)
-            else nonUserBoardArr.push(board)
+        if (sessionUser) {
+            for (let board of Object.values(boards)) {
+                if (board.users[sessionUser.id]) userBoardArr.push(board)
+                else nonUserBoardArr.push(board)
+            }
+            setUserBoards(userBoardArr)
+            setUnjoinedBoards(nonUserBoardArr)
         }
-        setUserBoards(userBoardArr)
-        setUnjoinedBoards(nonUserBoardArr)
     }, [boards, sessionUser])
 
     const joinBoard = (boardId) => {
-        dispatch(addUserToBoards(sessionUser, boardId))
+        dispatch(thunkAddUserToBoard(sessionUser, boardId))
     }
 
 

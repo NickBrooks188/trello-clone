@@ -227,7 +227,7 @@ export const thunkEditCard = (card, listId) => async (dispatch) => {
 }
 
 export const thunkAddUserToBoard = (user, boardId) => async (dispatch) => {
-    const res = await fetch(`/api/boards/${boardId}`, {
+    const res = await fetch(`/api/boards/${boardId}/users`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -236,7 +236,7 @@ export const thunkAddUserToBoard = (user, boardId) => async (dispatch) => {
     })
     const data = await res.json()
     if (res.ok) {
-        dispatch(addUserToBoards(data, boardId))
+        dispatch(addUserToBoards(user, boardId))
     }
     return data
 }
