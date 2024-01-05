@@ -4,7 +4,7 @@ const EDIT_BOARD = 'boards/editBoard'
 const REMOVE_BOARD = 'boards/removeBoard'
 const ADD_USER_TO_BOARDS = 'boards/addUserToBoard'
 
-export const getAllBoards = (boards) => {
+export const loadAllBoards = (boards) => {
     return {
         type: GET_ALL_BOARDS,
         boards
@@ -45,7 +45,7 @@ export const thunkLoadAllBoards = () => async (dispatch) => {
     const res = await fetch('/api/boards')
     const data = await res.json()
     if (res.ok) {
-        dispatch(getAllBoards(data))
+        dispatch(loadAllBoards(data))
     }
     return data
 }
