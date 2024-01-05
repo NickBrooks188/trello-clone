@@ -46,11 +46,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        return {
+        dictionary = {
             'id': self.id,
             'email': self.email,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'location': self.location,
-            'profile_image_url': self.profile_image_url
+            'profile_image_url': self.profile_image_url,
         }
+
+        return dictionary
