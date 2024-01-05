@@ -33,4 +33,5 @@ span {
 .page-content-wrapper {
     flex: 1;
     box-sizing: border-box;
+    overflow: hidden;
 }

@@ -76,7 +76,6 @@ const allBoardsReducer = (state = initialState, action) => {
             return newState
         }
         case ADD_USER_TO_BOARDS: {
-            console.log("~~~~~~~~~", action)
             const newState = { ...state }
             newState[action.boardId].users[action.user.id] = action.user
             return newState

@@ -20,7 +20,7 @@ export default function HomePage() {
 
     useEffect(() => {
         dispatch((thunkLoadAllBoards()))
-        dispatch((thunkLoadAllThemes))
+        dispatch((thunkLoadAllThemes()))
     }, [dispatch])
 
     useEffect(() => {

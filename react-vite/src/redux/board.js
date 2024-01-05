@@ -1,7 +1,7 @@
 import { addBoards, editBoards, removeBoards, addUserToBoards } from "./all_boards";
 
 const GET_BOARD = 'board/getBoard'
-const ADD_BOARD = 'board/addBoard'
+// const ADD_BOARD = 'board/addBoard'
 const REMOVE_BOARD = 'board/removeBoard'
 const EDIT_BOARD = 'board/editBoard'
 const ADD_LIST = 'list/addList'
@@ -19,12 +19,12 @@ const loadBoard = (board) => {
     }
 }
 
-const addBoard = (board) => {
-    return {
-        type: ADD_BOARD,
-        board
-    }
-}
+// const addBoard = (board) => {
+//     return {
+//         type: ADD_BOARD,
+//         board
+//     }
+// }
 
 const removeBoard = () => {
     return {
@@ -103,7 +103,7 @@ export const thunkLoadBoard = (boardId) => async (dispatch) => {
 }
 
 export const thunkAddBoard = (board) => async (dispatch) => {
-    const res = await fetch(`/api/boards/`, {
+    const res = await fetch(`/api/boards`, {
         method: "POST",
         body: JSON.stringify(board),
         headers: {
@@ -112,7 +112,7 @@ export const thunkAddBoard = (board) => async (dispatch) => {
     })
     const data = await res.json()
     if (res.ok) {
-        dispatch(addBoard(data))
+        // dispatch(addBoard(data))
         delete data.lists
         dispatch(addBoards(data))
     }
@@ -281,19 +281,20 @@ const boardReducer = (state = initialState, action) => {
             }
             return newState
         }
-        case ADD_BOARD: {
-            const newState = {}
-            newState.id = action.board.id
-            newState.owner_id = action.board.owner_id
-            newState.theme_id = action.board.theme_id
-            newState.name = action.board.name
-            newState.description = action.board.description
-            newState.list_order = "[]"
-            newState.users = action.board.users
-            newState.lists = {}
-            newState.users[action.board.users[0].id] = action.board.users[0]
-            return newState
-        }
+        // case ADD_BOARD: {
+        //     const newState = {}
+        //     console.log(action)
+        //     newState.id = action.board.id
+        //     newState.owner_id = action.board.owner_id
+        //     newState.theme_id = action.board.theme_id
+        //     newState.name = action.board.name
+        //     newState.description = action.board.description
+        //     newState.list_order = "[]"
+        //     newState.users = action.board.users
+        //     newState.lists = {}
+        //     newState.users[action.board.users[0].id] = action.board.users[0]
+        //     return newState
+        // }
         case REMOVE_BOARD: {
             return {}
         }
