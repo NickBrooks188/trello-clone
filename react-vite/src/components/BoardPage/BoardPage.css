@@ -1,0 +1,26 @@
+.list {
+    border: 1px solid black;
+    height: fit-content;
+    width: 200px;
+}
+
+.card {
+    border: 1px solid gray;
+    background-color: white;
+}
+
+.board-page-content {
+    width: 100%;
+    flex: 1;
+    overflow-y: scroll;
+    border: 1px solid green;
+    box-sizing: border-box;
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+
+.cards-wrapper {
+    min-height: 50px;
+}

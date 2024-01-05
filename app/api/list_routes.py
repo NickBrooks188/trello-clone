@@ -14,6 +14,7 @@ def update_list(listId):
     if form.validate_on_submit():
         data = form.data
         list.name = data['name']
+        list.card_order = data['card_order']
         db.session.commit()
         return list.to_dict(cards=True)
     elif not form.validate_on_submit():

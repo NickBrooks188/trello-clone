@@ -9,6 +9,7 @@ class List(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")))
     name = db.Column(db.String, nullable=False)
+    card_order = db.Column(db.String, default='[]')
 
     cards = db.relationship("Card", back_populates="list")
     board = db.relationship("Board", back_populates="lists")
@@ -18,7 +19,7 @@ class List(db.Model):
             'id': self.id,
             'board_id':self.board_id,
             'name':self.name,
-
+            'card_order':self.card_order
         }
 
         if cards:

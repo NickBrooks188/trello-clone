@@ -1,17 +1,27 @@
 import './LoggedOutPage.css'
-import { thunkLoadAllBoards } from '../../redux/all_boards'
-import { thunkLoadBoard } from '../../redux/board'
-import { thunkLoadAllThemes } from '../../redux/themes'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate, Link } from 'react-router-dom'
+import { thunkLogin } from '../../redux/session'
 
 export default function LoggedOutPage() {
     const dispatch = useDispatch()
+    const sessionUser = useSelector(state => state.session.user)
 
-    useEffect(() => {
-        dispatch(thunkLoadAllBoards())
-        dispatch(thunkLoadAllThemes())
-        dispatch(thunkLoadBoard(1))
-    })
-    return "Logged out page"
+    const demoLogin = () => {
+        dispatch(
+            thunkLogin({
+                email: 'demo@aa.io',
+                password: 'password',
+            }))
+    }
+
+    if (sessionUser) return <Navigate to="/home" replace={true} />;
+
+    return (
+        <div className='logged-out-wrapper'>
+            <Link className="login-page-button" to='/login'>Log in</Link>
+            <Link className="signup-page-button" to='/signup'>Sign up</Link>
+            <button className='demo-user-button' onClick={demoLogin}>Log in as demo user</button>
+        </div>
+    )
 }
