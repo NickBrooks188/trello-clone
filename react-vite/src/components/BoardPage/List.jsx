@@ -5,8 +5,6 @@ export default function List({ list, cards, index }) {
 
     const board = useSelector(state => state.board)
 
-    console.log("~~~~~~", cards)
-
     return (
         <div className="list">
             <h3>{list.name}</h3>

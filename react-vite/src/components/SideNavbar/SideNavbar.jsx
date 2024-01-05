@@ -1,13 +1,22 @@
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './SideNavbar.css'
 import { useEffect, useState } from 'react'
+import { thunkLoadAllBoards } from '../../redux/all_boards'
+import { thunkLoadAllThemes } from '../../redux/themes'
 
 export default function SideNavbar() {
+    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
     const themes = useSelector(state => state.themes)
     const boards = useSelector(state => state.boards)
     const [userBoards, setUserBoards] = useState([])
+
+
+    useEffect(() => {
+        dispatch((thunkLoadAllBoards()))
+        dispatch((thunkLoadAllThemes()))
+    }, [dispatch])
 
     useEffect(() => {
         let userBoardArr = []

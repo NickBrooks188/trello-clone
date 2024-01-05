@@ -19,11 +19,6 @@ export default function HomePage() {
     const [unjoinedBoards, setUnjoinedBoards] = useState([])
 
     useEffect(() => {
-        dispatch((thunkLoadAllBoards()))
-        dispatch((thunkLoadAllThemes()))
-    }, [dispatch])
-
-    useEffect(() => {
         let userBoardArr = []
         let nonUserBoardArr = []
         if (sessionUser) {
