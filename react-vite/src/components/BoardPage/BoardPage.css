@@ -15,12 +15,31 @@
     overflow-y: scroll;
     border: 1px solid green;
     box-sizing: border-box;
-    display: flex;
-    gap: 10px;
-    flex-wrap: nowrap;
     overflow-x: scroll;
+}
+
+.lists-wrapper {
+    box-sizing: border-box;
+    display: flex;
+    align-items: start;
+    flex-wrap: nowrap;
+}
+
+.list {
+    margin: 10px;
+}
+
+.list-name {
+    height: 30px;
+    font-size: 20px;
 }
 
 .cards-wrapper {
     min-height: 50px;
+}
+
+.card-dragging {
+    background-color: #ddd;
+    transform: rotate(10deg);
+    opacity: 90%;
 }

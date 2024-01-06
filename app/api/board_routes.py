@@ -50,7 +50,7 @@ def update_board(boardId):
     form = BoardForm()
     board = Board.query.get(boardId)
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit() and int(session['_user_id']) == board.to_dict()['owner_id']:
+    if form.validate_on_submit() and board:
         data = form.data
         board.name = data['name']
         board.description = data['description']
@@ -60,7 +60,7 @@ def update_board(boardId):
         return board.to_dict(lists=True)
     elif not form.validate_on_submit():
         return {'errors': form.errors}, 401
-    return {'errors': {'message': 'Unauthorized'}}, 403
+    return  {"message": "Board Not Found"}, 404
 
 
 @board.route('/<int:boardId>', methods=["DELETE"])
