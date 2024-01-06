@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react'
-import './BoardCreationModal.css'
+import './BoardModal.css'
 import { useDispatch, useSelector } from 'react-redux'
 import TextareaAutosize from "react-textarea-autosize";
-import { thunkAddBoard } from '../../redux/board';
+import { thunkAddBoard, thunkEditBoard, thunkRemoveBoard } from '../../redux/board';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
 
 
-export default function BoardCreationModal() {
+export default function BoardModal({ type }) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { closeModal } = useModal();
+    const board = useSelector(state => state.board)
     const themes = useSelector(state => state.themes)
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [theme, setTheme] = useState(Object.values(themes)[0]?.id)
+    const sessionUser = useSelector(state => state.session.user)
+    const [name, setName] = useState((type === "Edit" ? board.name : ""))
+    const [description, setDescription] = useState((type === "Edit" ? (board.description || "") : ""))
+    const [theme, setTheme] = useState((type === "Edit" ? board.theme_id : Object.values(themes)[0]?.id))
     const [errors, setErrors] = useState({})
     const [disabled, setDisabled] = useState(true)
 
@@ -38,19 +41,37 @@ export default function BoardCreationModal() {
 
         if (disabled) return
 
-        const serverResponse = await dispatch(
-            thunkAddBoard({
-                name,
-                description: (description || null),
-                theme_id: theme
-            })
-        )
+        if (type === "Create") {
+            const serverResponse = await dispatch(
+                thunkAddBoard({
+                    name,
+                    description: (description || null),
+                    theme_id: theme
+                })
+            )
 
-        if (serverResponse.errors) {
-            setErrors(serverResponse)
-        } else {
-            closeModal()
+            if (serverResponse.errors) {
+                setErrors(serverResponse)
+            } else {
+                closeModal()
+            }
+        } else if (type === "Edit") {
+            const serverResponse = await dispatch(
+                thunkEditBoard({
+                    ...board,
+                    name,
+                    description: (description || null),
+                    theme_id: theme,
+                    list_order: JSON.stringify(board.list_order)
+                })
+            )
+            if (serverResponse.errors) {
+                setErrors(serverResponse)
+            } else {
+                closeModal()
+            }
         }
+
     }
 
     const clickTheme = (e) => {
@@ -58,11 +79,21 @@ export default function BoardCreationModal() {
         setTheme(Number(e.target.value))
     }
 
+    const deleteBoard = async () => {
+        const serverResponse = await dispatch(thunkRemoveBoard(board.id))
+        if (serverResponse.errors) {
+            setErrors(serverResponse)
+        } else {
+            navigate('/home')
+            closeModal()
+        }
+    }
+
     if (!themes) return null
 
     return (
         <>
-            <h4>Create board</h4>
+            <h4>{type} board</h4>
             <div className='board-preview'>PREVIEW PENDING</div>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -94,8 +125,11 @@ export default function BoardCreationModal() {
                     />
                 </label>
                 {errors?.description && <span>{errors?.description}</span>}
-                <button type="submit" disabled={disabled}>Create</button>
+                <button type="submit" disabled={disabled}>{type}</button>
             </form>
+            {(type === 'Edit' && sessionUser.id == board.owner_id) && (
+                <button className='delete-board' onClick={deleteBoard}>Delete</button>
+            )}
         </>
     )
 }

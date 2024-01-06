@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 31e9297993ec
+Revision ID: 9afbbbc0c700
 Revises: 
-Create Date: 2024-01-03 14:16:09.428781
+Create Date: 2024-01-05 18:27:17.689979
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '31e9297993ec'
+revision = '9afbbbc0c700'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -56,6 +56,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('board_id', sa.Integer(), nullable=True),
     sa.Column('name', sa.String(), nullable=False),
+    sa.Column('card_order', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['board_id'], ['boards.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -65,7 +66,8 @@ def upgrade():
     sa.Column('board_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['board_id'], ['boards.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('user_id', 'board_id', name='uix_1')
     )
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -83,7 +85,8 @@ def upgrade():
     sa.Column('card_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['card_id'], ['cards.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('user_id', 'card_id', name='uix_1')
     )
     # ### end Alembic commands ###
 

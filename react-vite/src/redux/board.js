@@ -279,6 +279,7 @@ const boardReducer = (state = initialState, action) => {
             newState.description = action.board.description
             newState.list_order = JSON.parse(action.board.list_order)
             newState.users = action.board.users
+            newState.theme = action.board.theme
             newState.lists = {}
             for (let list of action.board.lists) {
                 newState.lists[list.id] = { ...list, cards: {} }
@@ -315,6 +316,7 @@ const boardReducer = (state = initialState, action) => {
             newState.name = action.board.name
             newState.description = action.board.description
             newState.list_order = JSON.parse(action.board.list_order)
+            newState.theme = action.board.theme
             return newState
         }
         case ADD_LIST: {

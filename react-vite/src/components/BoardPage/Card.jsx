@@ -1,16 +1,23 @@
 import { Draggable } from 'react-beautiful-dnd'
 
 export default function Card({ card, index }) {
+
+    const test = () => {
+        alert('alert!')
+    }
+
     if (!card) return
     return (
-        <Draggable draggableId={String(card.id)} index={index}>
-            {provided => (
-                <div className="card"
+        <Draggable draggableId={`${card.id}`} index={index} type="card">
+            {(provided, snapshot) => (
+                <div className={`card-wrapper${snapshot.isDragging ? ` card-dragging` : ``}`}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
                 >
-                    {card.name}
+                    <div className='card' >
+                        {card.name}
+                    </div>
                 </div>
 
             )}
