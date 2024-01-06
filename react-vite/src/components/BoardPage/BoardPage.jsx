@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './BoardPage.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import SideNavbar from '../SideNavbar'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -14,6 +14,8 @@ export default function BoardPage() {
     const dispatch = useDispatch()
     const { boardId } = useParams()
     const board = useSelector(state => state.board)
+    const [newListName, setNewListName] = useState('')
+    const [showNewList, setShowNewList] = useState(false)
 
     useEffect(() => {
         dispatch(thunkLoadBoard(boardId))
@@ -80,7 +82,11 @@ export default function BoardPage() {
                 }
             }
         }
+    }
 
+    const handleNewList = () => {
+        setShowNewList(true)
+        document.addEventListener
     }
 
     return (
@@ -95,24 +101,38 @@ export default function BoardPage() {
                         }
                     />
                 </div>
-                <DragDropContext
-                    onDragEnd={onDragEnd}
-                >
-                    <Droppable droppableId={`board-${board.id}`} direction='horizontal' type='list'>
-                        {provided => (
+                <div className='list-area-wrapper'>
+                    <DragDropContext
+                        onDragEnd={onDragEnd}
+                    >
+                        <Droppable droppableId={`board-${board.id}`} direction='horizontal' type='list'>
+                            {provided => (
 
-                            <div className='lists-wrapper'
-                                {...provided.droppableProps}
-                                ref={provided.innerRef}
-                            >
-                                {board.list_order && board.list_order.map((listId, index) => (
-                                    <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+                                <div className='lists-wrapper'
+                                    {...provided.droppableProps}
+                                    ref={provided.innerRef}
+                                >
+                                    {board.list_order && board.list_order.map((listId, index) => (
+                                        <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
+                                    ))}
+                                    {provided.placeholder}
+                                    {(showNewList) && (<form className='new-list'>
+                                        <input
+                                            type="text"
+                                            value={newListName}
+                                            onChange={(e) => setNewListName(e.target.value)}
+                                            placeholder='Enter list title...'
+                                            required
+                                        />
+                                    </form>)}
+                                </div>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
+                    {(!showNewList) && (
+                        <button className='add-list-button' onClick={handleNewList}><i className="fa-solid fa-plus"></i> Add another list</button>
+                    )}
+                </div>
             </div>
         </div>
     )
