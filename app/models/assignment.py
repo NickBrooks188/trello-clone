@@ -6,7 +6,7 @@ assignments = db.Table(
     db.Column('id', db.Integer, primary_key=True),
     db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
     db.Column("card_id", db.Integer, db.ForeignKey(add_prefix_for_prod("cards.id"))),
-    db.UniqueConstraint("user_id", "card_id", name="uix_1")
+    db.UniqueConstraint("user_id", "card_id")
 
 )
 
