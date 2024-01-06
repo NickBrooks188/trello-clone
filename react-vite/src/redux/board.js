@@ -158,7 +158,7 @@ export const thunkEditBoard = (board) => async (dispatch) => {
 }
 
 export const thunkAddList = (list, boardId) => async (dispatch) => {
-    const res = await fetch(`/api/boards/${boardId}`, {
+    const res = await fetch(`/api/boards/${boardId}/lists`, {
         method: "POST",
         body: JSON.stringify(list),
         headers: {

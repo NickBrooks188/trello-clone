@@ -6,7 +6,7 @@ import SideNavbar from '../SideNavbar'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import OpenModalButton from '../OpenModalButton';
 import List from './List'
-import { thunkLoadBoard, thunkEditBoard, thunkEditList, thunkEditCard, moveCard } from '../../redux/board'
+import { thunkLoadBoard, thunkEditBoard, thunkEditList, thunkEditCard, moveCard, thunkAddList } from '../../redux/board'
 import BoardModal from '../BoardModal'
 
 
@@ -14,12 +14,12 @@ export default function BoardPage() {
     const dispatch = useDispatch()
     const { boardId } = useParams()
     const board = useSelector(state => state.board)
-    const [newListName, setNewListName] = useState('')
     const [showNewList, setShowNewList] = useState(false)
 
     useEffect(() => {
         dispatch(thunkLoadBoard(boardId))
     }, [dispatch, boardId])
+
 
     const onDragEnd = async (result) => {
 
@@ -84,16 +84,51 @@ export default function BoardPage() {
         }
     }
 
+    useEffect(() => {
+        if (document.getElementById('new-list-input')) {
+            document.getElementById('new-list-input').focus()
+        }
+    }, [showNewList])
+
     const handleNewList = () => {
         setShowNewList(true)
-        document.addEventListener
+
+        let counter = 0
+        const handleNewListClick = async (e) => {
+            counter++
+            const val = document.getElementById('new-list-input').value
+            try {
+                if (!(document.getElementById('new-list').contains(e.target)) && counter > 1) {
+                    if (val) {
+                        await dispatch(thunkAddList({
+                            name: val,
+                            card_order: '[]'
+                        }, board.id))
+                    }
+                    window.removeEventListener('click', handleNewListClick)
+                    setShowNewList(false)
+                    counter = 0
+                }
+            } catch {
+                console.log('Oops')
+                window.removeEventListener('click', handleNewListClick)
+                counter = 0
+            }
+        }
+
+        window.addEventListener('click', handleNewListClick)
+    }
+
+    const handleNewListSubmit = async (e) => {
+        e.preventDefault()
+        document.getElementById('harmless-click').click()
     }
 
     return (
         <div className='home-page-wrapper'>
             <SideNavbar />
             <div className='board-page-content'>
-                <div className='board-header'>
+                <div className='board-header' id='harmless-click'>
                     {board.name}
                     <OpenModalButton modalComponent={<BoardModal type="Edit" />}
                         buttonText={
@@ -116,13 +151,11 @@ export default function BoardPage() {
                                         <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
                                     ))}
                                     {provided.placeholder}
-                                    {(showNewList) && (<form className='new-list'>
+                                    {(showNewList) && (<form className='new-list' id='new-list' onSubmit={handleNewListSubmit}>
                                         <input
+                                            id='new-list-input'
                                             type="text"
-                                            value={newListName}
-                                            onChange={(e) => setNewListName(e.target.value)}
                                             placeholder='Enter list title...'
-                                            required
                                         />
                                     </form>)}
                                 </div>
@@ -134,6 +167,6 @@ export default function BoardPage() {
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

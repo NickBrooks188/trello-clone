@@ -1,10 +1,11 @@
 .board-page-content {
     width: 100%;
     flex: 1;
-    overflow-y: scroll;
     border: 1px solid green;
     box-sizing: border-box;
-    overflow-x: scroll;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 .board-header {
@@ -20,6 +21,8 @@
     display: flex;
     flex-wrap: nowrap;
     padding: 12px;
+    overflow-x: scroll;
+    flex: 1
 }
 
 .lists-wrapper {
@@ -44,6 +47,22 @@
 .list-dragging>.list {
     opacity: 90%;
     transform: rotate(3deg);
+}
+
+.add-list-button {
+    height: 40px;
+    min-width: 272px;
+    width: 272px;
+}
+
+.new-list {
+    width: 272px;
+    box-sizing: border-box;
+}
+
+.new-list>input {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .cards-wrapper {
