@@ -3,10 +3,8 @@ import { Navigate, Link } from 'react-router-dom';
 import './HomePage.css'
 import SideNavbar from '../SideNavbar';
 import { useEffect, useState } from 'react';
-import { thunkLoadAllBoards } from '../../redux/all_boards';
-import { thunkLoadAllThemes } from '../../redux/themes';
 import BoardTile from '../BoardTile';
-import BoardCreationModal from '../BoardCreationModal';
+import BoardModal from '../BoardModal';
 import OpenModalButton from '../OpenModalButton';
 import { thunkAddUserToBoard } from '../../redux/board';
 
@@ -50,7 +48,7 @@ export default function HomePage() {
                         </Link>
                     ))}
                     <OpenModalButton
-                        modalComponent={<BoardCreationModal />}
+                        modalComponent={<BoardModal type="Create" />}
                         buttonText={
                             <p>
                                 <i className="fa-solid fa-plus"></i>Create a board

@@ -4,8 +4,10 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import SideNavbar from '../SideNavbar'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import OpenModalButton from '../OpenModalButton';
 import List from './List'
 import { thunkLoadBoard, thunkEditBoard, thunkEditList, thunkEditCard, moveCard } from '../../redux/board'
+import BoardModal from '../BoardModal'
 
 
 export default function BoardPage() {
@@ -29,13 +31,11 @@ export default function BoardPage() {
             if (destination.index === source.index) return
             const boardTemp = { ...board }
             let lists = boardTemp.list_order
-            console.log(lists)
             const listId = lists[source.index]
             lists.splice(source.index, 1)
             lists.splice(destination.index, 0, listId)
 
             boardTemp.list_order = JSON.stringify(lists)
-            console.log(boardTemp)
             const putData = await dispatch(thunkEditBoard(boardTemp))
             if (!putData.errors) return
 
@@ -87,6 +87,14 @@ export default function BoardPage() {
         <div className='home-page-wrapper'>
             <SideNavbar />
             <div className='board-page-content'>
+                <div className='board-header'>
+                    {board.name}
+                    <OpenModalButton modalComponent={<BoardModal type="Edit" />}
+                        buttonText={
+                            <p><i className="fa-solid fa-pen-to-square"></i> Edit board</p>
+                        }
+                    />
+                </div>
                 <DragDropContext
                     onDragEnd={onDragEnd}
                 >
