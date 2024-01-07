@@ -1,10 +1,8 @@
 import { Draggable } from 'react-beautiful-dnd'
+import CardModal from '../CardModal/CardModal'
+import OpenModalButton from '../OpenModalButton'
 
 export default function Card({ card, index }) {
-
-    const test = () => {
-        alert('alert!')
-    }
 
     if (!card) return
     return (
@@ -16,8 +14,10 @@ export default function Card({ card, index }) {
                     ref={provided.innerRef}
                 >
                     <div className='card' >
-                        {card.name}
-                    </div>
+                        <OpenModalButton
+                            modalComponent={<CardModal card={card} />}
+                            buttonText={card.name}
+                        />                    </div>
                 </div>
 
             )}
