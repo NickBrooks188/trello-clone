@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import Card from "./Card"
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { useState } from "react"
-import { thunkEditList } from "../../redux/board"
+import { thunkEditList, thunkRemoveList } from "../../redux/board"
 
 export default function List({ list, cards, index }) {
     const dispatch = useDispatch()
@@ -24,6 +24,14 @@ export default function List({ list, cards, index }) {
         }, board.id))
     }
 
+    const handleListDelete = async (e) => {
+        e.preventDefault()
+        const serverData = await dispatch(thunkRemoveList(list.id))
+        if (!(serverData.errors)) {
+            setShowListPopup(false)
+        }
+    }
+
     useEffect(() => {
         if (document.getElementById('edit-list-input')) {
             document.getElementById('edit-list-input').focus()
@@ -37,7 +45,7 @@ export default function List({ list, cards, index }) {
                     {...provided.draggableProps}
                     ref={provided.innerRef}
                 >
-                    <div className="list">
+                    <div className="list" id={`list${list.id}`}>
                         <div className="list-header"
                             {...provided.dragHandleProps}
                         >
@@ -52,7 +60,18 @@ export default function List({ list, cards, index }) {
                             {(!(showListEdit)) && (<div className="list-name" onClick={() => setShowListEdit(true)}>
                                 {list.name}
                             </div>)}
-                            <i className="fa-solid fa-ellipsis"></i></div>
+                            <div className="list-header-right">
+                                {!(showListPopup) && (
+                                    <i className="fa-solid fa-ellipsis" onClick={() => setShowListPopup(true)}></i>
+                                )}
+                                {(showListPopup) && (
+                                    <div className="list-popup">
+                                        <button className="delete-list-button" onClick={handleListDelete}>Delete list</button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
                         <Droppable droppableId={`card-list-${list.id}`} index={index} type="card">
                             {(provided, snapshot) => (
                                 <div className="cards-wrapper"
@@ -68,8 +87,12 @@ export default function List({ list, cards, index }) {
                     {(showListEdit) && (
                         <div className="cover-everything" onClick={handleEditListSubmit} />
                     )}
+                    {(showListPopup) && (
+                        <div className="cover-everything" onClick={() => setShowListPopup(false)} />
+                    )}
                 </div>
-            )}
-        </Draggable>
+            )
+            }
+        </Draggable >
     )
 }

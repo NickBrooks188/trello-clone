@@ -87,6 +87,7 @@ def create_list(boardId):
             board_id = int(boardId),
         )
         db.session.add(new_list)
+        db.session.commit()
         boardListsJSON = board.list_order
         boardLists = json.loads(boardListsJSON)
         boardLists.append(new_list.id)
