@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import Card from "./Card"
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { useState } from "react"
-import { thunkEditList, thunkRemoveList } from "../../redux/board"
+import { thunkAddCard, thunkEditList, thunkRemoveList } from "../../redux/board"
 
 export default function List({ list, cards, index }) {
     const dispatch = useDispatch()
@@ -32,11 +32,28 @@ export default function List({ list, cards, index }) {
         }
     }
 
+    const handleNewCardSubmit = async (e) => {
+        e.preventDefault()
+        setShowNewCard(false)
+        if (newCardName) {
+            await dispatch(thunkAddCard({
+                name: newCardName
+            }, list.id))
+        }
+        setNewCardName('')
+    }
+
     useEffect(() => {
         if (document.getElementById('edit-list-input')) {
             document.getElementById('edit-list-input').focus()
         }
     }, [showListEdit])
+
+    useEffect(() => {
+        if (document.getElementById('new-card-input')) {
+            document.getElementById('new-card-input').focus()
+        }
+    }, [showNewCard])
 
     return (
         <Draggable draggableId={`list${list.id}`} index={(board.list_order).indexOf(list.id)} type="list">
@@ -83,12 +100,29 @@ export default function List({ list, cards, index }) {
                                 </div>
                             )}
                         </Droppable>
+                        <div className="new-card-wrapper">
+                            {(showNewCard) && (<form className="new-card" onSubmit={handleNewCardSubmit}>
+                                <input
+                                    id='new-card-input'
+                                    type='text'
+                                    placeholder='Enter a title for this card...'
+                                    value={newCardName}
+                                    onChange={e => setNewCardName(e.target.value)}
+                                />
+                            </form>)}
+                            {(!showNewCard) && (
+                                <button className="add-card-button" onClick={() => setShowNewCard(true)}><i className="fa-solid fa-plus"></i> Add a card</button>
+                            )}
+                        </div>
                     </div>
                     {(showListEdit) && (
                         <div className="cover-everything" onClick={handleEditListSubmit} />
                     )}
                     {(showListPopup) && (
                         <div className="cover-everything" onClick={() => setShowListPopup(false)} />
+                    )}
+                    {(showNewCard) && (
+                        <div className="cover-everything" onClick={handleNewCardSubmit} />
                     )}
                 </div>
             )

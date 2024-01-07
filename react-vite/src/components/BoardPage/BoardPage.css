@@ -88,6 +88,8 @@
 .new-list>input {
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 11;
 }
 
 .edit-list {
@@ -102,6 +104,11 @@
     width: 300px;
     min-width: 300px;
     padding: 8px;
+}
+
+.new-card {
+    position: relative;
+    z-index: 11
 }
 
 .cards-wrapper {
