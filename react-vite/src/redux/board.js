@@ -331,7 +331,7 @@ const boardReducer = (state = initialState, action) => {
         }
         case REMOVE_LIST: {
             const newState = { ...state }
-            newState.list_order.splice(newState.list_order.indexOf(listId), 1)
+            newState.list_order.splice(newState.list_order.indexOf(action.listId), 1)
             delete newState.lists[action.listId]
             return newState
         }
