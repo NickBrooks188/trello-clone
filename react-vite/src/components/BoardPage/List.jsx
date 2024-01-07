@@ -10,6 +10,7 @@ export default function List({ list, cards, index }) {
     const board = useSelector(state => state.board)
     const [showListEdit, setShowListEdit] = useState(false)
     const [listName, setListName] = useState(list.name)
+    const [showListPopup, setShowListPopup] = useState(false)
     const [showNewCard, setShowNewCard] = useState(false)
     const [newCardName, setNewCardName] = useState('')
 
