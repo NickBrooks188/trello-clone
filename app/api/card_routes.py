@@ -1,7 +1,8 @@
 from flask import Blueprint, session, request
-from ..models import db, Card, User
+from ..models import db, Card, User, List
 from flask_login import login_required
 from ..forms import CardForm, AssignmentForm
+import json
 
 card = Blueprint('card', __name__)
 
@@ -26,7 +27,13 @@ def update_card(cardId):
 @login_required
 def delete_card(cardId):
     card = Card.query.get(cardId)
-    if card:
+    list = List.query.get(card.list_id)
+    if card and list:
+        listCardsJSON = list.card_order
+        listCards = json.loads(listCardsJSON)
+        listCards.remove(card.id)
+        newListCardsJSON = json.dumps(listCards)
+        list.card_order = newListCardsJSON
         db.session.delete(card)
         db.session.commit()
         return {'message': 'Successfully deleted'}

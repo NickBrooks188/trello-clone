@@ -52,6 +52,15 @@
 .list-name {
     flex: 1;
     cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 30px;
+    min-width: fit-content;
+}
+
+.list-header-right {
+    width: 30px;
+    height: 24px;
 }
 
 .list-dragging>.list {
@@ -83,6 +92,16 @@
 
 .edit-list {
     z-index: 11;
+}
+
+.list-popup {
+    z-index: 11;
+    background-color: white;
+    border: 1px solid black;
+    position: relative;
+    width: 300px;
+    min-width: 300px;
+    padding: 8px;
 }
 
 .cards-wrapper {
