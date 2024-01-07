@@ -78,15 +78,15 @@ def delete_board(boardId):
 @login_required
 def create_list(boardId):
     form = ListForm()
+    board = Board.query.get(boardId)
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
+    if form.validate_on_submit() and board:
         data = form.data
         new_list = List(
             name = data['name'],
             board_id = int(boardId),
         )
         db.session.add(new_list)
-        board = Board.query.get(boardId)
         boardListsJSON = board.list_order
         boardLists = json.loads(boardListsJSON)
         boardLists.append(new_list.id)

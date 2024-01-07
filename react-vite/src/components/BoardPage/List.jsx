@@ -1,9 +1,33 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 import Card from "./Card"
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-export default function List({ list, cards, index }) {
+import { useState } from "react"
+import { thunkEditList } from "../../redux/board"
 
+export default function List({ list, cards, index }) {
+    const dispatch = useDispatch()
     const board = useSelector(state => state.board)
+    const [showListEdit, setShowListEdit] = useState(false)
+    const [listName, setListName] = useState(list.name)
+    const [showNewCard, setShowNewCard] = useState(false)
+    const [newCardName, setNewCardName] = useState('')
+
+    const handleEditListSubmit = async (e) => {
+        e.preventDefault()
+        setShowListEdit(false)
+        await dispatch(thunkEditList({
+            ...list,
+            name: listName,
+            card_order: JSON.stringify(list.card_order)
+        }, board.id))
+    }
+
+    useEffect(() => {
+        if (document.getElementById('edit-list-input')) {
+            document.getElementById('edit-list-input').focus()
+        }
+    }, [showListEdit])
 
     return (
         <Draggable draggableId={`list${list.id}`} index={(board.list_order).indexOf(list.id)} type="list">
@@ -13,9 +37,21 @@ export default function List({ list, cards, index }) {
                     ref={provided.innerRef}
                 >
                     <div className="list">
-                        <div className="list-name"
+                        <div className="list-header"
                             {...provided.dragHandleProps}
-                        >{list.name} <i className="fa-solid fa-ellipsis"></i></div>
+                        >
+                            {((showListEdit)) && (<form className="edit-list" id="edit-list" onSubmit={handleEditListSubmit}>
+                                <input
+                                    id='edit-list-input'
+                                    type="text"
+                                    value={listName}
+                                    onChange={e => setListName(e.target.value)}
+                                />
+                            </form>)}
+                            {(!(showListEdit)) && (<div className="list-name" onClick={() => setShowListEdit(true)}>
+                                {list.name}
+                            </div>)}
+                            <i className="fa-solid fa-ellipsis"></i></div>
                         <Droppable droppableId={`card-list-${list.id}`} index={index} type="card">
                             {(provided, snapshot) => (
                                 <div className="cards-wrapper"
@@ -28,6 +64,9 @@ export default function List({ list, cards, index }) {
                             )}
                         </Droppable>
                     </div>
+                    {(showListEdit) && (
+                        <div className="cover-everything" onClick={handleEditListSubmit} />
+                    )}
                 </div>
             )}
         </Draggable>

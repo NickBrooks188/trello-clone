@@ -15,6 +15,7 @@ export default function BoardPage() {
     const { boardId } = useParams()
     const board = useSelector(state => state.board)
     const [showNewList, setShowNewList] = useState(false)
+    const [newListName, setNewListName] = useState('')
 
     useEffect(() => {
         dispatch(thunkLoadBoard(boardId))
@@ -90,45 +91,23 @@ export default function BoardPage() {
         }
     }, [showNewList])
 
-    const handleNewList = () => {
-        setShowNewList(true)
-
-        let counter = 0
-        const handleNewListClick = async (e) => {
-            counter++
-            const val = document.getElementById('new-list-input').value
-            try {
-                if (!(document.getElementById('new-list').contains(e.target)) && counter > 1) {
-                    if (val) {
-                        await dispatch(thunkAddList({
-                            name: val,
-                            card_order: '[]'
-                        }, board.id))
-                    }
-                    window.removeEventListener('click', handleNewListClick)
-                    setShowNewList(false)
-                    counter = 0
-                }
-            } catch {
-                console.log('Oops')
-                window.removeEventListener('click', handleNewListClick)
-                counter = 0
-            }
-        }
-
-        window.addEventListener('click', handleNewListClick)
-    }
-
     const handleNewListSubmit = async (e) => {
         e.preventDefault()
-        document.getElementById('harmless-click').click()
+        setShowNewList(false)
+        if (newListName) {
+            await dispatch(thunkAddList({
+                name: newListName,
+                card_order: '[]'
+            }, board.id))
+        }
+        setNewListName('')
     }
 
     return (
         <div className='home-page-wrapper'>
             <SideNavbar />
             <div className='board-page-content'>
-                <div className='board-header' id='harmless-click'>
+                <div className='board-header'>
                     {board.name}
                     <OpenModalButton modalComponent={<BoardModal type="Edit" />}
                         buttonText={
@@ -151,20 +130,28 @@ export default function BoardPage() {
                                         <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
                                     ))}
                                     {provided.placeholder}
-                                    {(showNewList) && (<form className='new-list' id='new-list' onSubmit={handleNewListSubmit}>
-                                        <input
-                                            id='new-list-input'
-                                            type="text"
-                                            placeholder='Enter list title...'
-                                        />
-                                    </form>)}
+
                                 </div>
                             )}
                         </Droppable>
                     </DragDropContext>
-                    {(!showNewList) && (
-                        <button className='add-list-button' onClick={handleNewList}><i className="fa-solid fa-plus"></i> Add another list</button>
-                    )}
+                    <div className='new-list-wrapper'>
+                        {(showNewList) && (<form className='new-list' id='new-list' onSubmit={handleNewListSubmit}>
+                            <input
+                                id='new-list-input'
+                                type="text"
+                                placeholder='Enter list title...'
+                                value={newListName}
+                                onChange={e => setNewListName(e.target.value)}
+                            />
+                        </form>)}
+                        {(!showNewList) && (
+                            <button className='add-list-button' onClick={() => setShowNewList(true)}><i className="fa-solid fa-plus"></i> Add another list</button>
+                        )}
+                        {(showNewList) && (
+                            <div className="cover-everything" onClick={handleNewListSubmit} />
+                        )}
+                    </div>
                 </div>
             </div>
         </div >

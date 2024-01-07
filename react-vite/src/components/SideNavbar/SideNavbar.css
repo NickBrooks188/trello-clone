@@ -1,5 +1,6 @@
 .side-navbar-wrapper {
     width: 260px;
+    min-width: 260px;
     height: 100%;
     border: 1px solid blue;
     box-sizing: border-box;
