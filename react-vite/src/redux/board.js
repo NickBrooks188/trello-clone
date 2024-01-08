@@ -27,7 +27,7 @@ const loadBoard = (board) => {
 //     }
 // }
 
-const removeBoard = () => {
+export const removeBoard = () => {
     return {
         type: REMOVE_BOARD
     }

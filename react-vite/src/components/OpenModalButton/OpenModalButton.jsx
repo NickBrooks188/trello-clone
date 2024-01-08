@@ -13,7 +13,6 @@ function OpenModalButton({
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
     if (typeof onButtonClick === "function") onButtonClick();
-    console.log('11111111', bg)
     if (bg) {
       setBackground(false)
     } else {

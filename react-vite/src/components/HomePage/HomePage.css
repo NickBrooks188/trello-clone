@@ -10,6 +10,5 @@
     width: 100%;
     flex: 1;
     overflow-y: scroll;
-    border: 1px solid yellow;
     box-sizing: border-box;
 }

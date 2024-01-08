@@ -45,11 +45,10 @@ function ProfileButton() {
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
-          <li>{user.first_name}</li>
-          <li>{user.email}</li>
           <li>
-            <NavLink to='/home'>Boards</NavLink>
+            <NavLink to='/home'><i className="fa-brands fa-trello"></i>Boards</NavLink>
           </li>
+          <li><div>{user.email}</div></li>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>

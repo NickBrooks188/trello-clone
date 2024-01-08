@@ -14,12 +14,18 @@ export default function BoardPage() {
     const dispatch = useDispatch()
     const { boardId } = useParams()
     const board = useSelector(state => state.board)
+    const themes = useSelector(state => state.themes)
     const [showNewList, setShowNewList] = useState(false)
     const [newListName, setNewListName] = useState('')
+    const [theme, setTheme] = useState(themes[board.theme_id] || '')
 
     useEffect(() => {
         dispatch(thunkLoadBoard(boardId))
     }, [dispatch, boardId])
+
+    useEffect(() => {
+        setTheme(themes[board.theme_id])
+    }, [board, themes])
 
 
     const onDragEnd = async (result) => {
@@ -105,7 +111,7 @@ export default function BoardPage() {
 
     return (
         <div className='home-page-wrapper'>
-            <SideNavbar />
+            <SideNavbar theme={theme} selection={board.id} />
             <div className='board-page-content'>
                 <div className='board-header'>
                     {board.name}

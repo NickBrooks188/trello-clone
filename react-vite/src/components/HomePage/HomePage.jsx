@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import BoardTile from '../BoardTile';
 import BoardModal from '../BoardModal';
 import OpenModalButton from '../OpenModalButton';
-import { thunkAddUserToBoard } from '../../redux/board';
+import { removeBoard, thunkAddUserToBoard } from '../../redux/board';
 
 export default function HomePage() {
     const dispatch = useDispatch()
@@ -29,6 +29,10 @@ export default function HomePage() {
         }
     }, [boards, sessionUser])
 
+    useEffect(() => {
+        dispatch(removeBoard())
+    })
+
     const joinBoard = (boardId) => {
         dispatch(thunkAddUserToBoard(sessionUser, boardId))
     }
@@ -38,7 +42,7 @@ export default function HomePage() {
 
     return (
         <div className='home-page-wrapper'>
-            <SideNavbar />
+            <SideNavbar selection={'boards'} />
             <div className='home-page-content'>
                 <h1>Your boards</h1>
                 <div className='home-user-boards-wrapper'>
