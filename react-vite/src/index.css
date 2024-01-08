@@ -19,6 +19,7 @@ span {
     width: 100%;
     text-align: left;
     min-height: 16px;
+    font-size: 14px;
 }
 
 .page-wrapper {
@@ -34,4 +35,65 @@ span {
     flex: 1;
     box-sizing: border-box;
     overflow: hidden;
+}
+
+.close-modal-x {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #44546F;
+}
+
+.close-modal-x:hover {
+    background-color: #DCDFE4;
+}
+
+.asterisk {
+    color: #C9372C;
+    width: 10px;
+    margin-left: 3px;
+}
+
+button {
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        Segoe UI,
+        Roboto,
+        Noto Sans,
+        Ubuntu,
+        Droid Sans,
+        Helvetica Neue,
+        sans-serif;
+}
+
+input {
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        Segoe UI,
+        Roboto,
+        Noto Sans,
+        Ubuntu,
+        Droid Sans,
+        Helvetica Neue,
+        sans-serif;
+}
+
+textarea {
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        Segoe UI,
+        Roboto,
+        Noto Sans,
+        Ubuntu,
+        Droid Sans,
+        Helvetica Neue,
+        sans-serif;
 }

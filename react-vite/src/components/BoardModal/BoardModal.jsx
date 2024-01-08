@@ -16,10 +16,9 @@ export default function BoardModal({ type }) {
     const sessionUser = useSelector(state => state.session.user)
     const [name, setName] = useState((type === "Edit" ? board.name : ""))
     const [description, setDescription] = useState((type === "Edit" ? (board.description || "") : ""))
-    const [theme, setTheme] = useState((type === "Edit" ? board.theme_id : Object.values(themes)[0]?.id))
+    const [themeId, setThemeId] = useState((type === "Edit" ? board.theme_id : Object.values(themes)[0]?.id))
     const [errors, setErrors] = useState({})
     const [disabled, setDisabled] = useState(true)
-
 
     const validateName = (val) => {
         setName(val)
@@ -29,12 +28,12 @@ export default function BoardModal({ type }) {
     }
 
     useEffect(() => {
-        if (name && theme && !(errors.name) && !(errors.theme) && !(errors.description)) {
+        if (name && themeId && !(errors.name) && !(errors.themeId) && !(errors.description)) {
             setDisabled(false)
         } else {
             setDisabled(true)
         }
-    }, [name, theme, errors, setDisabled])
+    }, [name, themeId, errors, setDisabled])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -46,7 +45,7 @@ export default function BoardModal({ type }) {
                 thunkAddBoard({
                     name,
                     description: (description || null),
-                    theme_id: theme
+                    theme_id: themeId
                 })
             )
 
@@ -61,7 +60,7 @@ export default function BoardModal({ type }) {
                     ...board,
                     name,
                     description: (description || null),
-                    theme_id: theme,
+                    theme_id: themeId,
                     list_order: JSON.stringify(board.list_order)
                 })
             )
@@ -76,7 +75,7 @@ export default function BoardModal({ type }) {
 
     const clickTheme = (e) => {
         e.preventDefault()
-        setTheme(Number(e.target.value))
+        setThemeId(Number(e.target.parentElement.value))
     }
 
     const deleteBoard = async () => {
@@ -91,31 +90,49 @@ export default function BoardModal({ type }) {
 
     if (!themes) return null
 
+    console.log(themeId)
+
     return (
-        <>
-            <h4>{type} board</h4>
-            <div className='board-preview'>PREVIEW PENDING</div>
-            <form onSubmit={handleSubmit}>
+        <div className='board-modal-wrapper'>
+            <div className='close-modal-x' onClick={closeModal}><i className="fa-solid fa-xmark"></i></div>
+            <div className='board-modal-header'>{type} board</div>
+            <div className='board-preview'
+                style={{
+                    'backgroundImage': `url(${themes[themeId]?.background_image_url})`,
+                    'background': `linear-gradient(0.37turn, ${themes[themeId].gradient_left} , ${themes[themeId].gradient_right} )`,
+                }}
+            ><img src='https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/BoardTemplateUpdate.svg' /></div>
+            <form onSubmit={handleSubmit} className='board-modal-form'>
                 <label>
                     Background
                 </label>
                 <div className='board-creation-themes'>
                     {Object.values(themes).map(theme => (
-                        <button onClick={(e) => clickTheme(e)} key={theme.id} value={theme.id}>
-                            {theme.name}
+                        <button
+                            className='theme-select-button'
+                            onClick={(e) => clickTheme(e)}
+                            key={theme.id}
+                            value={theme.id}
+                            title={theme.name}
+                            style={{
+                                'backgroundImage': `url(${theme?.background_image_url})`,
+                                'background': `linear-gradient(0.37turn, ${theme.gradient_left} , ${theme.gradient_right} )`,
+                                'backgroundSize': `cover`
+                            }}>
+                            <div className='darken' />
                         </button>
                     ))}
                 </div>
                 {errors?.theme && <span>{errors?.theme}</span>}
                 <label>
-                    Board title
+                    <div className='board-title-wrapper'>Board title <div className='asterisk'>*</div></div>
                     <input
                         type="text"
                         value={name}
                         onChange={(e) => validateName(e.target.value)}
                     />
                 </label>
-                {errors?.name && <span>{errors?.name}</span>}
+                <span>{errors?.name}</span>
                 <label>
                     Board description
                     <TextareaAutosize
@@ -125,11 +142,11 @@ export default function BoardModal({ type }) {
                     />
                 </label>
                 {errors?.description && <span>{errors?.description}</span>}
-                <button type="submit" disabled={disabled}>{type}</button>
+                <button type="submit" className='board-modal-submit' disabled={disabled}>{type}</button>
             </form>
             {(type === 'Edit' && sessionUser.id == board.owner_id) && (
                 <button className='delete-board' onClick={deleteBoard}>Delete</button>
             )}
-        </>
+        </div>
     )
 }
