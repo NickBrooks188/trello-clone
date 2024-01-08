@@ -48,6 +48,7 @@ export default function HomePage() {
                         </Link>
                     ))}
                     <OpenModalButton
+                        bg='none'
                         modalComponent={<BoardModal type="Create" />}
                         buttonText={
                             <p>

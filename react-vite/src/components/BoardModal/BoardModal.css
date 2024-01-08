@@ -1,0 +1,129 @@
+.board-modal-wrapper {
+    width: 304px;
+    min-width: 304px;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 15px;
+}
+
+.board-modal-header {
+    width: 100%;
+    text-align: center;
+    color: #44546F;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.board-preview {
+    border-radius: 4px;
+    width: 200px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    box-shadow: 0px 1px 1px #aaa;
+}
+
+.board-preview>img {
+    height: 85%;
+}
+
+.board-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.board-modal-form>label {
+    color: #44546F;
+    font-size: 12px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.board-modal-form>label>input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #D5D9E0;
+    border-radius: 3px;
+    height: 36px;
+    padding: 10px;
+    font-size: 14px;
+    color: #172B4E;
+    margin-top: 5px;
+}
+
+.board-modal-form>label>input:hover {
+    background-color: #F7F8F9;
+}
+
+.board-modal-form>label>textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #D5D9E0;
+    border-radius: 3px;
+    height: 36px;
+    min-height: 36px;
+    padding: 10px;
+    font-size: 14px;
+    color: #172B4E;
+    margin-top: 5px;
+}
+
+.board-modal-form>label>textarea:hover {
+    background-color: #F7F8F9;
+}
+
+.board-creation-themes {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.theme-select-button {
+    width: 64px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.darken {
+    background-color: black;
+    width: 100px;
+    height: 100px;
+    margin-left: -10px;
+    margin-top: -10px;
+    opacity: 0;
+}
+
+.darken:hover {
+    opacity: 10%;
+}
+
+
+.board-title-wrapper {
+    display: flex;
+}
+
+.board-modal-submit {
+    border: none;
+    color: white;
+    background-color: #0A66E4;
+    height: 32px;
+    border-radius: 3px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.board-modal-submit:hover {
+    background-color: #0055CC;
+}
