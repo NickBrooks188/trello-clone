@@ -1,0 +1,127 @@
+.card-modal-wrapper {
+    width: 500px;
+    background-color: #F1F2F4;
+    padding: 10px;
+    border-radius: 8px;
+    color: #172B4E;
+}
+
+.card-name,
+.card-description {
+    cursor: pointer;
+}
+
+
+.card-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0 20px 0;
+}
+
+.card-field-wrapper>div>h2 {
+    font-size: 16px;
+    margin: 0px;
+}
+
+.edit-card-name>input,
+.edit-card-description>input {
+    width: 400px;
+}
+
+.edit-card-name,
+.edit-card-description {
+    position: relative;
+    z-index: 11;
+}
+
+.label-area {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+}
+
+.label {
+    width: 50px;
+    height: 25px;
+    border-radius: 3px;
+}
+
+.label-popup {
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 5px #aaa;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 11;
+}
+
+.label-popup>h2 {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.available-labels-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.available-label {
+    height: 32px;
+    width: 180px;
+    border: none;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.available-label:hover {
+    background-image: linear-gradient(rgb(255 255 255 / 20%) 0 0);
+}
+
+.assignment-popup {
+    position: absolute;
+    left: 100px;
+    bottom: 40px;
+    background-color: white;
+    box-shadow: 0px 0px 5px #aaa;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 11;
+    width: 200px;
+}
+
+.assignment-popup>h2 {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.available-user {
+    width: 100%;
+    border: none;
+    height: 28px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-bottom: 1px solid white;
+}
+
+.available-user>i {
+    color: #F0F0F0;
+}
+
+.available-user:hover {
+    background-color: #DDD;
+}

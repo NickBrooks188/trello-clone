@@ -114,8 +114,7 @@ export default function BoardPage() {
             <SideNavbar theme={theme} selection={board.id} />
             <div className='board-page-content'
                 style={{
-                    'backgroundImage': `url(${themes[board.theme_id]?.background_image_url})`,
-                    'background': `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`,
+                    'backgroundImage': (themes[board.theme_id]?.background_image_url ? `url(${themes[board.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`),
                     'backgroundSize': `cover`
                 }}
             >
