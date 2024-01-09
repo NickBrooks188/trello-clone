@@ -1,0 +1,51 @@
+.logged-out-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-page-button,
+.signup-page-button,
+.demo-user-button {
+    width: 272px;
+    height: 36px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-page-button,
+.demo-user-button {
+    background-color: #0A66E4;
+    color: white;
+    border: none;
+}
+
+.login-page-button:hover,
+.demo-user-button:hover {
+    background-color: #0055CC;
+}
+
+.signup-page-button {
+    color: black;
+    box-sizing: border-box;
+    border: 2px solid#0A66E4;
+    background-color: white;
+}
+
+.signup-page-button:hover {
+    box-shadow: 0px 0px 5px #aaa;
+}
+
+.divider {
+    width: 272px;
+    border-bottom: 1px solid #aaa;
+}

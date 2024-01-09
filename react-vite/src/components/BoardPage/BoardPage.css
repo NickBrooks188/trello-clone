@@ -38,7 +38,7 @@
     background-color: var(--button-background-hover);
 }
 
-.board-header>button>p {
+.board-header>button>span {
     opacity: 100%;
 }
 
