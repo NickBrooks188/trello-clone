@@ -72,7 +72,9 @@
 }
 
 .top-navbar-rhs-wrapper {
-  height: 100%
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .top-navbar-rhs-wrapper>button {
