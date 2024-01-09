@@ -15,12 +15,13 @@ body {
     transition: all 0.2s;
 }
 
-span {
+p {
     color: #F82770;
     width: 100%;
     text-align: left;
     min-height: 16px;
     font-size: 14px;
+    margin: 0;
 }
 
 .page-wrapper {

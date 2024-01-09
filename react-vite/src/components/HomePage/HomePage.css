@@ -78,7 +78,7 @@
     background-color: #ddd;
 }
 
-.board-tile-wrapper>button>p>i {
+.board-tile-wrapper>button>span>i {
     margin-right: 10px;
 }
 

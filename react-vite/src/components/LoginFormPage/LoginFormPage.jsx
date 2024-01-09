@@ -33,7 +33,7 @@ function LoginFormPage() {
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
   return (
-    <>
+    <div className="login-wrapper">
       <h1>Log In</h1>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
@@ -47,7 +47,7 @@ function LoginFormPage() {
             required
           />
         </label>
-        {errors.email && <span>{errors.email}</span>}
+        <p>{errors.email}</p>
         <label>
           Password
           <input
@@ -57,10 +57,10 @@ function LoginFormPage() {
             required
           />
         </label>
-        {errors.password && <span>{errors.password}</span>}
+        <p>{errors.password}</p>
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 

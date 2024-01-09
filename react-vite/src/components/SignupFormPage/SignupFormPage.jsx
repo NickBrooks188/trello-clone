@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
+import './SignupForm.css'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -92,9 +93,9 @@ function SignupFormPage() {
   if (sessionUser) return <Navigate to="/home" replace={true} />;
 
   return (
-    <>
+    <div className="signup-wrapper">
       <h1>Sign Up</h1>
-      {errors.server && <span>{errors.server}</span>}
+      <p>{errors.server}</p>
       <form onSubmit={handleSubmit}>
         <label>
           Email
@@ -105,7 +106,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.email && <span>{errors.email}</span>}
+        <p>{errors.email}</p>
         <label>
           First name
           <input
@@ -115,7 +116,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.first_name && <span>{errors.first_name}</span>}
+        <p>{errors.first_name}</p>
         <label>
           Last name
           <input
@@ -125,7 +126,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.last_name && <span>{errors.last_name}</span>}
+        <p>{errors.last_name}</p>
         <label>
           Location
           <input
@@ -134,7 +135,7 @@ function SignupFormPage() {
             onChange={(e) => setLocation(e.target.value)}
           />
         </label>
-        {errors.location && <span>{errors.location}</span>}
+        <p>{errors.location}</p>
         <label>
           Profile picture
           <input
@@ -143,7 +144,7 @@ function SignupFormPage() {
             onChange={(e) => setProfileImageURL(e.target.value)}
           />
         </label>
-        {errors.profile_image_url && <span>{errors.profile_image_url}</span>}
+        <p>{errors.profile_image_url}</p>
         <label>
           Password
           <input
@@ -153,7 +154,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.password && <span>{errors.password}</span>}
+        <p>{errors.password}</p>
         <label>
           Confirm Password
           <input
@@ -163,10 +164,10 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+        <p>{errors.confirmPassword}</p>
         <button type="submit" disabled={disabled}>Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

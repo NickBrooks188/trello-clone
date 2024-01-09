@@ -58,9 +58,9 @@ export default function HomePage() {
                             bg='none'
                             modalComponent={<BoardModal type="Create" />}
                             buttonText={
-                                <p>
+                                <span>
                                     <i className="fa-solid fa-plus"></i>Create a new board
-                                </p>
+                                </span>
                             }
                         />
                     </div>

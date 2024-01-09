@@ -123,7 +123,7 @@ export default function BoardPage() {
                     {board.name}
                     <OpenModalButton bg='none' modalComponent={<BoardModal type="Edit" />}
                         buttonText={
-                            <p><i className="fa-solid fa-pen-to-square"></i> Edit board</p>
+                            <span><i className="fa-solid fa-pen-to-square"></i> Edit board</span>
                         }
                     />
                 </div>

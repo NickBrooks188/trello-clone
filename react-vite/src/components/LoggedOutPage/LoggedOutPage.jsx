@@ -21,6 +21,7 @@ export default function LoggedOutPage() {
         <div className='logged-out-wrapper'>
             <Link className="login-page-button" to='/login'>Log in</Link>
             <Link className="signup-page-button" to='/signup'>Sign up</Link>
+            <div className='divider' />
             <button className='demo-user-button' onClick={demoLogin}>Log in as demo user</button>
         </div>
     )
