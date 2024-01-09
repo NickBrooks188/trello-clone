@@ -22,8 +22,8 @@ function Navigation() {
         )}
         {!sessionUser && (
           <div className="login-signup-wrapper">
-            <NavLink to='/login'>Log in</NavLink>
-            <NavLink to='/signup'>Sign up</NavLink>
+            <NavLink to='/login' className='login-navigation'>Log in</NavLink>
+            <NavLink to='/signup' className='signup-navigation'>Sign up</NavLink>
           </div>
         )}
       </div>
