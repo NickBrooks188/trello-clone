@@ -57,6 +57,21 @@ export default function CardModal({ card }) {
                 }
                 return
             }
+            case 'label-delete': {
+                let cardLabels = card.label
+                const index = cardLabels.indexOf(content)
+                cardLabels.splice(index, 1)
+                const serverData = await dispatch(thunkEditCard({
+                    ...card,
+                    label: JSON.stringify(cardLabels)
+                }, card.list_id))
+                if (!serverData.errors) {
+                    setShowLabelEdit(false)
+                } else {
+                    setErrors({ label: serverData.errors })
+                }
+                return
+            }
             case 'description': {
                 if (!description) {
                     setShowDescriptionEdit(false)
@@ -110,14 +125,21 @@ export default function CardModal({ card }) {
                     {card.name}
                 </div>)}
             </div>
+            {/* label */}
             <div className="card-field-wrapper">
                 <div className="card-modal-labels">
                     <h2>Labels</h2>
                     <div className="label-area">
                         {card.label && card.label.map((label) => (
-                            <div className="label" key={`card-${label}`} style={{
-                                "backgroundColor": label
-                            }} />
+                            <div className="label"
+                                key={`card-${label}`}
+                                style={{
+                                    "backgroundColor": label
+                                }}
+                                onClick={e => handleCardEditSubmit(e, 'label-delete', label)}
+                            >
+                                <i className="fa-solid fa-trash"></i>
+                            </div>
                         ))}
                         <button className="add-label" onClick={() => setShowLabelEdit(true)}><i className="fa-solid fa-plus"></i></button>
                     </div>
@@ -138,6 +160,7 @@ export default function CardModal({ card }) {
                         </div>
                     )}
                 </div>
+                {/* description */}
                 <div className="card-modal-description">
                     <h2>Description</h2>
                     {((showDescriptionEdit)) && (<form className="edit-card-description" id="edit-card-description" onSubmit={(e) => handleCardEditSubmit(e, 'description')}>
@@ -153,10 +176,12 @@ export default function CardModal({ card }) {
                         {card.description || 'Add a description...'}
                     </div>)}
                 </div>
+                {/* image */}
                 <div className="card-modal-image">
                     <h2>Image</h2>
                     <img src={card.image_url} />
                 </div>
+                {/* assignments */}
                 <div className="card-modal-assignment">
                     <h2>Assignments</h2>
                     <div className="assignments-wrapper">

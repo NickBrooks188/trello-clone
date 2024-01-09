@@ -344,6 +344,7 @@ const boardReducer = (state = initialState, action) => {
         case ADD_CARD: {
             const newState = { ...state }
             newState.lists[action.listId].cards[action.card.id] = action.card
+            newState.lists[action.listId].cards[action.card.id].label = []
             newState.lists[action.listId].cards[action.card.id].users = {}
             let oldList = newState.lists[action.listId].card_order
             oldList.push(action.card.id)
@@ -369,7 +370,6 @@ const boardReducer = (state = initialState, action) => {
             return newState
         }
         case ADD_USER_TO_CARD: {
-            console.log('~~~~~~', action)
             const newState = { ...state }
             newState.lists[action.listId].cards[action.cardId].users[action.user.id] = action.user
             return newState

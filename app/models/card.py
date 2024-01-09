@@ -11,7 +11,7 @@ class Card(db.Model):
     list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")))
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
-    label = db.Column(db.String)
+    label = db.Column(db.String, default='[]')
     image_url = db.Column(db.String)
 
     list = db.relationship("List", back_populates="cards")
