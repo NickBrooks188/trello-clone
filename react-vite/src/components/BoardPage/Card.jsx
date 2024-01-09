@@ -20,7 +20,6 @@ export default function Card({ card, index }) {
                             modalComponent={<CardModal card={card} />}
                             buttonText={card.name}
                         />
-
                     </div>
                 </div>
 
