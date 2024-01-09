@@ -20,6 +20,7 @@
   list-style: none;
   color: #172B4E;
   overflow: hidden;
+  z-index: 5;
 }
 
 .profile-dropdown>li {

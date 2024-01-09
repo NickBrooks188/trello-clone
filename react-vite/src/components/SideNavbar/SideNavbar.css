@@ -86,13 +86,3 @@
 .selected {
     background-image: linear-gradient(var(--background-selected) 0 0);
 }
-
-.theme-light {
-    --background-hover: rgb(255 255 255 / 10%);
-    --background-selected: rgb(255 255 255 / 18%)
-}
-
-.theme-dark {
-    --background-hover: rgb(0 0 0 / 8%);
-    --background-selected: rgb(0 0 0 / 14%);
-}

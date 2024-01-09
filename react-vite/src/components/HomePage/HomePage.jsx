@@ -45,27 +45,33 @@ export default function HomePage() {
             <SideNavbar selection={'boards'} />
             <div className='home-page-content'>
                 <h1>Your boards</h1>
-                <div className='home-user-boards-wrapper'>
+                <div className='home-boards-wrapper'>
                     {userBoards.map(userBoard => (
-                        <Link to={`/boards/${userBoard.id}`} key={userBoard.id}>
-                            <BoardTile board={userBoard} />
-                        </Link>
+                        <div className='board-tile-wrapper'>
+                            <Link to={`/boards/${userBoard.id}`} key={userBoard.id}>
+                                <BoardTile board={userBoard} />
+                            </Link>
+                        </div>
                     ))}
-                    <OpenModalButton
-                        bg='none'
-                        modalComponent={<BoardModal type="Create" />}
-                        buttonText={
-                            <p>
-                                <i className="fa-solid fa-plus"></i>Create a board
-                            </p>
-                        }
-                    />
+                    <div className='board-tile-wrapper'>
+                        <OpenModalButton
+                            bg='none'
+                            modalComponent={<BoardModal type="Create" />}
+                            buttonText={
+                                <p>
+                                    <i className="fa-solid fa-plus"></i>Create a new board
+                                </p>
+                            }
+                        />
+                    </div>
                 </div>
                 <h1>Join a board</h1>
-                <div className='home-unjoined-boards-wrapper'>
+                <div className='home-boards-wrapper'>
                     {unjoinedBoards.map(unjoinedBoard => (
-                        <div onClick={() => joinBoard(unjoinedBoard.id)} key={unjoinedBoard.id}>
-                            <BoardTile board={unjoinedBoard} />
+                        <div className='board-tile-wrapper'>
+                            <Link className='board-click' onClick={() => joinBoard(unjoinedBoard.id)} key={unjoinedBoard.id}>
+                                <BoardTile board={unjoinedBoard} />
+                            </Link>
                         </div>
                     ))}
                 </div>

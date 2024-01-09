@@ -121,9 +121,28 @@
     margin-top: 10px;
     font-weight: 500;
     font-size: 14px;
-    margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .board-modal-submit:hover {
     background-color: #0055CC;
+}
+
+.delete-board {
+    border: none;
+    color: white;
+    background-color: #0A66E4;
+    height: 32px;
+    border-radius: 3px;
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    width: 100%;
+    background-color: #f82754;
+}
+
+.delete-board:hover {
+    background-color: #e2244e;
 }

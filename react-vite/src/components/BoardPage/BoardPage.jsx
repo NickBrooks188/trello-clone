@@ -112,10 +112,16 @@ export default function BoardPage() {
     return (
         <div className='home-page-wrapper'>
             <SideNavbar theme={theme} selection={board.id} />
-            <div className='board-page-content'>
+            <div className='board-page-content'
+                style={{
+                    'backgroundImage': `url(${themes[board.theme_id]?.background_image_url})`,
+                    'background': `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`,
+                    'backgroundSize': `cover`
+                }}
+            >
                 <div className='board-header'>
                     {board.name}
-                    <OpenModalButton modalComponent={<BoardModal type="Edit" />}
+                    <OpenModalButton bg='none' modalComponent={<BoardModal type="Edit" />}
                         buttonText={
                             <p><i className="fa-solid fa-pen-to-square"></i> Edit board</p>
                         }
