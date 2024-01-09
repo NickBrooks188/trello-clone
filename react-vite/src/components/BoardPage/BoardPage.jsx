@@ -14,12 +14,18 @@ export default function BoardPage() {
     const dispatch = useDispatch()
     const { boardId } = useParams()
     const board = useSelector(state => state.board)
+    const themes = useSelector(state => state.themes)
     const [showNewList, setShowNewList] = useState(false)
     const [newListName, setNewListName] = useState('')
+    const [theme, setTheme] = useState(themes[board.theme_id] || '')
 
     useEffect(() => {
         dispatch(thunkLoadBoard(boardId))
     }, [dispatch, boardId])
+
+    useEffect(() => {
+        setTheme(themes[board.theme_id])
+    }, [board, themes])
 
 
     const onDragEnd = async (result) => {
@@ -105,11 +111,17 @@ export default function BoardPage() {
 
     return (
         <div className='home-page-wrapper'>
-            <SideNavbar />
-            <div className='board-page-content'>
+            <SideNavbar theme={theme} selection={board.id} />
+            <div className='board-page-content'
+                style={{
+                    'backgroundImage': `url(${themes[board.theme_id]?.background_image_url})`,
+                    'background': `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`,
+                    'backgroundSize': `cover`
+                }}
+            >
                 <div className='board-header'>
                     {board.name}
-                    <OpenModalButton modalComponent={<BoardModal type="Edit" />}
+                    <OpenModalButton bg='none' modalComponent={<BoardModal type="Edit" />}
                         buttonText={
                             <p><i className="fa-solid fa-pen-to-square"></i> Edit board</p>
                         }

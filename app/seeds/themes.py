@@ -25,7 +25,7 @@ def seed_themes():
         name='Rain',
         header_color='#E9EEE8',
         background_image_url='https://images.pexels.com/photos/304875/pexels-photo-304875.jpeg?auto=compress&cs=tinysrgb&w=800',
-        header_font_color='#000'
+        header_font_color='#172B4E'
     )
 
     db.session.add(theme_1)

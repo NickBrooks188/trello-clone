@@ -1,6 +1,8 @@
 import { Draggable } from 'react-beautiful-dnd'
 import CardModal from '../CardModal/CardModal'
 import OpenModalButton from '../OpenModalButton'
+import { OpenModalDiv } from '../OpenModalButton/OpenModalButton'
+
 
 export default function Card({ card, index }) {
 
@@ -14,10 +16,12 @@ export default function Card({ card, index }) {
                     ref={provided.innerRef}
                 >
                     <div className='card' >
-                        <OpenModalButton
+                        <OpenModalDiv
                             modalComponent={<CardModal card={card} />}
                             buttonText={card.name}
-                        />                    </div>
+                        />
+
+                    </div>
                 </div>
 
             )}

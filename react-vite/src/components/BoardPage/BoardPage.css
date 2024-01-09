@@ -1,7 +1,6 @@
 .board-page-content {
     width: 100%;
     flex: 1;
-    border: 1px solid green;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -9,12 +8,38 @@
 }
 
 .board-header {
-    border-bottom: 1px solid black;
     width: 100%;
     display: flex;
     height: 56px;
     box-sizing: border-box;
     align-items: center;
+    background-image: linear-gradient(var(--background-header) 0 0);
+    color: var(--font-color);
+    font-size: 22px;
+    font-weight: 700;
+    padding-left: 30px;
+}
+
+.board-header>button {
+    height: 32px;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: var(--button-background);
+    color: var(--background-color);
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.board-header>button:hover {
+    background-color: var(--button-background-hover);
+}
+
+.board-header>button>p {
+    opacity: 100%;
 }
 
 .list-area-wrapper {
@@ -34,9 +59,12 @@
 
 .list {
     margin-right: 10px;
-    border: 1px solid black;
     height: fit-content;
     width: 272px;
+    background-color: #F1F2F4;
+    border-radius: 8px;
+    padding: 5px;
+    color: #172B4E;
 }
 
 .list-header {
@@ -56,6 +84,8 @@
     flex-wrap: nowrap;
     height: 30px;
     min-width: fit-content;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .list-header-right {
@@ -120,6 +150,16 @@
     background-color: white;
     width: 100%;
     box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.card>div {
+    width: 40%;
+    text-align: left;
+    border: none;
+    cursor: pointer;
 }
 
 .card-dragging>.card {
