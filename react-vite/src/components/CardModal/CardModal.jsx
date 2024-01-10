@@ -109,6 +109,8 @@ export default function CardModal({ card }) {
                 formData.append("image", content)
                 const returnImage = await dispatch(uploadImage(formData))
                 if (returnImage.errors) {
+                    console.log(returnImage)
+                    console.log(returnImage.errors)
                     setErrors({ image: returnImage.errors })
                     return
                 }
