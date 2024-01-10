@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -11,7 +11,23 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [disabled, setDisabled] = useState(true)
 
+  useEffect(() => {
+    if (email && password) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }, [email, password])
+
+  const demoLogin = () => {
+    dispatch(
+      thunkLogin({
+        email: 'demo@aa.io',
+        password: 'password',
+      }))
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,8 +74,10 @@ function LoginFormPage() {
           />
         </label>
         <p>{errors.password}</p>
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={disabled}>Log In</button>
+
       </form>
+      <button className='signup-page-button' onClick={demoLogin}>Log in as demo user</button>
     </div>
   );
 }

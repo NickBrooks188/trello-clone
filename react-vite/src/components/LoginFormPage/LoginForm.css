@@ -48,8 +48,14 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .login-wrapper>form>button:hover {
     background-color: #0055CC;
+}
+
+.login-wrapper>form>button:disabled {
+    cursor: default;
+    background-color: #aaa;
 }

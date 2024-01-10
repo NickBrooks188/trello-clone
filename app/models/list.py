@@ -7,11 +7,11 @@ class List(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")))
-    name = db.Column(db.String, nullable=False)
+    board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")), nullable=False)
+    name = db.Column(db.String(28), nullable=False)
     card_order = db.Column(db.String, default='[]')
 
-    cards = db.relationship("Card", back_populates="list")
+    cards = db.relationship("Card", back_populates="list", cascade="all, delete-orphan")
     board = db.relationship("Board", back_populates="lists")
 
     def to_dict(self, cards=False):

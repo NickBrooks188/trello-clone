@@ -8,8 +8,8 @@ class Card(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")))
-    name = db.Column(db.String, nullable=False)
+    list_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("lists.id")), nullable=False)
+    name = db.Column(db.String(25), nullable=False)
     description = db.Column(db.String)
     label = db.Column(db.String, default='[]', nullable=False)
     image_url = db.Column(db.String)

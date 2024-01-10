@@ -20,6 +20,18 @@ export default function CardModal({ card }) {
 
     const availableLabels = ['#000000', '#AAAAAA', '#FF0000', '#00FF00', '#0000FF']
 
+    const validateName = (val) => {
+        if (val.length < 28) {
+            setName(val)
+        }
+    }
+
+    const validateDescription = (val) => {
+        if (val.length < 200) {
+            setDescription(val)
+        }
+    }
+
     const handleCardDelete = async () => {
         const serverData = await dispatch(thunkRemoveCard(card.id, card.list_id))
         if (!serverData.errors) {
@@ -120,7 +132,7 @@ export default function CardModal({ card }) {
                         id='edit-card-name-input'
                         type="text"
                         value={name}
-                        onChange={e => setName(e.target.value)}
+                        onChange={e => validateName(e.target.value)}
                     />
                 </form>)}
                 {(!(showNameEdit)) && (<div className="card-name" onClick={() => setShowNameEdit(true)}>
@@ -171,7 +183,7 @@ export default function CardModal({ card }) {
                             type="text"
                             value={description}
                             placeholder="Add a description..."
-                            onChange={e => setDescription(e.target.value)}
+                            onChange={e => validateDescription(e.target.value)}
                         />
                     </form>)}
                     {(!(showDescriptionEdit)) && (<div className="card-description" onClick={() => setShowDescriptionEdit(true)}>

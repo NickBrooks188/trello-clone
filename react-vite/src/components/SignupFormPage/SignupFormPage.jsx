@@ -47,7 +47,7 @@ function SignupFormPage() {
   const validatePassword = (val) => {
     setPassword(val)
     let errorsTemp
-    (val.length < 6) ? errorsTemp = { ...errors, password: "Password must be at least 6 characters long" } : errorsTemp = { ...errors, password: null }
+    (val.length < 6) ? errorsTemp = { ...errors, password: "Password must be min 6 characters long" } : errorsTemp = { ...errors, password: null }
     setErrors(errorsTemp)
   }
 
@@ -128,7 +128,7 @@ function SignupFormPage() {
         </label>
         <p>{errors.last_name}</p>
         <label>
-          Location
+          Location (optional)
           <input
             type="text"
             value={location}
@@ -137,7 +137,7 @@ function SignupFormPage() {
         </label>
         <p>{errors.location}</p>
         <label>
-          Profile picture
+          Profile picture (optional)
           <input
             type="text"
             value={profile_image_url}
@@ -165,7 +165,7 @@ function SignupFormPage() {
           />
         </label>
         <p>{errors.confirmPassword}</p>
-        <button type="submit" disabled={disabled}>Sign Up</button>
+        <button type="submit" disabled={disabled} >Sign Up</button>
       </form>
     </div>
   );

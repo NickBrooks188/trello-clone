@@ -55,3 +55,8 @@
 .signup-wrapper>form>button:hover {
     background-color: #0055CC;
 }
+
+.signup-wrapper>form>button:disabled {
+    cursor: default;
+    background-color: #aaa;
+}
