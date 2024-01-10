@@ -42,6 +42,10 @@ export default function CardModal({ card }) {
         e.preventDefault()
         switch (type) {
             case 'name': {
+                if (name === card.name) {
+                    setShowNameEdit(false)
+                    return
+                }
                 const serverData = await dispatch(thunkEditCard({
                     ...card,
                     name: name,
@@ -160,7 +164,7 @@ export default function CardModal({ card }) {
                         onChange={e => validateName(e.target.value)}
                     />
                 </form>)}
-                {(!(showNameEdit)) && (<div className="card-modal-name" onClick={() => setShowNameEdit(true)}>
+                {(!(showNameEdit)) && (<div className="card-modal-name-value" onClick={() => setShowNameEdit(true)}>
                     {card.name}
                 </div>)}
             </div>

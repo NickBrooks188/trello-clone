@@ -13,7 +13,7 @@
     height: 56px;
     box-sizing: border-box;
     align-items: center;
-    background-image: linear-gradient(var(--background-header) 0 0);
+    background-image: var(--background-header);
     color: var(--font-color);
     font-size: 22px;
     font-weight: 700;
@@ -155,14 +155,14 @@
     gap: 12px;
     align-items: center;
     cursor: pointer;
-    background-image: linear-gradient(var(--background-selected) 0 0);
+    background-image: var(--background-selected);
     background-color: transparent;
     color: var(--font-color);
     box-sizing: border-box;
 }
 
 .add-list-button:hover {
-    background-image: linear-gradient(var(--background-hover) 0 0);
+    background-image: var(--background-hover);
 }
 
 .new-list {

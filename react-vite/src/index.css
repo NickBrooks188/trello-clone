@@ -124,9 +124,9 @@ input::file-selector-button:hover {
 }
 
 .theme-light {
-    --background-hover: rgb(255 255 255 / 10%);
-    --background-selected: rgb(255 255 255 / 18%);
-    --background-header: rgb(0 0 0 / 33%);
+    --background-hover: linear-gradient(rgb(255 255 255 / 10%) 0 0);
+    --background-selected: linear-gradient(rgb(255 255 255 / 18%) 0 0);
+    --background-header: linear-gradient(rgb(0 0 0 / 33%) 0 0);
     --font-color: white;
     --background-color: #172B4E;
     --button-background: rgba(255, 255, 255, 0.7);
@@ -134,9 +134,9 @@ input::file-selector-button:hover {
 }
 
 .theme-dark {
-    --background-hover: rgb(0 0 0 / 8%);
-    --background-selected: rgb(0 0 0 / 14%);
-    --background-header: rgb(255 255 255 / 60%);
+    --background-hover: linear-gradient(rgb(0 0 0 / 8%) 0 0);
+    --background-selected: linear-gradient(rgb(0 0 0 / 14%) 0 0);
+    --background-header: linear-gradient(rgb(255 255 255 / 40%) 0 0);
     --font-color: #172B4E;
     --background-color: white;
     --button-background: rgba(23, 43, 78, 0.7);

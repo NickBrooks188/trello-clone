@@ -13,18 +13,19 @@
     align-items: center;
 }
 
-.card-modal-name,
+.card-modal-name-value,
 .card-description {
     cursor: pointer;
 
 }
 
-.card-modal-name {
+.card-modal-name-value {
     display: flex;
     align-items: center;
     font-size: 18px;
     font-weight: 600;
     height: 32px;
+    width: 400px;
 }
 
 .card-modal-name>i {
