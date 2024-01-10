@@ -86,7 +86,7 @@ export default function BoardPage() {
                 let sourceCards = sourceList.card_order
                 let destinationCards = destinationList.card_order
                 const cardId = sourceCards[source.index]
-                const card = sourceList.cards[cardId]
+                const card = { ...sourceList.cards[cardId] }
                 sourceCards.splice(source.index, 1)
                 destinationCards.splice(destination.index, 0, cardId)
 
