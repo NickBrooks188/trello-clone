@@ -47,7 +47,7 @@ function SignupFormPage() {
   const validatePassword = (val) => {
     setPassword(val)
     let errorsTemp
-    (val.length < 6) ? errorsTemp = { ...errors, password: "Password must be at least 6 characters long" } : errorsTemp = { ...errors, password: null }
+    (val.length < 6) ? errorsTemp = { ...errors, password: "Password must be min 6 characters long" } : errorsTemp = { ...errors, password: null }
     setErrors(errorsTemp)
   }
 

@@ -14,6 +14,14 @@
 .board-name {
     position: relative;
     z-index: 2;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+
+.board-name>i {
+    font-size: 20px;
 }
 
 .home-darken {

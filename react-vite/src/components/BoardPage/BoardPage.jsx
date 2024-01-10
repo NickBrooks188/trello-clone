@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './BoardPage.css'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import SideNavbar from '../SideNavbar'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import OpenModalButton from '../OpenModalButton';
@@ -12,13 +12,22 @@ import BoardModal from '../BoardModal'
 
 export default function BoardPage() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { boardId } = useParams()
+    const sessionUser = useSelector(state => state.session.user)
     const board = useSelector(state => state.board)
     const themes = useSelector(state => state.themes)
     const [showNewList, setShowNewList] = useState(false)
     const [newListName, setNewListName] = useState('')
     const [theme, setTheme] = useState(themes[board.theme_id] || '')
 
+    useEffect(() => {
+        if (!board.users || !sessionUser) return
+
+        if (!board?.users[sessionUser.id]) {
+            navigate('/home')
+        }
+    }, [sessionUser, board])
 
     const validateNewListName = (val) => {
         if (val.length < 28) {

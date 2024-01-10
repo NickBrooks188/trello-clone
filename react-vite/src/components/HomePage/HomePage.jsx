@@ -49,7 +49,7 @@ export default function HomePage() {
                     {userBoards.map(userBoard => (
                         <div className='board-tile-wrapper'>
                             <Link to={`/boards/${userBoard.id}`} key={userBoard.id}>
-                                <BoardTile board={userBoard} />
+                                <BoardTile board={userBoard} type="joined" />
                             </Link>
                         </div>
                     ))}
@@ -70,7 +70,7 @@ export default function HomePage() {
                     {unjoinedBoards.map(unjoinedBoard => (
                         <div className='board-tile-wrapper'>
                             <Link className='board-click' onClick={() => joinBoard(unjoinedBoard.id)} key={unjoinedBoard.id}>
-                                <BoardTile board={unjoinedBoard} />
+                                <BoardTile board={unjoinedBoard} type="unjoined" />
                             </Link>
                         </div>
                     ))}
