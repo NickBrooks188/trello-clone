@@ -11,6 +11,8 @@ const ADD_CARD = 'card/addCard'
 const REMOVE_CARD = 'card/removeCard'
 const EDIT_CARD = 'card/editCard'
 const ADD_USER_TO_CARD = 'card/addUserToCard'
+const REMOVE_USER_FROM_CARD = 'card/removeUserFromCard'
+
 const MOVE_CARD = 'card/move'
 
 const loadBoard = (board) => {
@@ -19,13 +21,6 @@ const loadBoard = (board) => {
         board
     }
 }
-
-// const addBoard = (board) => {
-//     return {
-//         type: ADD_BOARD,
-//         board
-//     }
-// }
 
 export const removeBoard = () => {
     return {
@@ -94,6 +89,15 @@ const addUserToCard = (user, listId, cardId) => {
     }
 }
 
+const removeUserFromCard = (user, listId, cardId) => {
+    return {
+        type: REMOVE_USER_FROM_CARD,
+        user,
+        listId,
+        cardId
+    }
+}
+
 export const moveCard = (cardId, destinationListId, sourceListId) => {
     return {
         type: MOVE_CARD,
@@ -122,7 +126,6 @@ export const thunkAddBoard = (board) => async (dispatch) => {
     })
     const data = await res.json()
     if (res.ok) {
-        // dispatch(addBoard(data))
         delete data.lists
         dispatch(addBoards(data))
     }
@@ -266,6 +269,26 @@ export const thunkAddUserToCard = (user, listId, cardId) => async (dispatch) => 
     return data
 }
 
+export const thunkRemoveUserFromCard = (user, listId, cardId) => async (dispatch) => {
+    const res = await fetch(`/api/cards/${cardId}/users/${user.id}`, {
+        method: "DELETE"
+    })
+    const data = await res.json()
+    if (res.ok) {
+        dispatch(removeUserFromCard(user, listId, cardId))
+    }
+    return data
+}
+
+export const uploadImage = (image) => async () => {
+    const res = await fetch(`/api/images`, {
+        method: "POST",
+        body: image
+    })
+    const data = await res.json()
+    return data
+}
+
 const initialState = {}
 
 const boardReducer = (state = initialState, action) => {
@@ -293,20 +316,6 @@ const boardReducer = (state = initialState, action) => {
             }
             return newState
         }
-        // case ADD_BOARD: {
-        //     const newState = {}
-        //     console.log(action)
-        //     newState.id = action.board.id
-        //     newState.owner_id = action.board.owner_id
-        //     newState.theme_id = action.board.theme_id
-        //     newState.name = action.board.name
-        //     newState.description = action.board.description
-        //     newState.list_order = []
-        //     newState.users = action.board.users
-        //     newState.lists = {}
-        //     newState.users[action.board.users[0].id] = action.board.users[0]
-        //     return newState
-        // }
         case REMOVE_BOARD: {
             return {}
         }
@@ -372,6 +381,11 @@ const boardReducer = (state = initialState, action) => {
         case ADD_USER_TO_CARD: {
             const newState = { ...state }
             newState.lists[action.listId].cards[action.cardId].users[action.user.id] = action.user
+            return newState
+        }
+        case REMOVE_USER_FROM_CARD: {
+            const newState = { ...state }
+            delete newState.lists[action.listId].cards[action.cardId].users[action.user.id]
             return newState
         }
         case MOVE_CARD: {

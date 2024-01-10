@@ -83,16 +83,25 @@
   border: none;
   height: 36px;
   width: 36px;
-  background-color: #FF991F;
+  background-color: #fbe6cd;
   cursor: pointer;
   font-size: 12px;
   box-sizing: border-box;
   background-clip: padding-box;
   border: 5px solid rgb(200 200 200 / 0%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .top-navbar-rhs-wrapper>button:hover {
   border: 5px solid rgb(200 200 200 / 50%);
+}
+
+.navbar-profile-image {
+  width: 26px;
+  border-radius: 20px;
 }
 
 .login-signup-wrapper {

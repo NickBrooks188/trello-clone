@@ -30,7 +30,7 @@ export default function BoardPage() {
     }, [sessionUser, board])
 
     const validateNewListName = (val) => {
-        if (val.length < 28) {
+        if (val.length < 50) {
             setNewListName(val)
         }
     }
@@ -86,7 +86,7 @@ export default function BoardPage() {
                 let sourceCards = sourceList.card_order
                 let destinationCards = destinationList.card_order
                 const cardId = sourceCards[source.index]
-                const card = sourceList.cards[cardId]
+                const card = { ...sourceList.cards[cardId] }
                 sourceCards.splice(source.index, 1)
                 destinationCards.splice(destination.index, 0, cardId)
 
@@ -129,59 +129,65 @@ export default function BoardPage() {
     return (
         <div className='home-page-wrapper'>
             <SideNavbar theme={theme} selection={board.id} />
-            <div className='board-page-content'
-                style={{
-                    'backgroundImage': (themes[board.theme_id]?.background_image_url ? `url(${themes[board.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`),
-                    'backgroundSize': `cover`
-                }}
-            >
-                <div className='board-header'>
-                    {board.name}
-                    <OpenModalButton bg='none' modalComponent={<BoardModal type="Edit" />}
-                        buttonText={
-                            <span><i className="fa-solid fa-pen-to-square"></i> Edit board</span>
-                        }
-                    />
-                </div>
-                <div className='list-area-wrapper'>
-                    <DragDropContext
-                        onDragEnd={onDragEnd}
-                    >
-                        <Droppable droppableId={`board-${board.id}`} direction='horizontal' type='list'>
-                            {provided => (
+            {(board && themes) && (
 
-                                <div className='lists-wrapper'
-                                    {...provided.droppableProps}
-                                    ref={provided.innerRef}
-                                >
-                                    {board.list_order && board.list_order.map((listId, index) => (
-                                        <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
-                                    ))}
-                                    {provided.placeholder}
+                <div className='board-page-content'
+                    style={{
+                        'backgroundImage': (themes[board.theme_id]?.background_image_url ? `url(${themes[board.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`),
+                        'backgroundSize': `cover`
+                    }}
+                >
+                    <div className='board-header'>
+                        {board.name}
+                        <OpenModalButton bg='none' modalComponent={<BoardModal type="Edit" />}
+                            buttonText={
+                                <span><i className="fa-solid fa-pen-to-square"></i> Edit board</span>
+                            }
+                        />
+                    </div>
+                    <div className='list-area-wrapper'>
+                        <DragDropContext
+                            onDragEnd={onDragEnd}
+                        >
+                            <Droppable droppableId={`board-${board.id}`} direction='horizontal' type='list'>
+                                {provided => (
 
-                                </div>
+                                    <div className='lists-wrapper'
+                                        {...provided.droppableProps}
+                                        ref={provided.innerRef}
+                                    >
+                                        {board.list_order && board.list_order.map((listId, index) => (
+                                            <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
+                                        ))}
+                                        {provided.placeholder}
+
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                        <div className='new-list-wrapper'>
+                            {(showNewList) && (<form className='new-list' id='new-list' onSubmit={handleNewListSubmit}>
+                                <input
+                                    id='new-list-input'
+                                    type="text"
+                                    placeholder='Enter list title...'
+                                    value={newListName}
+                                    onChange={e => validateNewListName(e.target.value)}
+                                />
+                            </form>)}
+                            {(!showNewList) && (
+                                <button className='add-list-button' onClick={() => setShowNewList(true)}><i className="fa-solid fa-plus"></i> Add another list</button>
                             )}
-                        </Droppable>
-                    </DragDropContext>
-                    <div className='new-list-wrapper'>
-                        {(showNewList) && (<form className='new-list' id='new-list' onSubmit={handleNewListSubmit}>
-                            <input
-                                id='new-list-input'
-                                type="text"
-                                placeholder='Enter list title...'
-                                value={newListName}
-                                onChange={e => validateNewListName(e.target.value)}
-                            />
-                        </form>)}
-                        {(!showNewList) && (
-                            <button className='add-list-button' onClick={() => setShowNewList(true)}><i className="fa-solid fa-plus"></i> Add another list</button>
-                        )}
-                        {(showNewList) && (
-                            <div className="cover-everything" onClick={handleNewListSubmit} />
-                        )}
+                            {(showNewList) && (
+                                <div className="cover-everything" onClick={handleNewListSubmit} />
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
+
+
+
+            )}
         </div >
     )
 }

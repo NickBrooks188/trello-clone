@@ -15,13 +15,13 @@ export default function List({ list, cards, index }) {
     const [newCardName, setNewCardName] = useState('')
 
     const validateListName = (val) => {
-        if (val.length < 28) {
+        if (val.length < 50) {
             setListName(val)
         }
     }
 
     const validateNewCardName = (val) => {
-        if (val.length < 28) {
+        if (val.length < 50) {
             setNewCardName(val)
         }
     }
@@ -29,6 +29,7 @@ export default function List({ list, cards, index }) {
     const handleEditListSubmit = async (e) => {
         e.preventDefault()
         setShowListEdit(false)
+        if (listName === list.name) return
         await dispatch(thunkEditList({
             ...list,
             name: listName,
@@ -87,7 +88,7 @@ export default function List({ list, cards, index }) {
                                 />
                             </form>)}
                             {(!(showListEdit)) && (<div className="list-name" onClick={() => setShowListEdit(true)}>
-                                {list.name}
+                                <span>{list.name}</span>
                             </div>)}
                             <div className="list-header-right">
                                 {!(showListPopup) && (

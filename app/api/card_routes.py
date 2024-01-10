@@ -53,5 +53,17 @@ def add_user_to_card(cardId):
         db.session.commit()
         return card.to_dict()
     elif not card:
-        return  {"message": "Board Not Found"}, 404 
+        return  {"message": "Card Not Found"}, 404 
     return {'errors': form.errors}, 401
+
+
+@card.route('<int:cardId>/users/<int:userId>', methods=['DELETE'])
+@login_required
+def remove_user_from_card(cardId, userId):
+    card = Card.query.get(cardId)
+    if card:
+        user = User.query.get(userId)
+        card.users.remove(user)
+        db.session.commit()
+        return card.to_dict()
+    return  {"message": "Card Not Found"}, 404 

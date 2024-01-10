@@ -33,7 +33,7 @@
 
 
 .boards-link:hover {
-    background-image: linear-gradient(var(--background-hover) 0 0);
+    background-image: var(--background-hover);
 }
 
 .boards-link>i {
@@ -58,7 +58,7 @@
 }
 
 .user-boards>li:hover {
-    background-image: linear-gradient(var(--background-hover) 0 0);
+    background-image: var(--background-hover);
 }
 
 .user-boards>li>a {
@@ -84,5 +84,5 @@
 }
 
 .selected {
-    background-image: linear-gradient(var(--background-selected) 0 0);
+    background-image: var(--background-selected);
 }

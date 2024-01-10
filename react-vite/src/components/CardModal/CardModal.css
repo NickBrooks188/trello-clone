@@ -13,21 +13,29 @@
     align-items: center;
 }
 
-.card-name,
+.card-modal-name-value,
 .card-description {
     cursor: pointer;
 
 }
 
-.card-name {
+.card-modal-name-value {
     display: flex;
     align-items: center;
     font-size: 18px;
     font-weight: 600;
     height: 32px;
+    width: 400px;
 }
 
-.card-name>i {
+.card-modal-name-value>span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-modal-name>i {
     font-size: 20px;
     color: #44546F;
 }
@@ -83,15 +91,27 @@
 }
 
 .label {
-    width: 50px;
+    width: 60px;
     height: 25px;
     border-radius: 3px;
-    cursor: pointer;
     color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
+}
+
+.label>i {
+    cursor: pointer;
+}
+
+.label:hover {
+    color: #E4E6E9;
+    background-image: linear-gradient(rgb(255 255 255 / 20%) 0 0);
+}
+
+.label>.fa-trash:hover {
+    color: white;
 }
 
 .add-label,
@@ -111,10 +131,6 @@
     background-color: #E4E6E9;
 }
 
-.label:hover {
-    color: white;
-    background-image: linear-gradient(rgb(255 255 255 / 20%) 0 0);
-}
 
 .label-popup {
     position: absolute;
@@ -164,6 +180,15 @@
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.card-description>span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .edit-card-description>input {
@@ -178,12 +203,47 @@
     width: 434px;
 }
 
+.card-modal-image>form>input {
+    margin-left: 36px;
+}
+
+.card-modal-image-file {
+    max-height: 40px;
+    width: auto;
+    margin-left: 36px;
+}
+
 .assignments-wrapper {
     display: flex;
     flex-direction: column;
     gap: 5px;
     margin-top: 10px;
     margin-left: 36px;
+}
+
+.assignee {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.assignee>i {
+    cursor: pointer;
+    color: transparent;
+}
+
+.assignee:hover {
+    background-color: #E4E6E9;
+}
+
+.assignee:hover .fa-trash {
+    color: #44546F;
+}
+
+.assignee>.fa-trash:hover {
+    color: #172B4E;
 }
 
 .assignment-popup {
@@ -217,14 +277,27 @@
     background-color: #f0f0f0;
     cursor: pointer;
     border-bottom: 1px solid white;
+    gap: 10px;
 }
 
 .available-user>i {
     color: #F0F0F0;
+    font-size: 18px;
+}
+
+.available-user>span {
+    flex: 1
 }
 
 .available-user:hover {
-    background-color: #DDD;
+    background-color: #bbb;
+}
+
+.card-modal-profile-image {
+    height: 16px;
+    width: 16px;
+    border-radius: 20px;
+    border: 1px solid #aaa;
 }
 
 .card-modal-delete-button {

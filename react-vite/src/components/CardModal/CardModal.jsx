@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard } from "../../redux/board"
+import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard, thunkRemoveUserFromCard, uploadImage } from "../../redux/board"
 import { useModal } from "../../context/Modal"
 import { useSearchParams } from "react-router-dom"
 import { useState, useEffect } from "react"
@@ -11,7 +11,6 @@ export default function CardModal({ card }) {
     const { closeModal } = useModal()
     const [name, setName] = useState(card.name)
     const [description, setDescription] = useState(card.description || '')
-    const [image_url, setImage_url] = useState(card.image_url || '')
     const [showNameEdit, setShowNameEdit] = useState(false)
     const [showDescriptionEdit, setShowDescriptionEdit] = useState(false)
     const [showLabelEdit, setShowLabelEdit] = useState(false)
@@ -21,7 +20,7 @@ export default function CardModal({ card }) {
     const availableLabels = ['#000000', '#AAAAAA', '#FF0000', '#00FF00', '#0000FF']
 
     const validateName = (val) => {
-        if (val.length < 28) {
+        if (val.length < 50) {
             setName(val)
         }
     }
@@ -43,6 +42,10 @@ export default function CardModal({ card }) {
         e.preventDefault()
         switch (type) {
             case 'name': {
+                if (name === card.name) {
+                    setShowNameEdit(false)
+                    return
+                }
                 const serverData = await dispatch(thunkEditCard({
                     ...card,
                     name: name,
@@ -101,6 +104,24 @@ export default function CardModal({ card }) {
                 }
                 return
             }
+            case 'image': {
+                const formData = new FormData()
+                formData.append("image", content)
+                const returnImage = await dispatch(uploadImage(formData))
+                if (returnImage.errors) {
+                    setErrors({ image: returnImage.errors })
+                    return
+                }
+                const serverData = await dispatch(thunkEditCard({
+                    ...card,
+                    label: JSON.stringify(card.label),
+                    image_url: returnImage.url
+                }, card.list_id))
+                if (serverData.errors) {
+                    setErrors({ image: serverData.errors })
+                }
+                return
+            }
             case 'user': {
                 const serverData = await dispatch(thunkAddUserToCard(content, card.list_id, card.id))
                 if (!serverData.errors) {
@@ -108,6 +129,14 @@ export default function CardModal({ card }) {
                 } else {
                     setErrors({ assignment: serverData.errors })
                 }
+                return
+            }
+            case 'user-delete': {
+                const serverData = await dispatch(thunkRemoveUserFromCard(content, card.list_id, card.id))
+                if (serverData.errors) {
+                    setErrors({ assignment: serverData.errors })
+                }
+                return
             }
         }
         return
@@ -135,8 +164,8 @@ export default function CardModal({ card }) {
                         onChange={e => validateName(e.target.value)}
                     />
                 </form>)}
-                {(!(showNameEdit)) && (<div className="card-name" onClick={() => setShowNameEdit(true)}>
-                    {card.name}
+                {(!(showNameEdit)) && (<div className="card-modal-name-value" onClick={() => setShowNameEdit(true)}>
+                    <span>{card.name}</span>
                 </div>)}
             </div>
             {/* label */}
@@ -150,9 +179,9 @@ export default function CardModal({ card }) {
                                 style={{
                                     "backgroundColor": label
                                 }}
-                                onClick={e => handleCardEditSubmit(e, 'label-delete', label)}
                             >
-                                <i className="fa-solid fa-trash"></i>
+                                <i className="fa-solid fa-trash" onClick={e => handleCardEditSubmit(e, 'label-delete', label)}
+                                ></i>
                             </div>
                         ))}
                         <button className="add-label" onClick={() => setShowLabelEdit(true)}><i className="fa-solid fa-plus"></i></button>
@@ -187,20 +216,30 @@ export default function CardModal({ card }) {
                         />
                     </form>)}
                     {(!(showDescriptionEdit)) && (<div className="card-description" onClick={() => setShowDescriptionEdit(true)}>
-                        {card.description || 'Add a description...'}
+                        <span>{card.description || 'Add a description...'}</span>
                     </div>)}
                 </div>
                 {/* image */}
                 <div className="card-modal-image">
                     <h2><i className="fa-regular fa-image"></i>Image</h2>
-                    <img src={card.image_url} />
+                    {(card.image_url) && (<img src={card.image_url} className="card-modal-image-file" />)}
+                    <form>
+                        <input
+                            type="file"
+                            accept='image/*'
+                            onChange={(e) => handleCardEditSubmit(e, 'image', e.target.files[0])}
+                        />
+                    </form>
                 </div>
                 {/* assignments */}
                 <div className="card-modal-assignment">
                     <h2><i className="fa-solid fa-list-check"></i>Assignments</h2>
                     <div className="assignments-wrapper">
                         {card.users && Object.values(card.users).map(assignee => (
-                            <div className="assignee" key={assignee.id}>{`${assignee.first_name} ${assignee.last_name}`}</div>
+                            <div className="assignee" key={assignee.id}>
+                                <img src={assignee.profile_image_url} className="card-modal-profile-image" />{`${assignee.first_name} ${assignee.last_name}`}
+                                <i className="fa-solid fa-trash" onClick={(e) => handleCardEditSubmit(e, 'user-delete', assignee)}></i>
+                            </div>
                         ))}
                         <button className="add-assignment" onClick={() => setShowAssignmentEdit(true)}><i className="fa-solid fa-plus"></i></button>
 
@@ -213,7 +252,7 @@ export default function CardModal({ card }) {
                             <div className="available-users-wrapper">
                                 {(Object.values(board.users)).map((user) => ((!card.users[user.id]) && (
                                     <button className="available-user" key={user.id} onClick={(e) => handleCardEditSubmit(e, "user", user)}>
-                                        {`${user.first_name} ${user.last_name}`}<i className="fa-solid fa-plus"></i>
+                                        <img src={user.profile_image_url} className="card-modal-profile-image" /><span>{`${user.first_name} ${user.last_name}`}</span><i className="fa-solid fa-plus"></i>
                                     </button>)
                                 ))}
                             </div>
