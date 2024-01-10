@@ -19,6 +19,13 @@ export default function BoardPage() {
     const [newListName, setNewListName] = useState('')
     const [theme, setTheme] = useState(themes[board.theme_id] || '')
 
+
+    const validateNewListName = (val) => {
+        if (val.length < 28) {
+            setNewListName(val)
+        }
+    }
+
     useEffect(() => {
         dispatch(thunkLoadBoard(boardId))
     }, [dispatch, boardId])
@@ -154,7 +161,7 @@ export default function BoardPage() {
                                 type="text"
                                 placeholder='Enter list title...'
                                 value={newListName}
-                                onChange={e => setNewListName(e.target.value)}
+                                onChange={e => validateNewListName(e.target.value)}
                             />
                         </form>)}
                         {(!showNewList) && (

@@ -21,10 +21,18 @@ export default function BoardModal({ type }) {
     const [disabled, setDisabled] = useState(true)
 
     const validateName = (val) => {
-        setName(val)
+        if (val.length < 30) {
+            setName(val)
+        }
         let errorsTemp
         (val.length < 5) ? errorsTemp = { ...errors, name: "Name must be at least 5 characters long" } : errorsTemp = { ...errors, name: null }
         setErrors(errorsTemp)
+    }
+
+    const validateDescription = (val) => {
+        if (val.length < 200) {
+            setDescription(val)
+        }
     }
 
     useEffect(() => {
@@ -122,7 +130,7 @@ export default function BoardModal({ type }) {
                         </button>
                     ))}
                 </div>
-                {errors?.theme && <span>{errors?.theme}</span>}
+                <p>{errors?.theme}</p>
                 <label>
                     <div className='board-title-wrapper'>Board title <div className='asterisk'>*</div></div>
                     <input
@@ -131,16 +139,16 @@ export default function BoardModal({ type }) {
                         onChange={(e) => validateName(e.target.value)}
                     />
                 </label>
-                <span>{errors?.name}</span>
+                <p>{errors?.name}</p>
                 <label>
                     Board description
                     <TextareaAutosize
                         type="text"
                         value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        onChange={(e) => validateDescription(e.target.value)}
                     />
                 </label>
-                {errors?.description && <span>{errors?.description}</span>}
+                <p>{errors?.description}</p>
                 <button type="submit" className='board-modal-submit' disabled={disabled}>{type}</button>
             </form>
             {(type === 'Edit' && sessionUser.id == board.owner_id) && (

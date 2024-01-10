@@ -8,7 +8,7 @@ class List(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")))
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String(28), nullable=False)
     card_order = db.Column(db.String, default='[]')
 
     cards = db.relationship("Card", back_populates="list")

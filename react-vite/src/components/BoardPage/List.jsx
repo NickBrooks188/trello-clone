@@ -14,6 +14,18 @@ export default function List({ list, cards, index }) {
     const [showNewCard, setShowNewCard] = useState(false)
     const [newCardName, setNewCardName] = useState('')
 
+    const validateListName = (val) => {
+        if (val.length < 28) {
+            setListName(val)
+        }
+    }
+
+    const validateNewCardName = (val) => {
+        if (val.length < 28) {
+            setNewCardName(val)
+        }
+    }
+
     const handleEditListSubmit = async (e) => {
         e.preventDefault()
         setShowListEdit(false)
@@ -71,7 +83,7 @@ export default function List({ list, cards, index }) {
                                     id='edit-list-input'
                                     type="text"
                                     value={listName}
-                                    onChange={e => setListName(e.target.value)}
+                                    onChange={e => validateListName(e.target.value)}
                                 />
                             </form>)}
                             {(!(showListEdit)) && (<div className="list-name" onClick={() => setShowListEdit(true)}>
@@ -110,7 +122,7 @@ export default function List({ list, cards, index }) {
                                     type='text'
                                     placeholder='Enter a title for this card...'
                                     value={newCardName}
-                                    onChange={e => setNewCardName(e.target.value)}
+                                    onChange={e => validateNewCardName(e.target.value)}
                                 />
                             </form>)}
                             {(!showNewCard) && (
