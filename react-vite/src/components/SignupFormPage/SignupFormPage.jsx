@@ -147,11 +147,13 @@ function SignupFormPage() {
         <p>{errors.location}</p>
         <label>
           Profile picture (optional)
-          <input
-            type="file"
-            accept='image/*'
-            onChange={(e) => setImage(e.target.files[0])}
-          />
+          <div className="signup-file-upload-wrapper">
+            <input
+              type="file"
+              accept='image/*'
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
         </label>
         <p>{errors.image}</p>
         <label>

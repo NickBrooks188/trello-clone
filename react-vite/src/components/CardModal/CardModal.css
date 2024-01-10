@@ -178,9 +178,7 @@
     width: 434px;
 }
 
-.card-modal-image {
-    height: fit-content;
-}
+.card-modal-image {}
 
 .card-modal-image-file {
     max-height: 40px;

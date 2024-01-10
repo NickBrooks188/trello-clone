@@ -211,7 +211,7 @@ export default function CardModal({ card }) {
                 {/* image */}
                 <div className="card-modal-image">
                     <h2><i className="fa-regular fa-image"></i>Image</h2>
-                    <img src={card.image_url} className="card-modal-image-file" />
+                    {(card.image_url) && (<img src={card.image_url} className="card-modal-image-file" />)}
                     <form>
                         <input
                             type="file"
