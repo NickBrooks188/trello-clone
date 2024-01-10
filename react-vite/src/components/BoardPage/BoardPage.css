@@ -87,12 +87,19 @@
     display: flex;
     flex-wrap: nowrap;
     height: 30px;
+    width: 220px;
     box-sizing: border-box;
-    min-width: fit-content;
     font-size: 14px;
     font-weight: 600;
     align-items: center;
     padding-left: 15px;
+}
+
+.list-name>span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .edit-list {
@@ -230,9 +237,11 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
 }
 
-.card {
+
+.card-outer-wrapper {
     background-color: white;
     width: 100%;
     cursor: pointer;
@@ -245,14 +254,14 @@
     overflow: hidden;
 }
 
-.card:hover {
+.card-outer-wrapper:hover {
     border: 2px solid #005FCC;
     margin-top: -2px;
     margin-left: -2px;
     margin-bottom: -2px;
 }
 
-.card>div {
+.card-outer-wrapper>div {
     width: 100%;
     text-align: left;
     border: none;
@@ -264,6 +273,8 @@
     align-items: start;
     justify-content: center;
     flex-direction: column;
+    max-width: 100%;
+    padding: 10px;
 }
 
 .card-image-wrapper {
@@ -284,7 +295,6 @@
     flex-wrap: nowrap;
     gap: 5px;
     width: 100%;
-    padding: 10px 10px 0 10px;
 }
 
 .card-label {
@@ -295,15 +305,22 @@
 }
 
 .card-name {
-    padding: 0 10px 10px 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    box-sizing: border-box;
 }
 
-.card-description-wrapper {
-    padding: 0 10px 0 10px;
+.card-name>span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card-description-wrapper>i {
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .card-dragging>.card {
@@ -313,7 +330,7 @@
 }
 
 .add-card-button {
-    height: 38px;
+    height: 36px;
     background-color: none;
     color: #44546F;
     border: none;
@@ -328,11 +345,12 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    background-color: #F1F2F4;
 }
 
 .add-card-button:hover {
     background-color: #D0D4DC;
-    color: #171717
+    color: #171717;
 }
 
 .new-card>input {

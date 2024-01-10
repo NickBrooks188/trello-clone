@@ -20,7 +20,7 @@ export default function CardModal({ card }) {
     const availableLabels = ['#000000', '#AAAAAA', '#FF0000', '#00FF00', '#0000FF']
 
     const validateName = (val) => {
-        if (val.length < 28) {
+        if (val.length < 50) {
             setName(val)
         }
     }
@@ -165,7 +165,7 @@ export default function CardModal({ card }) {
                     />
                 </form>)}
                 {(!(showNameEdit)) && (<div className="card-modal-name-value" onClick={() => setShowNameEdit(true)}>
-                    {card.name}
+                    <span>{card.name}</span>
                 </div>)}
             </div>
             {/* label */}
@@ -216,7 +216,7 @@ export default function CardModal({ card }) {
                         />
                     </form>)}
                     {(!(showDescriptionEdit)) && (<div className="card-description" onClick={() => setShowDescriptionEdit(true)}>
-                        {card.description || 'Add a description...'}
+                        <span>{card.description || 'Add a description...'}</span>
                     </div>)}
                 </div>
                 {/* image */}

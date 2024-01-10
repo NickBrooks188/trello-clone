@@ -28,6 +28,13 @@
     width: 400px;
 }
 
+.card-modal-name-value>span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .card-modal-name>i {
     font-size: 20px;
     color: #44546F;
@@ -173,12 +180,21 @@
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.card-description>span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .edit-card-description>input {
     margin-left: 36px;
     background-color: white;
-    padding: 13px 10px 12px 10px;
+    padding: 12px 10px 12px 10px;
     box-sizing: border-box;
     height: 40px;
     font-size: 14px;
