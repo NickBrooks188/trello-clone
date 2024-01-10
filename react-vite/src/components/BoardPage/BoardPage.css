@@ -243,6 +243,11 @@
     border-radius: 8px;
     box-shadow: 0 0 2px #aaa;
     font-size: 14px;
+    border: 2px solid transparent
+}
+
+.card:hover {
+    border: 2px solid #005FCC;
 }
 
 .card>div {
@@ -250,6 +255,27 @@
     text-align: left;
     border: none;
     cursor: pointer;
+}
+
+.card-content-wrapper {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-labels-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    width: 100%;
+}
+
+.card-label {
+    height: 8px;
+    width: 36px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .card-dragging>.card {

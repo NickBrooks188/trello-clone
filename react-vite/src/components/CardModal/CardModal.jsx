@@ -135,7 +135,7 @@ export default function CardModal({ card }) {
                         onChange={e => validateName(e.target.value)}
                     />
                 </form>)}
-                {(!(showNameEdit)) && (<div className="card-name" onClick={() => setShowNameEdit(true)}>
+                {(!(showNameEdit)) && (<div className="card-modal-name" onClick={() => setShowNameEdit(true)}>
                     {card.name}
                 </div>)}
             </div>

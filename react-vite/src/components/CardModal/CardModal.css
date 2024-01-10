@@ -13,13 +13,13 @@
     align-items: center;
 }
 
-.card-name,
+.card-modal-name,
 .card-description {
     cursor: pointer;
 
 }
 
-.card-name {
+.card-modal-name {
     display: flex;
     align-items: center;
     font-size: 18px;
@@ -27,7 +27,7 @@
     height: 32px;
 }
 
-.card-name>i {
+.card-modal-name>i {
     font-size: 20px;
     color: #44546F;
 }
@@ -169,7 +169,7 @@
 .edit-card-description>input {
     margin-left: 36px;
     background-color: white;
-    padding: 12px 10px 12px 10px;
+    padding: 13px 10px 12px 10px;
     box-sizing: border-box;
     height: 40px;
     font-size: 14px;

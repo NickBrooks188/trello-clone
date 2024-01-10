@@ -3,7 +3,6 @@ import CardModal from '../CardModal/CardModal'
 import OpenModalButton from '../OpenModalButton'
 import { OpenModalDiv } from '../OpenModalButton/OpenModalButton'
 
-
 export default function Card({ card, index }) {
 
     if (!card) return
@@ -18,7 +17,25 @@ export default function Card({ card, index }) {
                     <div className='card' >
                         <OpenModalDiv
                             modalComponent={<CardModal card={card} />}
-                            buttonText={card.name}
+                            buttonText={(
+                                <div className='card-content-wrapper'>
+                                    <div className='card-labels-wrapper'>
+                                        {card.label.map((label) => (
+                                            <div className='card-label'
+                                                key={`C-${label}`}
+                                                style={{
+                                                    "backgroundColor": label
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
+                                    <div className='card-name'>
+
+                                        {card.name}
+                                    </div>
+                                </div>
+
+                            )}
                         />
                     </div>
                 </div>
