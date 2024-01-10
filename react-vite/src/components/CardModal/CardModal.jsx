@@ -11,7 +11,6 @@ export default function CardModal({ card }) {
     const { closeModal } = useModal()
     const [name, setName] = useState(card.name)
     const [description, setDescription] = useState(card.description || '')
-    const [label, setLabel] = useState(card.label || '')
     const [image_url, setImage_url] = useState(card.image_url || '')
     const [showNameEdit, setShowNameEdit] = useState(false)
     const [showDescriptionEdit, setShowDescriptionEdit] = useState(false)
@@ -34,7 +33,8 @@ export default function CardModal({ card }) {
             case 'name': {
                 const serverData = await dispatch(thunkEditCard({
                     ...card,
-                    name: name
+                    name: name,
+                    label: JSON.stringify(card.label)
                 }, card.list_id))
                 if (!serverData.errors) {
                     setShowNameEdit(false)
@@ -79,7 +79,8 @@ export default function CardModal({ card }) {
                 }
                 const serverData = await dispatch(thunkEditCard({
                     ...card,
-                    description: description
+                    description: description,
+                    label: JSON.stringify(card.label)
                 }, card.list_id))
                 if (!serverData.errors) {
                     setShowDescriptionEdit(false)
@@ -113,6 +114,7 @@ export default function CardModal({ card }) {
         <div className="card-modal-wrapper">
             <div className='close-modal-x' onClick={closeModal}><i className="fa-solid fa-xmark"></i></div>
             <div className="card-modal-name">
+                <i className="fa-regular fa-hard-drive"></i>
                 {((showNameEdit)) && (<form className="edit-card-name" id="edit-card-name" onSubmit={(e) => handleCardEditSubmit(e, 'name')}>
                     <input
                         id='edit-card-name-input'
@@ -128,7 +130,7 @@ export default function CardModal({ card }) {
             {/* label */}
             <div className="card-field-wrapper">
                 <div className="card-modal-labels">
-                    <h2>Labels</h2>
+                    <h2><i className="fa-solid fa-tag"></i>Labels</h2>
                     <div className="label-area">
                         {card.label && card.label.map((label) => (
                             <div className="label"
@@ -162,7 +164,7 @@ export default function CardModal({ card }) {
                 </div>
                 {/* description */}
                 <div className="card-modal-description">
-                    <h2>Description</h2>
+                    <h2><i className="fa-solid fa-align-left"></i>Description</h2>
                     {((showDescriptionEdit)) && (<form className="edit-card-description" id="edit-card-description" onSubmit={(e) => handleCardEditSubmit(e, 'description')}>
                         <input
                             id='edit-card-description-input'
@@ -178,12 +180,12 @@ export default function CardModal({ card }) {
                 </div>
                 {/* image */}
                 <div className="card-modal-image">
-                    <h2>Image</h2>
+                    <h2><i className="fa-regular fa-image"></i>Image</h2>
                     <img src={card.image_url} />
                 </div>
                 {/* assignments */}
                 <div className="card-modal-assignment">
-                    <h2>Assignments</h2>
+                    <h2><i className="fa-solid fa-list-check"></i>Assignments</h2>
                     <div className="assignments-wrapper">
                         {card.users && Object.values(card.users).map(assignee => (
                             <div className="assignee" key={assignee.id}>{`${assignee.first_name} ${assignee.last_name}`}</div>

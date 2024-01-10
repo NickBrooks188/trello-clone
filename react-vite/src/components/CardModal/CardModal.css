@@ -1,27 +1,58 @@
 .card-modal-wrapper {
     width: 500px;
     background-color: #F1F2F4;
-    padding: 10px;
+    padding: 10px 15px 15px 15px;
     border-radius: 8px;
+    box-sizing: border-box;
     color: #172B4E;
+}
+
+.card-modal-name {
+    display: flex;
+    gap: 18px;
+    align-items: center;
 }
 
 .card-name,
 .card-description {
     cursor: pointer;
+
+}
+
+.card-name {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    height: 32px;
+}
+
+.card-name>i {
+    font-size: 20px;
+    color: #44546F;
 }
 
 
 .card-field-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 30px;
     margin: 20px 0 20px 0;
 }
 
 .card-field-wrapper>div>h2 {
     font-size: 16px;
     margin: 0px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card-field-wrapper>div>h2>i {
+    color: #44546F;
+    font-size: 20px;
 }
 
 .edit-card-name>input,
@@ -35,11 +66,20 @@
     z-index: 11;
 }
 
+.edit-card-name>input {
+    font-size: 18px;
+    font-weight: 600;
+    box-sizing: border-box;
+    margin-left: -10px;
+    height: 32px;
+    padding: 8px;
+}
+
 .label-area {
     display: flex;
-    width: 100%;
     gap: 5px;
     margin-top: 10px;
+    margin-left: 36px;
 }
 
 .label {
@@ -52,6 +92,23 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
+}
+
+.add-label,
+.add-assignment {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #44546F;
+    cursor: pointer;
+    color: #44546F;
+}
+
+.add-label:hover,
+.add-assignment:hover {
+    border: 1px solid #172B4E;
+    color: #171717;
+    background-color: #E4E6E9;
 }
 
 .label:hover {
@@ -98,6 +155,37 @@
     background-image: linear-gradient(rgb(255 255 255 / 20%) 0 0);
 }
 
+.card-description {
+    margin-left: 36px;
+    background-color: #E4E6E9;
+    padding: 12px;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.edit-card-description>input {
+    margin-left: 36px;
+    background-color: white;
+    padding: 12px 10px 12px 10px;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+    width: 434px;
+}
+
+.assignments-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+    margin-left: 36px;
+}
+
 .assignment-popup {
     position: absolute;
     left: 100px;
@@ -137,4 +225,21 @@
 
 .available-user:hover {
     background-color: #DDD;
+}
+
+.card-modal-delete-button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    color: #172B4E;
+    border: 1px solid #171717;
+    background-color: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.card-modal-delete-button:hover {
+    background-color: #E4E6E9;
 }

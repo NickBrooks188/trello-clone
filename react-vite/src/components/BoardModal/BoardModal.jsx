@@ -115,8 +115,7 @@ export default function BoardModal({ type }) {
                             value={theme.id}
                             title={theme.name}
                             style={{
-                                'backgroundImage': `url(${theme?.background_image_url})`,
-                                'background': `linear-gradient(0.37turn, ${theme.gradient_left} , ${theme.gradient_right} )`,
+                                'backgroundImage': (theme?.background_image_url ? `url(${theme?.background_image_url})` : `linear-gradient(0.37turn, ${theme.gradient_left} , ${theme.gradient_right} )`),
                                 'backgroundSize': `cover`
                             }}>
                             <div className='darken' />

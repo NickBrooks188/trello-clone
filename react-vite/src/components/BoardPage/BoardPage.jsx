@@ -77,6 +77,7 @@ export default function BoardPage() {
                 sourceList.card_order = JSON.stringify(sourceCards)
                 destinationList.card_order = JSON.stringify(destinationCards)
                 card.list_id = destinationList.id
+                card.label = JSON.stringify(card.label)
 
                 await dispatch(moveCard(card.id, destinationList.id, sourceList.id))
                 await dispatch(thunkEditCard(card, card.list_id))

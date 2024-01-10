@@ -140,9 +140,9 @@
     margin-bottom: 5px;
     cursor: pointer;
     width: 100%;
-    background-color: #f82754;
+    background-color: #dc2049;
 }
 
 .delete-board:hover {
-    background-color: #e2244e;
+    background-color: #ca1e43;
 }
