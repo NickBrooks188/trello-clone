@@ -11,6 +11,8 @@ const ADD_CARD = 'card/addCard'
 const REMOVE_CARD = 'card/removeCard'
 const EDIT_CARD = 'card/editCard'
 const ADD_USER_TO_CARD = 'card/addUserToCard'
+const REMOVE_USER_FROM_CARD = 'card/removeUserFromCard'
+
 const MOVE_CARD = 'card/move'
 
 const loadBoard = (board) => {
@@ -81,6 +83,15 @@ const editCard = (card, listId) => {
 const addUserToCard = (user, listId, cardId) => {
     return {
         type: ADD_USER_TO_CARD,
+        user,
+        listId,
+        cardId
+    }
+}
+
+const removeUserFromCard = (user, listId, cardId) => {
+    return {
+        type: REMOVE_USER_FROM_CARD,
         user,
         listId,
         cardId
@@ -258,6 +269,17 @@ export const thunkAddUserToCard = (user, listId, cardId) => async (dispatch) => 
     return data
 }
 
+export const thunkRemoveUserFromCard = (user, listId, cardId) => async (dispatch) => {
+    const res = await fetch(`/api/cards/${cardId}/users/${user.id}`, {
+        method: "DELETE"
+    })
+    const data = await res.json()
+    if (res.ok) {
+        dispatch(removeUserFromCard(user, listId, cardId))
+    }
+    return data
+}
+
 export const uploadImage = (image) => async () => {
     const res = await fetch(`/api/images`, {
         method: "POST",
@@ -359,6 +381,11 @@ const boardReducer = (state = initialState, action) => {
         case ADD_USER_TO_CARD: {
             const newState = { ...state }
             newState.lists[action.listId].cards[action.cardId].users[action.user.id] = action.user
+            return newState
+        }
+        case REMOVE_USER_FROM_CARD: {
+            const newState = { ...state }
+            delete newState.lists[action.listId].cards[action.cardId].users[action.user.id]
             return newState
         }
         case MOVE_CARD: {

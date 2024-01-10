@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard, uploadImage } from "../../redux/board"
+import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard, thunkRemoveUserFromCard, uploadImage } from "../../redux/board"
 import { useModal } from "../../context/Modal"
 import { useSearchParams } from "react-router-dom"
 import { useState, useEffect } from "react"
@@ -127,6 +127,13 @@ export default function CardModal({ card }) {
                 }
                 return
             }
+            case 'user-delete': {
+                const serverData = await dispatch(thunkRemoveUserFromCard(content, card.list_id, card.id))
+                if (serverData.errors) {
+                    setErrors({ assignment: serverData.errors })
+                }
+                return
+            }
         }
         return
     }
@@ -227,7 +234,7 @@ export default function CardModal({ card }) {
                         {card.users && Object.values(card.users).map(assignee => (
                             <div className="assignee" key={assignee.id}>
                                 <img src={assignee.profile_image_url} className="card-modal-profile-image" />{`${assignee.first_name} ${assignee.last_name}`}
-                                <i className="fa-solid fa-trash"></i>
+                                <i className="fa-solid fa-trash" onClick={(e) => handleCardEditSubmit(e, 'user-delete', assignee)}></i>
                             </div>
                         ))}
                         <button className="add-assignment" onClick={() => setShowAssignmentEdit(true)}><i className="fa-solid fa-plus"></i></button>
