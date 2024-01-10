@@ -168,9 +168,9 @@ export default function CardModal({ card }) {
                                 style={{
                                     "backgroundColor": label
                                 }}
-                                onClick={e => handleCardEditSubmit(e, 'label-delete', label)}
                             >
-                                <i className="fa-solid fa-trash"></i>
+                                <i className="fa-solid fa-trash" onClick={e => handleCardEditSubmit(e, 'label-delete', label)}
+                                ></i>
                             </div>
                         ))}
                         <button className="add-label" onClick={() => setShowLabelEdit(true)}><i className="fa-solid fa-plus"></i></button>
@@ -225,7 +225,10 @@ export default function CardModal({ card }) {
                     <h2><i className="fa-solid fa-list-check"></i>Assignments</h2>
                     <div className="assignments-wrapper">
                         {card.users && Object.values(card.users).map(assignee => (
-                            <div className="assignee" key={assignee.id}>{`${assignee.first_name} ${assignee.last_name}`}</div>
+                            <div className="assignee" key={assignee.id}>
+                                <img src={assignee.profile_image_url} className="card-modal-profile-image" />{`${assignee.first_name} ${assignee.last_name}`}
+                                <i className="fa-solid fa-trash"></i>
+                            </div>
                         ))}
                         <button className="add-assignment" onClick={() => setShowAssignmentEdit(true)}><i className="fa-solid fa-plus"></i></button>
 
@@ -238,7 +241,7 @@ export default function CardModal({ card }) {
                             <div className="available-users-wrapper">
                                 {(Object.values(board.users)).map((user) => ((!card.users[user.id]) && (
                                     <button className="available-user" key={user.id} onClick={(e) => handleCardEditSubmit(e, "user", user)}>
-                                        {`${user.first_name} ${user.last_name}`}<i className="fa-solid fa-plus"></i>
+                                        <img src={user.profile_image_url} className="card-modal-profile-image" /><span>{`${user.first_name} ${user.last_name}`}</span><i className="fa-solid fa-plus"></i>
                                     </button>)
                                 ))}
                             </div>
