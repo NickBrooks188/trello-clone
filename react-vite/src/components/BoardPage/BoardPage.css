@@ -235,19 +235,21 @@
 .card {
     background-color: white;
     width: 100%;
-    box-sizing: border-box;
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 0px;
     border-radius: 8px;
     box-shadow: 0 0 2px #aaa;
     font-size: 14px;
-    border: 2px solid transparent
+    overflow: hidden;
 }
 
 .card:hover {
     border: 2px solid #005FCC;
+    margin-top: -2px;
+    margin-left: -2px;
+    margin-bottom: -2px;
 }
 
 .card>div {
@@ -264,17 +266,43 @@
     flex-direction: column;
 }
 
+.card-image-wrapper {
+    max-height: 70px;
+    overflow: hidden;
+    width: 256px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image-view {
+    width: 100%;
+}
+
 .card-labels-wrapper {
     display: flex;
     flex-wrap: nowrap;
     gap: 5px;
     width: 100%;
+    padding: 10px 10px 0 10px;
 }
 
 .card-label {
     height: 8px;
     width: 36px;
     border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card-name {
+    padding: 0 10px 10px 10px;
+}
+
+.card-description-wrapper {
+    padding: 0 10px 0 10px;
+}
+
+.card-description-wrapper>i {
     margin-bottom: 10px;
 }
 
@@ -285,7 +313,7 @@
 }
 
 .add-card-button {
-    height: 36px;
+    height: 38px;
     background-color: none;
     color: #44546F;
     border: none;
@@ -308,7 +336,7 @@
 }
 
 .new-card>input {
-    height: 36px;
+    height: 38px;
     width: 100%;
     box-sizing: border-box;
     margin-top: 8px;

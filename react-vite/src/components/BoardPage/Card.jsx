@@ -19,6 +19,11 @@ export default function Card({ card, index }) {
                             modalComponent={<CardModal card={card} />}
                             buttonText={(
                                 <div className='card-content-wrapper'>
+                                    <div className='card-image-wrapper'>
+                                        {(card.image_url) && (
+                                            <img className='card-image-view' src={card.image_url} />
+                                        )}
+                                    </div>
                                     <div className='card-labels-wrapper'>
                                         {card.label.map((label) => (
                                             <div className='card-label'
@@ -32,6 +37,11 @@ export default function Card({ card, index }) {
                                     <div className='card-name'>
 
                                         {card.name}
+                                    </div>
+                                    <div className='card-description-wrapper'>
+                                        {(card.description) && (
+                                            <i className="fa-solid fa-align-left" title='this card has a description'></i>
+                                        )}
                                     </div>
                                 </div>
 

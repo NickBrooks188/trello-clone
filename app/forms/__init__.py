@@ -5,3 +5,4 @@ from .list_form import ListForm
 from .card_form import CardForm
 from .assignment_form import AssignmentForm
 from .user_boards_form import UserBoardForm
+from .image_form import ImageForm

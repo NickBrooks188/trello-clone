@@ -11,6 +11,7 @@ from .api.board_routes import board
 from .api.list_routes import list
 from .api.card_routes import card
 from .api.themes_routes import theme
+from .api.images_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,6 +37,7 @@ app.register_blueprint(board, url_prefix='/api/boards')
 app.register_blueprint(list, url_prefix='/api/lists')
 app.register_blueprint(card, url_prefix='/api/cards')
 app.register_blueprint(theme, url_prefix='/api/themes')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 

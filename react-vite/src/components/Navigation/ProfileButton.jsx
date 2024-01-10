@@ -9,6 +9,7 @@ function ProfileButton() {
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
+  const sessionUser = useSelector(state => state.session.user)
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -41,7 +42,7 @@ function ProfileButton() {
   return (
     <>
       <button onClick={toggleMenu}>
-        <i className="fas fa-user-circle" />
+        <img className="navbar-profile-image" src={sessionUser.profile_image_url} />
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>

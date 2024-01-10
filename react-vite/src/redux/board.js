@@ -20,13 +20,6 @@ const loadBoard = (board) => {
     }
 }
 
-// const addBoard = (board) => {
-//     return {
-//         type: ADD_BOARD,
-//         board
-//     }
-// }
-
 export const removeBoard = () => {
     return {
         type: REMOVE_BOARD
@@ -122,7 +115,6 @@ export const thunkAddBoard = (board) => async (dispatch) => {
     })
     const data = await res.json()
     if (res.ok) {
-        // dispatch(addBoard(data))
         delete data.lists
         dispatch(addBoards(data))
     }
@@ -266,6 +258,15 @@ export const thunkAddUserToCard = (user, listId, cardId) => async (dispatch) => 
     return data
 }
 
+export const uploadImage = (image) => async () => {
+    const res = await fetch(`/api/images`, {
+        method: "POST",
+        body: image
+    })
+    const data = await res.json()
+    return data
+}
+
 const initialState = {}
 
 const boardReducer = (state = initialState, action) => {
@@ -293,20 +294,6 @@ const boardReducer = (state = initialState, action) => {
             }
             return newState
         }
-        // case ADD_BOARD: {
-        //     const newState = {}
-        //     console.log(action)
-        //     newState.id = action.board.id
-        //     newState.owner_id = action.board.owner_id
-        //     newState.theme_id = action.board.theme_id
-        //     newState.name = action.board.name
-        //     newState.description = action.board.description
-        //     newState.list_order = []
-        //     newState.users = action.board.users
-        //     newState.lists = {}
-        //     newState.users[action.board.users[0].id] = action.board.users[0]
-        //     return newState
-        // }
         case REMOVE_BOARD: {
             return {}
         }

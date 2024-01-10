@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard } from "../../redux/board"
+import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard, uploadImage } from "../../redux/board"
 import { useModal } from "../../context/Modal"
 import { useSearchParams } from "react-router-dom"
 import { useState, useEffect } from "react"
@@ -11,7 +11,6 @@ export default function CardModal({ card }) {
     const { closeModal } = useModal()
     const [name, setName] = useState(card.name)
     const [description, setDescription] = useState(card.description || '')
-    const [image_url, setImage_url] = useState(card.image_url || '')
     const [showNameEdit, setShowNameEdit] = useState(false)
     const [showDescriptionEdit, setShowDescriptionEdit] = useState(false)
     const [showLabelEdit, setShowLabelEdit] = useState(false)
@@ -101,6 +100,24 @@ export default function CardModal({ card }) {
                 }
                 return
             }
+            case 'image': {
+                const formData = new FormData()
+                formData.append("image", content)
+                const returnImage = await dispatch(uploadImage(formData))
+                if (returnImage.errors) {
+                    setErrors({ image: returnImage.errors })
+                    return
+                }
+                const serverData = await dispatch(thunkEditCard({
+                    ...card,
+                    label: JSON.stringify(card.label),
+                    image_url: returnImage.url
+                }, card.list_id))
+                if (serverData.errors) {
+                    setErrors({ image: serverData.errors })
+                }
+                return
+            }
             case 'user': {
                 const serverData = await dispatch(thunkAddUserToCard(content, card.list_id, card.id))
                 if (!serverData.errors) {
@@ -108,6 +125,7 @@ export default function CardModal({ card }) {
                 } else {
                     setErrors({ assignment: serverData.errors })
                 }
+                return
             }
         }
         return
@@ -193,7 +211,14 @@ export default function CardModal({ card }) {
                 {/* image */}
                 <div className="card-modal-image">
                     <h2><i className="fa-regular fa-image"></i>Image</h2>
-                    <img src={card.image_url} />
+                    <img src={card.image_url} className="card-modal-image-file" />
+                    <form>
+                        <input
+                            type="file"
+                            accept='image/*'
+                            onChange={(e) => handleCardEditSubmit(e, 'image', e.target.files[0])}
+                        />
+                    </form>
                 </div>
                 {/* assignments */}
                 <div className="card-modal-assignment">

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
 import './SignupForm.css'
+import { uploadImage } from "../../redux/board";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function SignupFormPage() {
   const [first_name, setFirstname] = useState("");
   const [last_name, setLastname] = useState("");
   const [location, setLocation] = useState("");
-  const [profile_image_url, setProfileImageURL] = useState("")
+  const [image, setImage] = useState("")
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -72,13 +73,21 @@ function SignupFormPage() {
     // return if submit shouldn't have been clicked
     if (disabled) return
 
+    let returnImage
+    if (image) {
+      const formData = new FormData()
+      formData.append("image", image)
+      returnImage = await dispatch(uploadImage(formData))
+      if (returnImage.errors) return
+    }
+
     const serverResponse = await dispatch(
       thunkSignup({
         email,
         first_name,
         last_name,
         location: (location || null),
-        profile_image_url: (profile_image_url || null),
+        profile_image_url: (returnImage?.url || null),
         password
       })
     );
@@ -139,12 +148,12 @@ function SignupFormPage() {
         <label>
           Profile picture (optional)
           <input
-            type="text"
-            value={profile_image_url}
-            onChange={(e) => setProfileImageURL(e.target.value)}
+            type="file"
+            accept='image/*'
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </label>
-        <p>{errors.profile_image_url}</p>
+        <p>{errors.image}</p>
         <label>
           Password
           <input
