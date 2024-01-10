@@ -83,6 +83,9 @@ export default function List({ list, cards, index }) {
                                 )}
                                 {(showListPopup) && (
                                     <div className="list-popup">
+                                        <div className='close-modal-x' onClick={() => setShowListPopup(false)}><i className="fa-solid fa-xmark"></i></div>
+
+                                        <h2>List actions</h2>
                                         <button className="delete-list-button" onClick={handleListDelete}>Delete list</button>
                                     </div>
                                 )}

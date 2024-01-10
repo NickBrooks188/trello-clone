@@ -46,8 +46,7 @@ export default function SideNavbar({ theme, selection }) {
                         }}>
                             <div className='user-board-navbar-preview'
                                 style={{
-                                    'backgroundImage': `url(${themes[userBoard.theme_id]?.background_image_url})`,
-                                    'background': `linear-gradient(0.37turn, ${themes[userBoard.theme_id]?.gradient_left} , ${themes[userBoard.theme_id]?.gradient_right} )`,
+                                    'backgroundImage': (themes[userBoard.theme_id]?.background_image_url ? `url(${themes[userBoard.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[userBoard.theme_id]?.gradient_left} , ${themes[userBoard.theme_id]?.gradient_right} )`),
                                     'backgroundSize': `cover`
                                 }} />
 

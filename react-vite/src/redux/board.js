@@ -252,7 +252,7 @@ export const thunkAddUserToBoard = (user, boardId) => async (dispatch) => {
 }
 
 export const thunkAddUserToCard = (user, listId, cardId) => async (dispatch) => {
-    const res = await fetch(`/api/cards/${cardId}`, {
+    const res = await fetch(`/api/cards/${cardId}/users`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -261,7 +261,7 @@ export const thunkAddUserToCard = (user, listId, cardId) => async (dispatch) => 
     })
     const data = await res.json()
     if (res.ok) {
-        dispatch(addUserToCard(data, listId, cardId))
+        dispatch(addUserToCard(user, listId, cardId))
     }
     return data
 }
@@ -285,7 +285,7 @@ const boardReducer = (state = initialState, action) => {
                 newState.lists[list.id] = { ...list, cards: {} }
                 newState.lists[list.id].card_order = JSON.parse(list.card_order)
                 for (let card of list.cards) {
-                    newState.lists[list.id].cards[card.id] = { ...card, users: {} }
+                    newState.lists[list.id].cards[card.id] = { ...card, label: JSON.parse(card.label), users: {} }
                     for (let user of card.users) {
                         newState.lists[list.id].cards[card.id].users[user.id] = user
                     }
@@ -344,6 +344,7 @@ const boardReducer = (state = initialState, action) => {
         case ADD_CARD: {
             const newState = { ...state }
             newState.lists[action.listId].cards[action.card.id] = action.card
+            newState.lists[action.listId].cards[action.card.id].label = []
             newState.lists[action.listId].cards[action.card.id].users = {}
             let oldList = newState.lists[action.listId].card_order
             oldList.push(action.card.id)
@@ -360,7 +361,7 @@ const boardReducer = (state = initialState, action) => {
             const newState = { ...state }
             newState.lists[action.listId].cards[action.card.id].name = action.card.name
             newState.lists[action.listId].cards[action.card.id].description = action.card.description
-            newState.lists[action.listId].cards[action.card.id].label = action.card.label
+            newState.lists[action.listId].cards[action.card.id].label = JSON.parse(action.card.label)
             newState.lists[action.listId].cards[action.card.id].image_url = action.card.image_url
             newState.lists[action.listId].cards[action.card.id].list_id = action.card.list_id
             for (let user of action.card.users) {

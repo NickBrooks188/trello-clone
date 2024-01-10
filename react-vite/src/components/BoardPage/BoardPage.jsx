@@ -77,6 +77,7 @@ export default function BoardPage() {
                 sourceList.card_order = JSON.stringify(sourceCards)
                 destinationList.card_order = JSON.stringify(destinationCards)
                 card.list_id = destinationList.id
+                card.label = JSON.stringify(card.label)
 
                 await dispatch(moveCard(card.id, destinationList.id, sourceList.id))
                 await dispatch(thunkEditCard(card, card.list_id))
@@ -114,8 +115,7 @@ export default function BoardPage() {
             <SideNavbar theme={theme} selection={board.id} />
             <div className='board-page-content'
                 style={{
-                    'backgroundImage': `url(${themes[board.theme_id]?.background_image_url})`,
-                    'background': `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`,
+                    'backgroundImage': (themes[board.theme_id]?.background_image_url ? `url(${themes[board.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`),
                     'backgroundSize': `cover`
                 }}
             >
