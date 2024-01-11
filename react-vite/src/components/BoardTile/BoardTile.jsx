@@ -14,8 +14,11 @@ export default function BoardTile({ board, type }) {
                 'color': (themes[board.theme_id]?.background_image_url ? '#FFFFFF' : themes[board.theme_id].header_font_color)
             }}
 
-        ><div className='board-name'>{(type === 'unjoined') && (<i className="fa-solid fa-plus"></i>)}{board.name}</div>
-            <div className='home-darken'></div>
+        >
+            <div className='board-tile-darken'>
+                <div className='board-name'>{(type === 'unjoined') && (<i className="fa-solid fa-plus"></i>)}{board.name}</div>
+
+            </div>
         </div>
     )
 }

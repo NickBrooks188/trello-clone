@@ -2,16 +2,26 @@ from app.models import db, Theme, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_themes():
+
     theme_1 = Theme(
         owner_id = 2,
-        name='Blue',
-        header_color='#0B5ED2',
-        gradient_left='#0279FF',
-        gradient_right='#093575',
-        header_font_color='#FFFFFF'
+        name='Tropical',
+        header_color='#DDFFE8',
+        gradient_left='#71FDFD',
+        gradient_right='#FDF975',
+        header_font_color='#172B4E'
     )
 
     theme_2 = Theme(
+        owner_id = 2,
+        name='Standard',
+        header_color='#FFFED0',
+        gradient_left='#FDA1A1',
+        gradient_right='#FDA1A1',
+        header_font_color='#172B4E'
+    )
+        
+    theme_3 = Theme(
         owner_id = 2,
         name='Purple',
         header_color='#4033D0',
@@ -20,22 +30,13 @@ def seed_themes():
         header_font_color='#FFFFFF'
     )
 
-    theme_3 = Theme(
-        owner_id = 2,
-        name='Standard',
-        header_color='#FFFED0',
-        gradient_left='#F2F2F2',
-        gradient_right='#F2F2F2',
-        header_font_color='#172B4E'
-    )
-
     theme_4 = Theme(
         owner_id = 2,
-        name='Tropical',
-        header_color='#C2FFD7',
-        gradient_left='#71FDFD',
-        gradient_right='#FDF975',
-        header_font_color='#172B4E'
+        name='Blue',
+        header_color='#0B5ED2',
+        gradient_left='#0279FF',
+        gradient_right='#093575',
+        header_font_color='#FFFFFF'
     )
     
     theme_5 = Theme(
@@ -49,7 +50,7 @@ def seed_themes():
     theme_6 = Theme(
         owner_id = 2,
         name='Windows',
-        header_color='#FFE29F',
+        header_color='#FFF7E4',
         background_image_url='https://www.pixground.com/wp-content/uploads/2023/05/Windows-11-SE-Colorful-Abstract-Background-4K-Wallpaper-1024x576.webp',
         header_font_color='#172B4E'
     )

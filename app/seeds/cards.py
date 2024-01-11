@@ -19,37 +19,46 @@ def seed_cards():
     )
 
     card_4 = Card(
-        list_id=5,
+        list_id=4,
         name='Draft documents',
+        image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-Todo.svg'
     )
 
     card_5 = Card(
-        list_id=4,
+        list_id=5,
         name='Review documents',
+        image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-InProgress.svg'
     )
 
     card_6 = Card(
-        list_id=4,
+        list_id=6,
         name='Send documents',
+        image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-InReview.svg'
     )
 
     card_7 = Card(
-        list_id=10,
+        list_id=7,
+        name='Setup documents',
+        image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-Complete.svg'
+    )
+
+    card_7 = Card(
+        list_id=11,
         name='Outline',
     )
 
     card_8 = Card(
-        list_id=9,
+        list_id=10,
         name='Draft',
     )
 
     card_9 = Card(
-        list_id=8,
+        list_id=9,
         name='Edits',
     )
 
     card_10 = Card(
-        list_id=7,
+        list_id=8,
         name='Final version',
     )
 

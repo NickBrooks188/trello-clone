@@ -166,14 +166,14 @@
     gap: 12px;
     align-items: center;
     cursor: pointer;
-    background-image: var(--background-selected);
+    background-image: var(--background-hover);
     background-color: transparent;
     color: var(--font-color);
     box-sizing: border-box;
 }
 
 .add-list-button:hover {
-    background-image: var(--background-hover);
+    background-image: var(--background-light);
 }
 
 .add-list-button:active {
