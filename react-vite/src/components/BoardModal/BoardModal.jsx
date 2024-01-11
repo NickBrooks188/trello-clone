@@ -45,7 +45,6 @@ export default function BoardModal({ type }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("SUBMITTED")
         if (disabled) return
 
         if (type === "Create") {
