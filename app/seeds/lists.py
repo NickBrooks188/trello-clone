@@ -63,7 +63,7 @@ def seed_lists():
 
     list_11 = List(
         board_id = 3,
-        name='Done',
+        name='Complete',
         card_order='[8]'
     )
 
