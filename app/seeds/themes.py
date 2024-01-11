@@ -23,7 +23,7 @@ def seed_themes():
     theme_3 = Theme(
         owner_id = 2,
         name='Standard',
-        header_color='#FF8E8E',
+        header_color='#FFFED0',
         gradient_left='#F2F2F2',
         gradient_right='#F2F2F2',
         header_font_color='#172B4E'
@@ -32,7 +32,7 @@ def seed_themes():
     theme_4 = Theme(
         owner_id = 2,
         name='Tropical',
-        header_color='#AFFCCA',
+        header_color='#C2FFD7',
         gradient_left='#71FDFD',
         gradient_right='#FDF975',
         header_font_color='#172B4E'
@@ -49,7 +49,7 @@ def seed_themes():
     theme_6 = Theme(
         owner_id = 2,
         name='Windows',
-        header_color='#FDC642',
+        header_color='#FFE29F',
         background_image_url='https://www.pixground.com/wp-content/uploads/2023/05/Windows-11-SE-Colorful-Abstract-Background-4K-Wallpaper-1024x576.webp',
         header_font_color='#172B4E'
     )

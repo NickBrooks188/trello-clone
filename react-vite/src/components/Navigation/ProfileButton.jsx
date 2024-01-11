@@ -40,10 +40,10 @@ function ProfileButton() {
   };
 
   return (
-    <>
-      <button onClick={toggleMenu}>
+    <div className="profile-button-wrapper">
+      <div onClick={toggleMenu}>
         <img className="navbar-profile-image" src={sessionUser.profile_image_url} />
-      </button>
+      </div>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           <li>
@@ -55,7 +55,7 @@ function ProfileButton() {
           </li>
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

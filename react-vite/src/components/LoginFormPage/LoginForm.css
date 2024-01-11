@@ -55,6 +55,10 @@
     background-color: #0055CC;
 }
 
+.login-wrapper>form>button:active {
+    background-color: #004cb6;
+}
+
 .login-wrapper>form>button:disabled {
     cursor: default;
     background-color: #aaa;

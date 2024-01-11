@@ -55,6 +55,11 @@
 
 .profile-dropdown>li>button:hover,
 .profile-dropdown>li>a:hover {
+  background-color: #F4F4F4;
+}
+
+.profile-dropdown>li>button:active,
+.profile-dropdown>li>a:active {
   background-color: #EBEBEB;
 }
 
@@ -78,29 +83,37 @@
   align-items: center;
 }
 
-.top-navbar-rhs-wrapper>button {
-  border-radius: 20px;
-  border: none;
-  height: 36px;
-  width: 36px;
-  background-color: #fbe6cd;
-  cursor: pointer;
-  font-size: 12px;
-  box-sizing: border-box;
-  background-clip: padding-box;
-  border: 5px solid rgb(200 200 200 / 0%);
+.profile-button-wrapper {
+  height: 100%;
+  width: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-.top-navbar-rhs-wrapper>button:hover {
-  border: 5px solid rgb(200 200 200 / 50%);
+.profile-button-wrapper>div {
+  border-radius: 20px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.1s;
+}
+
+.profile-button-wrapper>div:hover {
+  border: 5px solid rgba(150, 150, 150, .5);
+}
+
+.profile-button-wrapper>div:active {
+  border: 5px solid rgba(150, 150, 150, .7);
 }
 
 .navbar-profile-image {
-  width: 26px;
+  width: 100%;
   border-radius: 20px;
 }
 
@@ -129,6 +142,10 @@
   background-image: linear-gradient(rgb(255 255 255 / 12%) 0 0);
 }
 
+.login-navigation:active {
+  background-image: linear-gradient(rgb(255 255 255 / 24%) 0 0);
+}
+
 .signup-navigation {
   margin-right: 10px;
   text-decoration: none;
@@ -145,5 +162,9 @@
 }
 
 .signup-navigation:hover {
+  background-image: linear-gradient(rgb(0 0 0 / 5%) 0 0);
+}
+
+.signup-navigation:active {
   background-image: linear-gradient(rgb(0 0 0 / 10%) 0 0);
 }

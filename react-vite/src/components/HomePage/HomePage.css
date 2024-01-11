@@ -77,7 +77,11 @@
 }
 
 .board-tile-wrapper>button:hover {
-    background-color: #ddd;
+    background-color: #e5e5e7;
+}
+
+.board-tile-wrapper>button:active {
+    background-color: #d5d5d7;
 }
 
 .board-tile-wrapper>button>span>i {

@@ -114,6 +114,10 @@
     color: #172B4E;
 }
 
+.label>.fa-trash:active {
+    color: #000;
+}
+
 .add-label,
 .add-assignment {
     width: 25px;
@@ -131,6 +135,10 @@
     background-color: #E4E6E9;
 }
 
+.add-label:active,
+.add-assignment:active {
+    background-color: #d0d2d5;
+}
 
 .label-popup {
     position: absolute;
@@ -246,6 +254,10 @@
     color: #172B4E;
 }
 
+.assignee>.fa-trash:active {
+    color: #000;
+}
+
 .assignment-popup {
     position: absolute;
     left: 100px;
@@ -315,4 +327,8 @@
 
 .card-modal-delete-button:hover {
     background-color: #E4E6E9;
+}
+
+.card-modal-delete-button:active {
+    background-color: #d0d2d5;
 }

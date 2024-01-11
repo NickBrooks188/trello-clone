@@ -58,6 +58,10 @@ p {
     background-color: #DCDFE4;
 }
 
+.close-modal-x:active {
+    background-color: #cdd0d4;
+}
+
 .asterisk {
     color: #C9372C;
     width: 10px;
@@ -126,6 +130,7 @@ input::file-selector-button:hover {
 .theme-light {
     --background-hover: linear-gradient(rgb(255 255 255 / 10%) 0 0);
     --background-selected: linear-gradient(rgb(255 255 255 / 18%) 0 0);
+    --background-active: linear-gradient(rgb(255 255 255 / 25%) 0 0);
     --background-header: linear-gradient(rgb(0 0 0 / 25%) 0 0);
     --font-color: white;
     --background-color: #172B4E;
@@ -136,6 +141,7 @@ input::file-selector-button:hover {
 .theme-dark {
     --background-hover: linear-gradient(rgb(0 0 0 / 8%) 0 0);
     --background-selected: linear-gradient(rgb(0 0 0 / 14%) 0 0);
+    --background-active: linear-gradient(rgb(0 0 0 / 20%) 0 0);
     --background-header: linear-gradient(rgb(255 255 255 / 40%) 0 0);
     --font-color: #172B4E;
     --background-color: white;
