@@ -126,7 +126,7 @@ input::file-selector-button:hover {
 .theme-light {
     --background-hover: linear-gradient(rgb(255 255 255 / 10%) 0 0);
     --background-selected: linear-gradient(rgb(255 255 255 / 18%) 0 0);
-    --background-header: linear-gradient(rgb(0 0 0 / 33%) 0 0);
+    --background-header: linear-gradient(rgb(0 0 0 / 25%) 0 0);
     --font-color: white;
     --background-color: #172B4E;
     --button-background: rgba(255, 255, 255, 0.7);
