@@ -17,7 +17,7 @@ export default function CardModal({ card }) {
     const [showAssignmentEdit, setShowAssignmentEdit] = useState(false)
     const [errors, setErrors] = useState({})
 
-    const availableLabels = ['#000000', '#AAAAAA', '#FF0000', '#00FF00', '#0000FF']
+    const availableLabels = ['#AAAAAA', '#EF946A', '#EBEF6A', '#9FEF6A', '#6ABAEF']
 
     const validateName = (val) => {
         if (val.length < 50) {
