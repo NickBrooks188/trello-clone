@@ -56,6 +56,10 @@
     background-color: #0055CC;
 }
 
+.signup-wrapper>form>button:active {
+    background-color: #004cb6;
+}
+
 .signup-wrapper>form>button:disabled {
     cursor: default;
     background-color: #aaa;

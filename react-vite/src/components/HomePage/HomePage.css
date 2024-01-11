@@ -72,12 +72,16 @@
     border-radius: 3px;
     cursor: pointer;
     color: inherit;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
 }
 
 .board-tile-wrapper>button:hover {
-    background-color: #ddd;
+    background-color: #e5e5e7;
+}
+
+.board-tile-wrapper>button:active {
+    background-color: #d5d5d7;
 }
 
 .board-tile-wrapper>button>span>i {

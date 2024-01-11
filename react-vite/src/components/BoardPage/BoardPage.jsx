@@ -27,7 +27,7 @@ export default function BoardPage() {
         if (!board?.users[sessionUser.id]) {
             navigate('/home')
         }
-    }, [sessionUser, board])
+    }, [sessionUser, board, navigate])
 
     const validateNewListName = (val) => {
         if (val.length < 50) {

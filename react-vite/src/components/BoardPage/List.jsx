@@ -90,9 +90,9 @@ export default function List({ list, cards, index }) {
                             {(!(showListEdit)) && (<div className="list-name" onClick={() => setShowListEdit(true)}>
                                 <span>{list.name}</span>
                             </div>)}
-                            <div className="list-header-right">
+                            <div className="list-header-right" onClick={() => setShowListPopup(true)}>
                                 {!(showListPopup) && (
-                                    <i className="fa-solid fa-ellipsis" onClick={() => setShowListPopup(true)}></i>
+                                    <i className="fa-solid fa-ellipsis"></i>
                                 )}
                                 {(showListPopup) && (
                                     <div className="list-popup">
@@ -106,7 +106,7 @@ export default function List({ list, cards, index }) {
                         </div>
 
                         <Droppable droppableId={`card-list-${list.id}`} index={index} type="card">
-                            {(provided, snapshot) => (
+                            {(provided) => (
                                 <div className="cards-wrapper"
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}

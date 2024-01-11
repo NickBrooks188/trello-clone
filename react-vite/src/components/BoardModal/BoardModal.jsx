@@ -45,7 +45,7 @@ export default function BoardModal({ type }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        console.log("SUBMITTED")
         if (disabled) return
 
         if (type === "Create") {
@@ -98,16 +98,14 @@ export default function BoardModal({ type }) {
 
     if (!themes) return null
 
-    console.log(themeId)
-
     return (
         <div className='board-modal-wrapper'>
             <div className='close-modal-x' onClick={closeModal}><i className="fa-solid fa-xmark"></i></div>
             <div className='board-modal-header'>{type} board</div>
             <div className='board-preview'
                 style={{
-                    'backgroundImage': `url(${themes[themeId]?.background_image_url})`,
-                    'background': `linear-gradient(0.37turn, ${themes[themeId].gradient_left} , ${themes[themeId].gradient_right} )`,
+                    'backgroundImage': (themes[themeId]?.background_image_url ? `url(${themes[themeId]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[themeId]?.gradient_left} , ${themes[themeId]?.gradient_right} )`),
+                    'backgroundSize': `cover`
                 }}
             ><img src='https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/BoardTemplateUpdate.svg' /></div>
             <form onSubmit={handleSubmit} className='board-modal-form'>

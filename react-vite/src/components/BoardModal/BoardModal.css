@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 5px;
-    box-shadow: 0px 1px 1px #aaa;
+    box-shadow: 0px 1px 3px #aaa;
 }
 
 .board-preview>img {
@@ -109,6 +109,10 @@
     opacity: 10%;
 }
 
+.darken:active {
+    opacity: 20%;
+}
+
 
 .board-title-wrapper {
     display: flex;
@@ -120,7 +124,7 @@
     background-color: #0A66E4;
     height: 32px;
     border-radius: 3px;
-    margin-top: 10px;
+    margin-top: 5px;
     font-weight: 500;
     font-size: 14px;
     cursor: pointer;
@@ -130,13 +134,22 @@
     background-color: #0055CC;
 }
 
+.board-modal-submit:active {
+    background-color: #004db9;
+}
+
+.board-modal-submit:disabled {
+    cursor: default;
+    background-color: #aaa;
+}
+
 .delete-board {
     border: none;
     color: white;
     background-color: #0A66E4;
     height: 32px;
     border-radius: 3px;
-    margin-top: 5px;
+    margin-top: 0px;
     font-weight: 500;
     font-size: 14px;
     margin-bottom: 5px;
@@ -147,4 +160,8 @@
 
 .delete-board:hover {
     background-color: #ca1e43;
+}
+
+.delete-board:active {
+    background-color: #b31b3c;
 }

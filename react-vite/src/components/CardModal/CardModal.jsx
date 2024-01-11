@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard, thunkRemoveUserFromCard, uploadImage } from "../../redux/board"
 import { useModal } from "../../context/Modal"
-import { useSearchParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import './CardModal.css'
 
@@ -17,7 +16,7 @@ export default function CardModal({ card }) {
     const [showAssignmentEdit, setShowAssignmentEdit] = useState(false)
     const [errors, setErrors] = useState({})
 
-    const availableLabels = ['#000000', '#AAAAAA', '#FF0000', '#00FF00', '#0000FF']
+    const availableLabels = ['#AAAAAA', '#EF946A', '#EBEF6A', '#9FEF6A', '#6ABAEF']
 
     const validateName = (val) => {
         if (val.length < 50) {
@@ -88,7 +87,7 @@ export default function CardModal({ card }) {
                 return
             }
             case 'description': {
-                if (!description) {
+                if (!description || (description === card.description)) {
                     setShowDescriptionEdit(false)
                     return
                 }
@@ -109,8 +108,6 @@ export default function CardModal({ card }) {
                 formData.append("image", content)
                 const returnImage = await dispatch(uploadImage(formData))
                 if (returnImage.errors) {
-                    console.log(returnImage)
-                    console.log(returnImage.errors)
                     setErrors({ image: returnImage.errors })
                     return
                 }
@@ -262,6 +259,7 @@ export default function CardModal({ card }) {
                     )}
                 </div>
             </div>
+            <p>{errors.image}</p>
             <button className="card-modal-delete-button" onClick={handleCardDelete}>Delete card</button>
             {(showNameEdit) && (<div className="cover-everything" onClick={(e) => handleCardEditSubmit(e, 'name')} />)}
             {(showDescriptionEdit) && (<div className="cover-everything" onClick={(e) => handleCardEditSubmit(e, 'description')} />)}

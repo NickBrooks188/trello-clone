@@ -11,7 +11,6 @@ import { removeBoard, thunkAddUserToBoard } from '../../redux/board';
 export default function HomePage() {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
-    const themes = useSelector(state => state.themes)
     const boards = useSelector(state => state.boards)
     const [userBoards, setUserBoards] = useState([])
     const [unjoinedBoards, setUnjoinedBoards] = useState([])

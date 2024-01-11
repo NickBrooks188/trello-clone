@@ -137,6 +137,10 @@
     background-color: #D0D4DC;
 }
 
+.list-header-right:active {
+    background-color: #c1c4cb;
+}
+
 .list-dragging>.list {
     opacity: 90%;
     transform: rotate(3deg);
@@ -162,14 +166,18 @@
     gap: 12px;
     align-items: center;
     cursor: pointer;
-    background-image: var(--background-selected);
+    background-image: var(--background-hover);
     background-color: transparent;
     color: var(--font-color);
     box-sizing: border-box;
 }
 
 .add-list-button:hover {
-    background-image: var(--background-hover);
+    background-image: var(--background-light);
+}
+
+.add-list-button:active {
+    background-image: none;
 }
 
 .new-list {
@@ -225,6 +233,10 @@
 
 .delete-list-button:hover {
     background-color: #F1F2F4;
+}
+
+.delete-list-button:active {
+    background-color: #dcdee0;
 }
 
 .new-card {
@@ -299,7 +311,7 @@
 
 .card-label {
     height: 8px;
-    width: 36px;
+    width: 43px;
     border-radius: 8px;
     margin-bottom: 10px;
 }
@@ -323,7 +335,7 @@
     margin-top: 10px;
 }
 
-.card-dragging>.card {
+.card-dragging>.card-outer-wrapper {
     background-color: #ddd;
     opacity: 90%;
     transform: rotate(3deg);
@@ -350,11 +362,15 @@
 
 .add-card-button:hover {
     background-color: #D0D4DC;
-    color: #171717;
+    color: #172B4E;
+}
+
+.add-card-button:active {
+    background-color: #bdc1c8;
 }
 
 .new-card>input {
-    height: 38px;
+    height: 36px;
     width: 100%;
     box-sizing: border-box;
     margin-top: 8px;

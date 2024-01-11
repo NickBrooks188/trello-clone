@@ -1,6 +1,5 @@
 import { Draggable } from 'react-beautiful-dnd'
 import CardModal from '../CardModal/CardModal'
-import OpenModalButton from '../OpenModalButton'
 import { OpenModalDiv } from '../OpenModalButton/OpenModalButton'
 
 export default function Card({ card, index }) {

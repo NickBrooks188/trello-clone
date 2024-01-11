@@ -5,34 +5,33 @@ from .users import demo, nick, other
 def seed_boards():
 
     board_1 = Board(
-        owner_id=1,
-        theme_id=1,
-        name='My first board',
+        owner_id=2,
+        theme_id=5,
+        name='Work tasks board',
         description='Tasks for my first board',
         list_order='[1,2,3]'
     )
 
     board_2 = Board(
         owner_id=1,
-        theme_id=2,
-        name='My second board',
-        description='Tasks for my second board',
-        list_order='[4,5,6]'
+        theme_id=3,
+        name='Main board',
+        list_order='[4,5,6,7]'
     )
 
     board_3 = Board(
-        owner_id=2,
-        theme_id=7,
+        owner_id=1,
+        theme_id=1,
         name='Project board',
-        description='Tasks for Nick',
-        list_order='[7,8,9,10]'
+        description='Tasks for the project',
+        list_order='[8,9,10,11]'
     )
 
     board_4 = Board(
         owner_id=2,
-        theme_id=5,
-        name='Night board',
-        description='Tasks for after dark',
+        theme_id=8,
+        name='Space board',
+        description='Tasks in orbit',
         list_order='[]'
     )
 

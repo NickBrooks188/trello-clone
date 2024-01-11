@@ -106,12 +106,16 @@
 }
 
 .label:hover {
-    color: #E4E6E9;
+    color: #44546F;
     background-image: linear-gradient(rgb(255 255 255 / 20%) 0 0);
 }
 
 .label>.fa-trash:hover {
-    color: white;
+    color: #172B4E;
+}
+
+.label>.fa-trash:active {
+    color: #000;
 }
 
 .add-label,
@@ -131,6 +135,10 @@
     background-color: #E4E6E9;
 }
 
+.add-label:active,
+.add-assignment:active {
+    background-color: #d0d2d5;
+}
 
 .label-popup {
     position: absolute;
@@ -246,6 +254,10 @@
     color: #172B4E;
 }
 
+.assignee>.fa-trash:active {
+    color: #000;
+}
+
 .assignment-popup {
     position: absolute;
     left: 100px;
@@ -315,4 +327,8 @@
 
 .card-modal-delete-button:hover {
     background-color: #E4E6E9;
+}
+
+.card-modal-delete-button:active {
+    background-color: #d0d2d5;
 }

@@ -1,11 +1,17 @@
 import './LoggedOutPage.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { thunkLogin } from '../../redux/session'
+import { removeBoard } from '../../redux/board'
 
 export default function LoggedOutPage() {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+
+    useEffect(() => {
+        dispatch(removeBoard())
+    })
 
     const demoLogin = () => {
         dispatch(
