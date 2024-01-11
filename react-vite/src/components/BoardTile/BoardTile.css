@@ -26,10 +26,10 @@
 
 .home-darken {
     position: relative;
-    top: -100px;
+    top: -40px;
     left: -20px;
-    width: 500px;
-    height: 900px;
+    width: 140%;
+    height: 120px;
     background-image: linear-gradient(rgb(0 0 0 / 0%) 0 0);
 }
 

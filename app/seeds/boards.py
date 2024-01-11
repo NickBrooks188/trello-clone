@@ -22,7 +22,7 @@ def seed_boards():
 
     board_3 = Board(
         owner_id=2,
-        theme_id=7,
+        theme_id=5,
         name='Project board',
         description='Tasks for Nick',
         list_order='[7,8,9,10]'
@@ -30,7 +30,7 @@ def seed_boards():
 
     board_4 = Board(
         owner_id=2,
-        theme_id=5,
+        theme_id=7,
         name='Night board',
         description='Tasks for after dark',
         list_order='[]'

@@ -22,11 +22,11 @@ def seed_themes():
 
     theme_3 = Theme(
         owner_id = 2,
-        name='Fire',
-        header_color='#C46565',
-        gradient_left='#EFEA4B',
-        gradient_right='#EFA34B',
-        header_font_color='#FFFFFF'
+        name='Standard',
+        header_color='#FF8E8E',
+        gradient_left='#F2F2F2',
+        gradient_right='#F2F2F2',
+        header_font_color='#172B4E'
     )
 
     theme_4 = Theme(

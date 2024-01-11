@@ -106,12 +106,12 @@
 }
 
 .label:hover {
-    color: #E4E6E9;
+    color: #44546F;
     background-image: linear-gradient(rgb(255 255 255 / 20%) 0 0);
 }
 
 .label>.fa-trash:hover {
-    color: white;
+    color: #172B4E;
 }
 
 .add-label,
