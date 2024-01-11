@@ -6,7 +6,7 @@ def seed_cards():
     card_1 = Card(
         list_id=1,
         name='Write draft',
-        label='[#EF946A]'
+        label='["#EF946A"]'
     )
 
     card_2 = Card(
