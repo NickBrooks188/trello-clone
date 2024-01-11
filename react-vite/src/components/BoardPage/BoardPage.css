@@ -335,7 +335,7 @@
     margin-top: 10px;
 }
 
-.card-dragging>.card {
+.card-dragging>.card-outer-wrapper {
     background-color: #ddd;
     opacity: 90%;
     transform: rotate(3deg);
