@@ -10,11 +10,11 @@ function Navigation() {
 
   return (
     <div className="top-navbar" style={{
-      backgroundColor: (themes[board?.theme_id]?.header_color || '#FFF')
+      backgroundColor: (themes[board?.theme_id]?.header_color || '#FFFFFF')
     }}>
       <NavLink to="/" className='home-link'>
         <img className="site-logo"
-          src={(themes[board?.theme_id]?.header_font_color === '#FFF' ? 'https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/Jello-logo-light.png' : 'https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png')} />
+          src={(themes[board?.theme_id]?.header_font_color === '#FFFFFF' ? 'https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/Jello-logo-light.png' : 'https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png')} />
       </NavLink>
       <div className="top-navbar-rhs-wrapper">
         {sessionUser && (

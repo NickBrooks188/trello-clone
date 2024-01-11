@@ -15,7 +15,7 @@ export default function SideNavbar({ theme, selection }) {
 
     useEffect(() => {
         setNavbarFontColor(theme?.header_font_color)
-        document.documentElement.className = `theme-${(theme?.header_font_color === '#FFF' ? 'light' : 'dark')}`;
+        document.documentElement.className = `theme-${(theme?.header_font_color === '#FFFFFF' ? 'light' : 'dark')}`;
     }, [theme])
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function SideNavbar({ theme, selection }) {
     return (
         <div className={`side-navbar-wrapper`} style={{
             'color': navbarFontColor,
-            'backgroundColor': theme?.header_color || '#FFF'
+            'backgroundColor': theme?.header_color || '#FFFFFF'
         }}>
             <Link className={`boards-link${selection === 'boards' ? ' selected' : ''}`} to='/home'> <i className="fa-brands fa-trello"></i>Boards</Link>
             <h3>Your boards</h3>

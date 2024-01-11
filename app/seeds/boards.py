@@ -4,7 +4,7 @@ from .users import demo, nick, other
 
 def seed_boards():
 
-    first_board = Board(
+    board_1 = Board(
         owner_id=1,
         theme_id=1,
         name='My first board',
@@ -12,7 +12,7 @@ def seed_boards():
         list_order='[1,2,3]'
     )
 
-    second_board = Board(
+    board_2 = Board(
         owner_id=1,
         theme_id=2,
         name='My second board',
@@ -20,21 +20,32 @@ def seed_boards():
         list_order='[4,5,6]'
     )
 
-    third_board = Board(
+    board_3 = Board(
         owner_id=2,
-        theme_id=3,
+        theme_id=7,
         name='Project board',
         description='Tasks for Nick',
         list_order='[7,8,9,10]'
     )
 
-    first_board.users.append(demo)
-    second_board.users.append(demo)
-    third_board.users.append(nick)
+    board_4 = Board(
+        owner_id=2,
+        theme_id=5,
+        name='Night board',
+        description='Tasks for after dark',
+        list_order='[]'
+    )
 
-    db.session.add(first_board)
-    db.session.add(second_board)
-    db.session.add(third_board)
+    board_1.users.append(demo)
+    board_2.users.append(demo)
+    board_3.users.append(nick)
+    board_4.users.append(nick)
+
+
+    db.session.add(board_1)
+    db.session.add(board_2)
+    db.session.add(board_3)
+    db.session.add(board_4)
     db.session.commit()
 
 
