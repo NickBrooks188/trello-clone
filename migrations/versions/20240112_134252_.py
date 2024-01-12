@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 9afbbbc0c700
+Revision ID: 010395755746
 Revises: 
-Create Date: 2024-01-05 18:27:17.689979
+Create Date: 2024-01-12 13:42:52.551812
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9afbbbc0c700'
+revision = '010395755746'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -45,17 +45,18 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('theme_id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(), nullable=False),
+    sa.Column('name', sa.String(length=28), nullable=False),
     sa.Column('description', sa.String(length=200), nullable=True),
     sa.Column('list_order', sa.String(), nullable=True),
+    sa.Column('public', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['theme_id'], ['themes.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('lists',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('board_id', sa.Integer(), nullable=True),
-    sa.Column('name', sa.String(), nullable=False),
+    sa.Column('board_id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('card_order', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['board_id'], ['boards.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -71,10 +72,10 @@ def upgrade():
     )
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('list_id', sa.Integer(), nullable=True),
-    sa.Column('name', sa.String(), nullable=False),
+    sa.Column('list_id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(), nullable=True),
-    sa.Column('label', sa.String(), nullable=True),
+    sa.Column('label', sa.String(), nullable=False),
     sa.Column('image_url', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['list_id'], ['lists.id'], ),
     sa.PrimaryKeyConstraint('id')

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { thunkAddUserToCard, thunkEditCard, thunkRemoveCard, thunkRemoveUserFromCard, uploadImage } from "../../redux/board"
 import { useModal } from "../../context/Modal"
 import { useState, useEffect } from "react"
+import TextareaAutosize from "react-textarea-autosize";
 import './CardModal.css'
 
 export default function CardModal({ card }) {
@@ -206,7 +207,8 @@ export default function CardModal({ card }) {
                 <div className="card-modal-description">
                     <h2><i className="fa-solid fa-align-left"></i>Description</h2>
                     {((showDescriptionEdit)) && (<form className="edit-card-description" id="edit-card-description" onSubmit={(e) => handleCardEditSubmit(e, 'description')}>
-                        <input
+
+                        <TextareaAutosize
                             id='edit-card-description-input'
                             type="text"
                             value={description}

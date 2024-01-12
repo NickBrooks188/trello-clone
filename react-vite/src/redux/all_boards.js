@@ -3,6 +3,7 @@ const ADD_BOARD = 'boards/addBoard'
 const EDIT_BOARD = 'boards/editBoard'
 const REMOVE_BOARD = 'boards/removeBoard'
 const ADD_USER_TO_BOARDS = 'boards/addUserToBoard'
+const CLEAR_BOARDS = 'boards/clearBoards'
 
 export const loadAllBoards = (boards) => {
     return {
@@ -17,7 +18,6 @@ export const addBoards = (board) => {
         board
     }
 }
-
 
 export const editBoards = (board) => {
     return {
@@ -38,6 +38,12 @@ export const addUserToBoards = (user, boardId) => {
         type: ADD_USER_TO_BOARDS,
         user,
         boardId
+    }
+}
+
+export const clearBoards = () => {
+    return {
+        type: CLEAR_BOARDS
     }
 }
 
@@ -79,6 +85,9 @@ const allBoardsReducer = (state = initialState, action) => {
             const newState = { ...state }
             newState[action.boardId].users[action.user.id] = action.user
             return newState
+        }
+        case CLEAR_BOARDS: {
+            return {}
         }
         default:
             return state

@@ -13,6 +13,7 @@ class Board(db.Model):
     name = db.Column(db.String(28), nullable=False)
     description = db.Column(db.String(200))
     list_order = db.Column(db.String, default='[]')
+    public = db.Column(db.Boolean, default=True, nullable=False)
 
     user = db.relationship("User", back_populates="boards_owner")
     lists = db.relationship("List", back_populates="board", cascade="all, delete-orphan")
@@ -32,7 +33,8 @@ class Board(db.Model):
             'theme_id': self.theme_id,
             'name':self.name,
             'description':self.description,
-            'list_order':self.list_order
+            'list_order':self.list_order,
+            'public':self.public
         }
         dictionary['users'] = {user.id: user.to_dict() for user in self.users}
         dictionary['theme'] = self.theme.to_dict()
