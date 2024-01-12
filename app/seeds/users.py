@@ -5,7 +5,9 @@ demo = User(
     first_name='Demo',
     last_name='User', 
     email='demo@aa.io', 
-    password='password')
+    password='password',
+    profile_image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/DemoProfilePic%402x.png')
+
 nick = User(
     first_name='Nick',
     last_name='Brooks', 
