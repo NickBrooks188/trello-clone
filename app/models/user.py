@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
     location = db.Column(db.String)
-    profile_image_url = db.Column(db.String, default='https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/demo_user.jpeg')
+    profile_image_url = db.Column(db.String, default='https://jello-bucket.s3.us-west-1.amazonaws.com/DefaultProfile.jpeg')
     hashed_password = db.Column(db.String(255), nullable=False)
 
     themes_owner = db.relationship("Theme", back_populates="user")

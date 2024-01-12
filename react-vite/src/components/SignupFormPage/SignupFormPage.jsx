@@ -107,7 +107,7 @@ function SignupFormPage() {
       <p>{errors.server}</p>
       <form onSubmit={handleSubmit}>
         <label>
-          Email
+          Email<span className='asterisk'>*</span>
           <input
             type="text"
             value={email}
@@ -117,7 +117,7 @@ function SignupFormPage() {
         </label>
         <p>{errors.email}</p>
         <label>
-          First name
+          First name<span className='asterisk'>*</span>
           <input
             type="text"
             value={first_name}
@@ -127,7 +127,7 @@ function SignupFormPage() {
         </label>
         <p>{errors.first_name}</p>
         <label>
-          Last name
+          Last name<span className='asterisk'>*</span>
           <input
             type="text"
             value={last_name}
@@ -157,7 +157,7 @@ function SignupFormPage() {
         </label>
         <p>{errors.image}</p>
         <label>
-          Password
+          Password<span className='asterisk'>*</span>
           <input
             type="password"
             value={password}
@@ -167,7 +167,7 @@ function SignupFormPage() {
         </label>
         <p>{errors.password}</p>
         <label>
-          Confirm Password
+          Confirm Password<span className='asterisk'>*</span>
           <input
             type="password"
             value={confirmPassword}
