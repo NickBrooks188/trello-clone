@@ -37,6 +37,9 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    color: #44546F;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .board-modal-form>label {
@@ -113,9 +116,69 @@
     opacity: 20%;
 }
 
-
 .board-title-wrapper {
     display: flex;
+}
+
+.board-visibility-wrapper {
+    display: flex;
+    align-items: start;
+    width: 100%;
+}
+
+.public,
+.private {
+    width: 50%;
+    height: 36px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #172B4E;
+    padding: 5px;
+}
+
+.public {
+    border: 2px solid #D5D9E0;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.private {
+    border-top: 2px solid #D5D9E0;
+    border-bottom: 2px solid #D5D9E0;
+    border-right: 2px solid #D5D9E0;
+    border-left: none;
+    border-radius: 0px 3px 3px 0px;
+}
+
+.public>span,
+.private>span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.public>div,
+.private>div {
+    font-size: 10px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.public:hover,
+.private:hover {
+    background-color: #F7F8F9;
+}
+
+.public-active {
+    background-color: #0A66E4;
+    color: white;
+}
+
+.public-active:hover {
+    background-color: #0A66E4;
 }
 
 .board-modal-submit {

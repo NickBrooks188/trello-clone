@@ -125,6 +125,7 @@ export const thunkAddBoard = (board) => async (dispatch) => {
         }
     })
     const data = await res.json()
+    console.log('~~~~~', data)
     if (res.ok) {
         delete data.lists
         dispatch(addBoards(data))
@@ -303,6 +304,7 @@ const boardReducer = (state = initialState, action) => {
             newState.list_order = JSON.parse(action.board.list_order)
             newState.users = action.board.users
             newState.theme = action.board.theme
+            newState.public = action.board.public
             newState.lists = {}
             for (let list of action.board.lists) {
                 newState.lists[list.id] = { ...list, cards: {} }
@@ -326,6 +328,7 @@ const boardReducer = (state = initialState, action) => {
             newState.description = action.board.description
             newState.list_order = JSON.parse(action.board.list_order)
             newState.theme = action.board.theme
+            newState.public = action.board.public
             return newState
         }
         case ADD_LIST: {

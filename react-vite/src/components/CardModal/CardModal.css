@@ -184,7 +184,7 @@
     background-color: #E4E6E9;
     padding: 12px;
     box-sizing: border-box;
-    height: 40px;
+    height: fit-content;
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
@@ -194,21 +194,22 @@
 
 .card-description>span {
     width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    height: fit-content;
     overflow: hidden;
 }
 
-.edit-card-description>input {
+.edit-card-description>textarea {
     margin-left: 36px;
-    background-color: white;
-    padding: 12px 10px 12px 10px;
     box-sizing: border-box;
-    height: 40px;
+    background-color: white;
+    padding: 11px 11px 11px 11px;
+    box-sizing: border-box;
+    height: fit-content;
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
     width: 434px;
+    margin-bottom: -4px;
 }
 
 .card-modal-image>form>input {
@@ -331,4 +332,8 @@
 
 .card-modal-delete-button:active {
     background-color: #d0d2d5;
+}
+
+.card-modal-wrapper>.cover-everything {
+    position: fixed;
 }

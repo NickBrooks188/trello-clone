@@ -16,9 +16,12 @@ export default function BoardModal({ type }) {
     const sessionUser = useSelector(state => state.session.user)
     const [name, setName] = useState((type === "Edit" ? board.name : ""))
     const [description, setDescription] = useState((type === "Edit" ? (board.description || "") : ""))
+    const [publicVisible, setPublicVisible] = useState((type === "Edit" ? (board.public) : true))
     const [themeId, setThemeId] = useState((type === "Edit" ? board.theme_id : Object.values(themes)[0]?.id))
     const [errors, setErrors] = useState({})
     const [disabled, setDisabled] = useState(true)
+
+    console.log(board.public)
 
     const validateName = (val) => {
         if (val.length < 30) {
@@ -33,6 +36,11 @@ export default function BoardModal({ type }) {
         if (val.length < 200) {
             setDescription(val)
         }
+    }
+
+    const validatePublic = (e, val) => {
+        e.preventDefault()
+        setPublicVisible(val)
     }
 
     useEffect(() => {
@@ -52,6 +60,7 @@ export default function BoardModal({ type }) {
                 thunkAddBoard({
                     name,
                     description: (description || null),
+                    public: publicVisible,
                     theme_id: themeId
                 })
             )
@@ -68,6 +77,7 @@ export default function BoardModal({ type }) {
                     name,
                     description: (description || null),
                     theme_id: themeId,
+                    public: publicVisible,
                     list_order: JSON.stringify(board.list_order)
                 })
             )
@@ -137,6 +147,14 @@ export default function BoardModal({ type }) {
                     />
                 </label>
                 <p>{errors?.name}</p>
+                Board visibility
+                <label>
+                    <div className='board-visibility-wrapper'>
+                        <button title='Anyone can see this board' className={`public${publicVisible ? ' public-active' : ''}`} onClick={(e) => validatePublic(e, true)}><span>Public</span></button>
+                        <button title='Only board members can see this board' className={`private${!publicVisible ? ' public-active' : ''}`} onClick={(e) => validatePublic(e, false)}><span>Private</span></button>
+                    </div>
+                </label>
+                <p>{errors?.publicVisible}</p>
                 <label>
                     Board description
                     <TextareaAutosize

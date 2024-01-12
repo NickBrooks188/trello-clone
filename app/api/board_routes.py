@@ -10,7 +10,9 @@ board = Blueprint('board', __name__)
 @login_required
 def get_all_boards():
     boards = Board.query.all()
-    return {board.id: board.to_dict() for board in boards}
+    user = User.query.get(int(session['_user_id']))
+    print('~~~~~~~~~~~~~', user in boards[1].users)
+    return {board.id: board.to_dict() for board in boards if (board.public or user in board.users)}
 
 @board.route('', methods=['POST'])
 @login_required
@@ -23,7 +25,8 @@ def create_board():
             owner_id = int(session['_user_id']),
             name = data['name'],
             theme_id = data['theme_id'],
-            description = data['description']
+            description = data['description'],
+            public=data['public']
         )
         user = User.query.get(int(session['_user_id']))
         new_board.users.append(user)
@@ -56,6 +59,7 @@ def update_board(boardId):
         board.description = data['description']
         board.theme_id = data['theme_id']
         board.list_order = data['list_order']
+        board.public = data['public']
         db.session.commit()
         return board.to_dict(lists=True)
     elif not form.validate_on_submit():
