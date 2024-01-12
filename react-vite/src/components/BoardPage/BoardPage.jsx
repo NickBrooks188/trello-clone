@@ -150,7 +150,7 @@ export default function BoardPage() {
                         <DragDropContext
                             onDragEnd={onDragEnd}
                         >
-                            {(board?.id === boardId) && (
+                            {(board?.id == boardId) && (
                                 <Droppable droppableId={`board-${board.id}`} direction='horizontal' type='list'>
                                     {provided => (
 
