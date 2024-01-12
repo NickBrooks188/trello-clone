@@ -16,6 +16,7 @@ export default function BoardPage() {
     const { boardId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
     const board = useSelector(state => state.board)
+    const boards = useSelector(state => state.boards)
     const themes = useSelector(state => state.themes)
     const [showNewList, setShowNewList] = useState(false)
     const [newListName, setNewListName] = useState('')
@@ -40,8 +41,8 @@ export default function BoardPage() {
     }, [dispatch, boardId])
 
     useEffect(() => {
-        setTheme(themes[board.theme_id])
-    }, [board, themes])
+        setTheme(themes[boards[boardId]?.theme_id])
+    }, [boardId, boards, themes])
 
 
     const onDragEnd = async (result) => {
@@ -133,7 +134,7 @@ export default function BoardPage() {
 
                 <div className='board-page-content'
                     style={{
-                        'backgroundImage': (themes[board.theme_id]?.background_image_url ? `url(${themes[board.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[board.theme_id]?.gradient_left} , ${themes[board.theme_id]?.gradient_right} )`),
+                        'backgroundImage': (themes[boards[boardId]?.theme_id]?.background_image_url ? `url(${themes[boards[boardId]?.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[boards[boardId]?.theme_id]?.gradient_left} , ${themes[boards[boardId]?.theme_id]?.gradient_right} )`),
                         'backgroundSize': `cover`
                     }}
                 >

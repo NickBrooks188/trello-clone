@@ -1,20 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { useSelector } from "react-redux";
 
 function Navigation() {
+  const { boardId } = useParams()
   const sessionUser = useSelector(state => state.session.user)
-  const board = useSelector(state => state.board)
+  const boards = useSelector(state => state.boards)
   const themes = useSelector(state => state.themes)
 
   return (
     <div className="top-navbar" style={{
-      backgroundColor: (themes[board?.theme_id]?.header_color || '#FFFFFF')
+      backgroundColor: (themes[boards[boardId]?.theme_id]?.header_color || '#FFFFFF')
     }}>
       <NavLink to="/" className='home-link'>
         <img className="site-logo"
-          src={(themes[board?.theme_id]?.header_font_color === '#FFFFFF' ? 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo-light.png' : 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png')} />
+          src={(themes[boards[boardId]?.theme_id]?.header_font_color === '#FFFFFF' ? 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo-light.png' : 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png')} />
       </NavLink>
       <div className="top-navbar-rhs-wrapper">
         {sessionUser && (
