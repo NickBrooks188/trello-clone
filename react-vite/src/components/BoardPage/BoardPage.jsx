@@ -150,21 +150,22 @@ export default function BoardPage() {
                         <DragDropContext
                             onDragEnd={onDragEnd}
                         >
-                            <Droppable droppableId={`board-${board.id}`} direction='horizontal' type='list'>
-                                {provided => (
+                            {(board?.id === boardId) && (
+                                <Droppable droppableId={`board-${board.id}`} direction='horizontal' type='list'>
+                                    {provided => (
 
-                                    <div className='lists-wrapper'
-                                        {...provided.droppableProps}
-                                        ref={provided.innerRef}
-                                    >
-                                        {board.list_order && board.list_order.map((listId, index) => (
-                                            <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
-                                        ))}
-                                        {provided.placeholder}
+                                        <div className='lists-wrapper'
+                                            {...provided.droppableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            {board.list_order && board.list_order.map((listId, index) => (
+                                                <List key={listId} list={board.lists[listId]} cards={board.lists[listId].card_order} index={index} />
+                                            ))}
+                                            {provided.placeholder}
 
-                                    </div>
-                                )}
-                            </Droppable>
+                                        </div>)}
+                                </Droppable>
+                            )}
                         </DragDropContext>
                         <div className='new-list-wrapper'>
                             {(showNewList) && (<form className='new-list' id='new-list' onSubmit={handleNewListSubmit}>
