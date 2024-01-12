@@ -1,4 +1,4 @@
-# Flask React Project
+# Trello Clone
 
 This is the starter for the Flask React project.
 

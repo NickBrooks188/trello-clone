@@ -7,7 +7,7 @@ def seed_boards():
     board_1 = Board(
         owner_id=2,
         theme_id=5,
-        name='Work tasks board',
+        name='Work tasks',
         description='Tasks for my first board',
         list_order='[1,2,3]'
     )
