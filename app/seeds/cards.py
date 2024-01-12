@@ -22,25 +22,25 @@ def seed_cards():
 
     card_4 = Card(
         list_id=4,
-        name='Draft documents',
+        name='Todo',
         image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-Todo.svg'
     )
 
     card_5 = Card(
         list_id=5,
-        name='Review documents',
+        name='In progress',
         image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-InProgress.svg'
     )
 
     card_6 = Card(
         list_id=6,
-        name='Send documents',
+        name='In review',
         image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-InReview.svg'
     )
 
     card_7 = Card(
         list_id=7,
-        name='Setup documents',
+        name='Complete',
         image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Purple-Complete.svg'
     )
 
@@ -68,7 +68,27 @@ def seed_cards():
         image_url='https://jello-bucket.s3.us-west-1.amazonaws.com/Tropical-Todo%402x.png'
     )
 
-    cards = [card_1, card_2, card_3, card_4, card_5, card_6, card_7, card_8, card_9, card_10, card_11]
+    card_12 = Card(
+        list_id=4,
+        name="Send documents"
+    )
+
+    card_13 = Card(
+        list_id=5,
+        name="Review documents"
+    )
+
+    card_14 = Card(
+        list_id=6,
+        name="Draft documents"
+    )
+
+    card_15 = Card(
+        list_id=7,
+        name="Setup documents"
+    )
+
+    cards = [card_1, card_2, card_3, card_4, card_5, card_6, card_7, card_8, card_9, card_10, card_11, card_12, card_13, card_14, card_15]
     [db.session.add(card) for card in cards]
     db.session.commit()
 
