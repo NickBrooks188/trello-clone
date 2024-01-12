@@ -15,6 +15,8 @@ export default function HomePage() {
     const [userBoards, setUserBoards] = useState([])
     const [unjoinedBoards, setUnjoinedBoards] = useState([])
 
+    if (!sessionUser) return <Navigate to="/" replace={true} />;
+
     useEffect(() => {
         let userBoardArr = []
         let nonUserBoardArr = []
@@ -35,9 +37,6 @@ export default function HomePage() {
     const joinBoard = (boardId) => {
         dispatch(thunkAddUserToBoard(sessionUser, boardId))
     }
-
-
-    if (!sessionUser) return <Navigate to="/" replace={true} />;
 
     return (
         <div className='home-page-wrapper'>
