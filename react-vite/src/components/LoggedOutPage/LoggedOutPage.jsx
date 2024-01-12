@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { thunkLogin } from '../../redux/session'
 import { removeBoard } from '../../redux/board'
+import { clearBoards } from '../../redux/all_boards'
 
 export default function LoggedOutPage() {
     const dispatch = useDispatch()
@@ -11,6 +12,7 @@ export default function LoggedOutPage() {
 
     useEffect(() => {
         dispatch(removeBoard())
+        dispatch(clearBoards())
     })
 
     const demoLogin = () => {

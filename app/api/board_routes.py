@@ -11,7 +11,6 @@ board = Blueprint('board', __name__)
 def get_all_boards():
     boards = Board.query.all()
     user = User.query.get(int(session['_user_id']))
-    print('~~~~~~~~~~~~~', user in boards[1].users)
     return {board.id: board.to_dict() for board in boards if (board.public or user in board.users)}
 
 @board.route('', methods=['POST'])

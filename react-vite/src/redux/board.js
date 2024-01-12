@@ -125,7 +125,6 @@ export const thunkAddBoard = (board) => async (dispatch) => {
         }
     })
     const data = await res.json()
-    console.log('~~~~~', data)
     if (res.ok) {
         delete data.lists
         dispatch(addBoards(data))

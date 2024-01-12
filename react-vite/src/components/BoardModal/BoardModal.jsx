@@ -21,8 +21,6 @@ export default function BoardModal({ type }) {
     const [errors, setErrors] = useState({})
     const [disabled, setDisabled] = useState(true)
 
-    console.log(board.public)
-
     const validateName = (val) => {
         if (val.length < 30) {
             setName(val)

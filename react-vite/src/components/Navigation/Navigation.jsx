@@ -13,7 +13,7 @@ function Navigation() {
     <div className="top-navbar" style={{
       backgroundColor: (themes[boards[boardId]?.theme_id]?.header_color || '#FFFFFF')
     }}>
-      <NavLink to="/" className='home-link'>
+      <NavLink to="/home" className='home-link'>
         <img className="site-logo"
           src={(themes[boards[boardId]?.theme_id]?.header_font_color === '#FFFFFF' ? 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo-light.png' : 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png')} />
       </NavLink>
