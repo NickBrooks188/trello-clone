@@ -22,25 +22,25 @@ def seed_lists():
     list_4 = List(
         board_id = 2,
         name='Todo',
-        card_order='[4]'
+        card_order='[4, 12]'
     )
 
     list_5 = List(
         board_id = 2,
         name='In progress',
-        card_order='[5]'
+        card_order='[5, 13]'
     )
 
     list_6 = List(
         board_id = 2,
         name='In review',
-        card_order='[6]'
+        card_order='[6, 14]'
     )
 
     list_7 = List(
         board_id=2,
         name='Complete',
-        card_order='[7]'
+        card_order='[7, 15]'
     )
 
     list_8 = List(
