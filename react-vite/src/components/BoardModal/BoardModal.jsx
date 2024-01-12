@@ -106,7 +106,7 @@ export default function BoardModal({ type }) {
                     'backgroundImage': (themes[themeId]?.background_image_url ? `url(${themes[themeId]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[themeId]?.gradient_left} , ${themes[themeId]?.gradient_right} )`),
                     'backgroundSize': `cover`
                 }}
-            ><img src='https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/BoardTemplateUpdate.svg' /></div>
+            ><img src='https://jello-bucket.s3.us-west-1.amazonaws.com/BoardTemplateUpdate.svg' /></div>
             <form onSubmit={handleSubmit} className='board-modal-form'>
                 <label>
                     Background

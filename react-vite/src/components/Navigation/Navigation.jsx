@@ -14,7 +14,7 @@ function Navigation() {
     }}>
       <NavLink to="/" className='home-link'>
         <img className="site-logo"
-          src={(themes[board?.theme_id]?.header_font_color === '#FFFFFF' ? 'https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/Jello-logo-light.png' : 'https://pixel-chat-image-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png')} />
+          src={(themes[board?.theme_id]?.header_font_color === '#FFFFFF' ? 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo-light.png' : 'https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png')} />
       </NavLink>
       <div className="top-navbar-rhs-wrapper">
         {sessionUser && (

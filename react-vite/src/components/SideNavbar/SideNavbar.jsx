@@ -26,7 +26,7 @@ export default function SideNavbar({ theme, selection }) {
     useEffect(() => {
         let userBoardArr = []
         for (let board of Object.values(boards)) {
-            if (board.users[sessionUser.id]) userBoardArr.push(board)
+            if (board?.users[sessionUser?.id]) userBoardArr.push(board)
         }
         setUserBoards(userBoardArr)
     }, [boards, sessionUser])
