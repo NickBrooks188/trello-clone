@@ -63,9 +63,29 @@ This is a clone of the organization website Trello (named Jello). The site works
    ## Application screenshots
 
    ### Landing Page
+   <img src='./images/Landing_Page.png'>
+   From this page, a user may log in, sign up, or automatically log in as a demo user.
 
    ### Dashboard
+   <img src='./images/Dashboard.png'>
+   Here, a user can view all boards they have joined, as well as any public boards they haven't joined. Clicking on a joined board will navigate to that board's page. Clicking on an unjoined board with join it. The user can also create a board from this page (in a popup), giving it a name, description, theme and visibility setting.
+
 
    ### Board Page
+   <img src='./images/Board_Page.png'>
+   On this page, the user can view and manipulate a board's lists and cards. Lists and cards can be dragged around and reorganized. Cards also can be given labels, descriptions, images, and assignments. On this page a user may also edit the board's proprties.  
+
 
    ## Sample Endpoints
+
+| Request                | Purpose                                                                                                                                            | Return value                                                                                                                                                                      |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GET /api/boards        | Upon login, fetch all public or user-owned boards. These boards do not have associated lists and cards in the return.                              | {boards: { 1: {  description: STRING, id: INT, name: STRING. list_order: STRING, owner_id: INT, public: BOOL, theme: { id: INT, ... } users: {  1: { id: INT ... } } } 2: {...} } |
+| POST /api/boards       | Creates a new board, returning that board. The new board should immediately become visible in the dashboard and in the sidebar.                    | {   description: STRING, id: INT, name: STRING. list_order: STRING, owner_id: INT, public: BOOL, theme: { id: INT, ... } users: {  1: { id: INT ... } } }                         |
+| PUT /api/cards/:cardId | Updates a card, specified by the cardId. Updatable attributes include name, description, labels, and image. Returns the card's updated attributes. | { id: INT, name: STRING, description: STRING, image_url: STRING, label: STRING, list_id: INT }                                                                                    |
+
+
+## Future features
+* User-generated themes
+* Card comments
+* Card priority
