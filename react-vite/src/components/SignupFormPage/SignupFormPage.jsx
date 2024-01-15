@@ -78,7 +78,12 @@ function SignupFormPage() {
       const formData = new FormData()
       formData.append("image", image)
       returnImage = await dispatch(uploadImage(formData))
-      if (returnImage.errors) return
+      if (returnImage.errors) {
+        let errorsTemp = { ...errors, image: returnImage.errors.image }
+        setErrors(errorsTemp)
+        console.log(errorsTemp)
+        return
+      }
     }
 
     const serverResponse = await dispatch(
