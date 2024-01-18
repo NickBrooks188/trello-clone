@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Link } from 'react-router-dom';
 import './HomePage.css'
-import SideNavbar from '../SideNavbar';
 import { useEffect, useState } from 'react';
 import BoardTile from '../BoardTile';
 import BoardModal from '../BoardModal';
