@@ -40,14 +40,13 @@ export default function HomePage() {
     if (!sessionUser) return <Navigate to="/" replace={true} />;
 
     return (
-        <div className='home-page-wrapper'>
-            <SideNavbar selection={'boards'} />
+        <>
             <div className='home-page-content'>
                 <h1>Your boards</h1>
                 <div className='home-boards-wrapper'>
                     {userBoards.map(userBoard => (
                         <div className='board-tile-wrapper' key={`joined-${userBoard.id}`}>
-                            <Link to={`/boards/${userBoard.id}`}>
+                            <Link to={`/main/boards/${userBoard.id}`}>
                                 <BoardTile board={userBoard} type="joined" />
                             </Link>
                         </div>
@@ -75,6 +74,6 @@ export default function HomePage() {
                     ))}
                 </div>
             </div>
-        </div>
+        </>
     )
 }

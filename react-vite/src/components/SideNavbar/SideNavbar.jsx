@@ -1,17 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import './SideNavbar.css'
 import { useEffect, useState } from 'react'
 import { thunkLoadAllBoards } from '../../redux/all_boards'
 import { thunkLoadAllThemes } from '../../redux/themes'
 
-export default function SideNavbar({ theme, selection }) {
+export default function SideNavbar() {
+    const selection = useParams()?.boardId || 'boards'
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
     const themes = useSelector(state => state.themes)
     const boards = useSelector(state => state.boards)
+    const theme = boards[selection]?.theme
     const [userBoards, setUserBoards] = useState([])
     const [navbarFontColor, setNavbarFontColor] = useState(theme?.header_font_color || '#172B4E')
+    const [showSideNavbar, setShowSideNavbar] = useState(true)
 
     useEffect(() => {
         setNavbarFontColor(theme?.header_font_color)
@@ -32,16 +35,17 @@ export default function SideNavbar({ theme, selection }) {
     }, [boards, sessionUser])
 
     return (
-        <div className={`side-navbar-wrapper`} style={{
+        <div className={`side-navbar-wrapper${showSideNavbar ? '' : ' minimize-side-navbar'}`} style={{
             'color': navbarFontColor,
             'backgroundColor': theme?.header_color || '#FFFFFF'
         }}>
-            <Link className={`boards-link${selection === 'boards' ? ' selected' : ''}`} to='/home'> <i className="fa-brands fa-trello"></i>Boards</Link>
+            <div className='side-navbar-toggle' onClick={() => setShowSideNavbar(!showSideNavbar)}><i className={`fa-solid fa-chevron-${showSideNavbar ? 'left' : 'right'}`}></i></div>
+            <Link className={`boards-link${selection === 'boards' ? ' selected' : ''}`} to='/main/home'> <i className="fa-brands fa-trello"></i>Boards</Link>
             <h3>Your boards</h3>
             <ul className='user-boards'>
                 {userBoards.map(userBoard => (
                     <li id={`board${userBoard.id}`} key={userBoard.id} className={`board-li${selection == userBoard.id ? ' selected' : ''}`}>
-                        <Link to={`/boards/${userBoard.id}`} style={{
+                        <Link to={`/main/boards/${userBoard.id}`} style={{
                             'color': navbarFontColor
                         }}>
                             <div className='user-board-navbar-preview'

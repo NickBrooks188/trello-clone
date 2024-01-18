@@ -98,7 +98,7 @@ export default function BoardModal({ type }) {
         if (serverResponse.errors) {
             setErrors(serverResponse)
         } else {
-            navigate('/home')
+            navigate('/main/home')
             closeModal()
         }
     }
