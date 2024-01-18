@@ -47,7 +47,7 @@ function ProfileButton() {
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           <li>
-            <NavLink to='/home'><i className="fa-brands fa-trello"></i>Boards</NavLink>
+            <NavLink to='/main/home'><i className="fa-brands fa-trello"></i>Boards</NavLink>
           </li>
           <li><div>{user.email}</div></li>
           <li>

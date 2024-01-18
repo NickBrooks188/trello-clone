@@ -6,6 +6,44 @@
     display: flex;
     flex-direction: column;
     border-right: 1px solid rgb(200 200 200 / 50%);
+    position: relative;
+    transition: all 0.5s;
+}
+
+.minimize-side-navbar {
+    min-width: 12px;
+    width: 12px;
+}
+
+.minimize-side-navbar>h3,
+.minimize-side-navbar>a,
+.minimize-side-navbar>ul {
+    display: none;
+}
+
+.side-navbar-toggle {
+    position: absolute;
+    right: -12px;
+    top: 17px;
+    background-color: inherit;
+    color: inherit;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid rgb(200 200 200 / 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.side-navbar-toggle:hover {
+    background-image: var(--background-hover);
+}
+
+.side-navbar-toggle:active {
+    background-image: var(--background-active);
 }
 
 .side-navbar-wrapper>h3 {
@@ -14,6 +52,8 @@
     padding-left: 15px;
     margin-bottom: 0px;
     height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .boards-link {
@@ -29,6 +69,8 @@
     align-items: center;
     height: 32px;
     margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 
@@ -79,6 +121,7 @@
     padding: 0px 15px 0px 15px;
     overflow: hidden;
     color: inherit;
+    white-space: nowrap;
 }
 
 .user-board-navbar-preview {

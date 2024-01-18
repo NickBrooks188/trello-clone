@@ -100,7 +100,7 @@ function SignupFormPage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-      navigate("/home");
+      navigate("/main/home");
     }
   };
 

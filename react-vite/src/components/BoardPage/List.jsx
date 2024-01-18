@@ -28,13 +28,13 @@ export default function List({ list, cards, index }) {
 
     const handleEditListSubmit = async (e) => {
         e.preventDefault()
-        setShowListEdit(false)
         if (listName === list.name) return
         await dispatch(thunkEditList({
             ...list,
             name: listName,
             card_order: JSON.stringify(list.card_order)
         }, board.id))
+        setShowListEdit(false)
     }
 
     const handleListDelete = async (e) => {

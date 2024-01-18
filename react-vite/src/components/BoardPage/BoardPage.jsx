@@ -128,8 +128,7 @@ export default function BoardPage() {
     }
 
     return (
-        <div className='home-page-wrapper'>
-            <SideNavbar theme={theme} selection={board.id} />
+        <>
             {(board && themes) && (
 
                 <div className='board-page-content'
@@ -190,6 +189,6 @@ export default function BoardPage() {
 
 
             )}
-        </div >
+        </>
     )
 }
