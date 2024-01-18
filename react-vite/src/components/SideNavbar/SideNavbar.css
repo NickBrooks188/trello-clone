@@ -7,7 +7,7 @@
     flex-direction: column;
     border-right: 1px solid rgb(200 200 200 / 50%);
     position: relative;
-    transition: all 0.5s;
+    transition: all 0.5s, color 1ms, background-color 1ms;
 }
 
 .minimize-side-navbar {

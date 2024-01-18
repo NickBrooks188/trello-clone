@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import './BoardPage.css'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import SideNavbar from '../SideNavbar'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import OpenModalButton from '../OpenModalButton';
 import List from './List'
@@ -20,7 +19,6 @@ export default function BoardPage() {
     const themes = useSelector(state => state.themes)
     const [showNewList, setShowNewList] = useState(false)
     const [newListName, setNewListName] = useState('')
-    const [theme, setTheme] = useState(themes[board.theme_id] || '')
 
     useEffect(() => {
         if (!board.users || !sessionUser) return
@@ -39,11 +37,6 @@ export default function BoardPage() {
     useEffect(() => {
         dispatch(thunkLoadBoard(boardId))
     }, [dispatch, boardId])
-
-    useEffect(() => {
-        setTheme(themes[boards[boardId]?.theme_id])
-    }, [boardId, boards, themes])
-
 
     const onDragEnd = async (result) => {
 
