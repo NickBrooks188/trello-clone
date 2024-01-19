@@ -23,7 +23,7 @@ export default function LoggedOutPage() {
             }))
     }
 
-    if (sessionUser) return <Navigate to="/home" replace={true} />;
+    if (sessionUser) return <Navigate to="/main/home" replace={true} />;
 
     return (
         <div className='logged-out-page-wrapper'>
