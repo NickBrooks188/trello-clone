@@ -335,9 +335,7 @@ const boardReducer = (state = initialState, action) => {
             newState.lists[action.list.id] = action.list
             newState.lists[action.list.id].cards = {}
             newState.lists[action.list.id].card_order = []
-            let oldList = newState.list_order
-            oldList.push(action.list.id)
-            newState.list_order = oldList
+            newState.list_order.push(action.list.id)
             return newState
         }
         case REMOVE_LIST: {
@@ -357,9 +355,7 @@ const boardReducer = (state = initialState, action) => {
             newState.lists[action.listId].cards[action.card.id] = action.card
             newState.lists[action.listId].cards[action.card.id].label = []
             newState.lists[action.listId].cards[action.card.id].users = {}
-            let oldList = newState.lists[action.listId].card_order
-            oldList.push(action.card.id)
-            newState.lists[action.listId].card_order = oldList
+            newState.lists[action.listId].card_order.push(action.card.id)
             return newState
         }
         case REMOVE_CARD: {
