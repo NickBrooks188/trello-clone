@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     themes_owner = db.relationship("Theme", back_populates="user")
-    boards_owner = db.relationship("Board", back_populates="user")
+    boards_owner = db.relationship("Board", back_populates="owner")
 
     boards = db.relationship(
         "Board",
