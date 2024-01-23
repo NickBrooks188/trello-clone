@@ -15,7 +15,7 @@ class Board(db.Model):
     list_order = db.Column(db.String, default='[]')
     public = db.Column(db.Boolean, default=True, nullable=False)
 
-    user = db.relationship("User", back_populates="boards_owner")
+    owner = db.relationship("User", back_populates="boards_owner")
     lists = db.relationship("List", back_populates="board", cascade="all, delete-orphan")
     theme = db.relationship("Theme", back_populates="boards")
 
