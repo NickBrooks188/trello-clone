@@ -19,12 +19,13 @@
 }
 
 .footer>a {
-    color: white;
+    color: #f6f6f6;
     text-decoration: none;
 }
 
 .footer>a:hover {
     text-decoration: underline;
+    color: white;
 }
 
 .logged-out-wrapper {
