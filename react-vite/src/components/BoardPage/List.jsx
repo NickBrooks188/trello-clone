@@ -28,7 +28,10 @@ export default function List({ list, cards, index }) {
 
     const handleEditListSubmit = async (e) => {
         e.preventDefault()
-        if (listName === list.name) return
+        if (listName === list.name) {
+            setShowListEdit(false)
+            return
+        }
         await dispatch(thunkEditList({
             ...list,
             name: listName,
