@@ -136,7 +136,8 @@ input::file-selector-button:hover {
     --font-color: white;
     --background-color: #172B4E;
     --button-background: rgba(255, 255, 255, 0.7);
-    --button-background-hover: rgba(255, 255, 255, 1)
+    --button-background-hover: rgba(255, 255, 255, 0.9);
+    --button-background-active: rgba(255, 255, 255, 1);
 }
 
 .theme-dark {
@@ -148,5 +149,6 @@ input::file-selector-button:hover {
     --font-color: #172B4E;
     --background-color: white;
     --button-background: rgba(23, 43, 78, 0.7);
-    --button-background-hover: rgba(23, 43, 78, 1)
+    --button-background-hover: rgba(23, 43, 78, 0.9);
+    --button-background-active: rgba(23, 43, 78, 1);
 }
