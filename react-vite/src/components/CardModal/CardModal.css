@@ -294,9 +294,9 @@
     gap: 10px;
 }
 
-.available-user>i {
-    color: #F0F0F0;
-    font-size: 18px;
+.available-user>.fa-plus {
+    color: transparent;
+    font-size: 14px;
 }
 
 .available-user>span {
@@ -304,7 +304,15 @@
 }
 
 .available-user:hover {
-    background-color: #bbb;
+    background-color: #e2e2e2;
+}
+
+.available-user:active {
+    background-color: #d8d8d8;
+}
+
+.available-user:hover .fa-plus {
+    color: #172B4E;
 }
 
 .card-modal-profile-image {
