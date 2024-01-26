@@ -29,7 +29,7 @@ export default function BoardPage() {
     }, [sessionUser, board, navigate])
 
     useEffect(() => {
-        document.title = `Jello ${board.name}`
+        document.title = `Jello: ${board.name}`
     }, [board])
 
     useEffect(() => {

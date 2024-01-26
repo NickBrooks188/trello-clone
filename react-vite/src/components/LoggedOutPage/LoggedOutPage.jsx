@@ -13,7 +13,8 @@ export default function LoggedOutPage() {
     useEffect(() => {
         dispatch(removeBoard())
         dispatch(clearBoards())
-    })
+        document.title = 'Jello'
+    }, [dispatch])
 
     const demoLogin = () => {
         dispatch(

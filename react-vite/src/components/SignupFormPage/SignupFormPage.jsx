@@ -20,6 +20,10 @@ function SignupFormPage() {
   const [disabled, setDisabled] = useState(true)
 
 
+  useEffect(() => {
+    document.title = 'Jello: Sign up'
+  }, [])
+
   const validateEmail = (val) => {
     setEmail(val)
     let errorsTemp

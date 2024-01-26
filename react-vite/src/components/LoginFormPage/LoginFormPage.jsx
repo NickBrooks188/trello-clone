@@ -14,6 +14,10 @@ function LoginFormPage() {
   const [disabled, setDisabled] = useState(true)
 
   useEffect(() => {
+    document.title = 'Jello: Log in'
+  }, [])
+
+  useEffect(() => {
     if (email && password) {
       setDisabled(false)
     } else {
