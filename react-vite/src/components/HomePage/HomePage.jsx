@@ -30,7 +30,8 @@ export default function HomePage() {
 
     useEffect(() => {
         dispatch(removeBoard())
-    })
+        document.title = 'Jello: Home'
+    }, [dispatch])
 
     const joinBoard = (boardId) => {
         dispatch(thunkAddUserToBoard(sessionUser, boardId))
