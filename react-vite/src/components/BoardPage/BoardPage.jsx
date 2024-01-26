@@ -28,15 +28,19 @@ export default function BoardPage() {
         }
     }, [sessionUser, board, navigate])
 
+    useEffect(() => {
+        document.title = `Jello ${board.name}`
+    }, [board])
+
+    useEffect(() => {
+        dispatch(thunkLoadBoard(boardId))
+    }, [dispatch, boardId])
+
     const validateNewListName = (val) => {
         if (val.length < 50) {
             setNewListName(val)
         }
     }
-
-    useEffect(() => {
-        dispatch(thunkLoadBoard(boardId))
-    }, [dispatch, boardId])
 
     const onDragEnd = async (result) => {
 
