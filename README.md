@@ -3,7 +3,7 @@ This is a clone of the organization website Trello (named Jello). The site works
 
 [Live demo link](https://workspace-deployed.onrender.com/)
 
-## Technologies used
+## 💻 Technologies used
 <div>
    <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg" title="Python" alt="Python" width="40" height="40">
    <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" height="40">
@@ -17,7 +17,7 @@ This is a clone of the organization website Trello (named Jello). The site works
    <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" **alt="Git" width="40" height="40"/>
 </div>
 
-## Getting started
+## ⚙️ Getting started
 
 1. Clone this repository.
 
@@ -61,7 +61,7 @@ This is a clone of the organization website Trello (named Jello). The site works
    directory and run `npm i` to install dependencies. Next, run `npm run build`
    to create the `dist` folder. Finally, run `npm run dev` to launch the frontend in your local browser.
 
-   ## Application screenshots
+   ## 🖼️ Application screenshots
 
    ### Landing Page
    <img src='./images/Landing_Page.png'>
@@ -77,7 +77,7 @@ This is a clone of the organization website Trello (named Jello). The site works
    On this page, the user can view and manipulate a board's lists and cards. Lists and cards can be dragged around and reorganized. Cards also can be given labels, descriptions, images, and assignments. On this page a user may also edit the board's proprties.  
 
 
-   ## Sample Endpoints
+   ## 📥 Sample Endpoints
 
 | Request                | Purpose                                                                                                                                            | Return value                                                                                                                                                                      |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -86,7 +86,7 @@ This is a clone of the organization website Trello (named Jello). The site works
 | PUT /api/cards/:cardId | Updates a card, specified by the cardId. Updatable attributes include name, description, labels, and image. Returns the card's updated attributes. | { id: INT, name: STRING, description: STRING, image_url: STRING, label: STRING, list_id: INT }                                                                                    |
 
 
-## Future features
+## 📅 Future features
 * User-generated themes
 * Card comments
 * Card priority
