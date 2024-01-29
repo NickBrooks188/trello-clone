@@ -1,5 +1,5 @@
 # <img src="https://jello-bucket.s3.us-west-1.amazonaws.com/Jello-logo.png" title="React" alt="React" height="60"/>
-This is a clone of the organization website Trello (named Jello). The site works as a kanban-style task management system, featuring Atlassian's drag and drop library.
+Jello is a clone of the organization website Trello. The site works as a kanban-style task management system, featuring Atlassian's drag and drop library. Users can create or join boards, create or reorganize lists within those boards, and create or reorganize cards within those lists.
 
 [Live demo link](https://workspace-deployed.onrender.com/)
 
