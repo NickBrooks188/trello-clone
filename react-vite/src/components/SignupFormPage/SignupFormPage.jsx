@@ -85,7 +85,6 @@ function SignupFormPage() {
       if (returnImage.errors) {
         let errorsTemp = { ...errors, image: returnImage.errors.image }
         setErrors(errorsTemp)
-        console.log(errorsTemp)
         return
       }
     }
