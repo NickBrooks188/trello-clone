@@ -51,6 +51,7 @@ export default function BoardPage() {
         }
 
         if (type === "list") {
+            // If a list was moved, rearrange the list order
             if (destination.index === source.index) return
             const boardTemp = { ...board }
             let lists = boardTemp.list_order
@@ -65,6 +66,7 @@ export default function BoardPage() {
         } else if (type === "card") {
 
             if (destination.droppableId === source.droppableId) {
+                // If a card was moved within a list, change the card order for that list
                 if (destination.index === source.index) return
                 const list = { ...board.lists[Number(destination.droppableId.slice(10))] }
                 let cards = list.card_order
@@ -79,6 +81,7 @@ export default function BoardPage() {
                     return
                 }
             } else {
+                // If a card was moved between lists, we need a bit more logic
                 const sourceList = { ...board.lists[Number(source.droppableId.slice(10))] }
                 const destinationList = { ...board.lists[Number(destination.droppableId.slice(10))] }
                 let sourceCards = sourceList.card_order
