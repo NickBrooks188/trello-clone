@@ -14,7 +14,7 @@ export default function HomePage() {
     const [userBoards, setUserBoards] = useState([])
     const [unjoinedBoards, setUnjoinedBoards] = useState([])
 
-
+    // Load boards that a user has access to
     useEffect(() => {
         let userBoardArr = []
         let nonUserBoardArr = []
