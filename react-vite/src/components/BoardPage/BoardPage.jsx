@@ -28,6 +28,7 @@ export default function BoardPage() {
         }
     }, [sessionUser, board, navigate])
 
+    // Dinamically update page title
     useEffect(() => {
         document.title = `Jello: ${board.name}`
     }, [board])
