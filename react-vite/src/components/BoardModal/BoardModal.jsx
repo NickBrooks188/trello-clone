@@ -36,6 +36,7 @@ export default function BoardModal({ type }) {
         }
     }
 
+    // Changes visibility on board, anyone can join a public board
     const validatePublic = (e, val) => {
         e.preventDefault()
         setPublicVisible(val)
@@ -88,6 +89,7 @@ export default function BoardModal({ type }) {
 
     }
 
+    // Change the preview theme displayed
     const clickTheme = (e) => {
         e.preventDefault()
         setThemeId(Number(e.target.parentElement.value))
@@ -103,6 +105,7 @@ export default function BoardModal({ type }) {
         }
     }
 
+    // If themes are not yet loaded, display nothing as the theme preview will break otherwise
     if (!themes) return null
 
     return (
