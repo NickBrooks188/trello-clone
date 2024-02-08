@@ -131,7 +131,6 @@ export default function BoardPage() {
     return (
         <>
             {(board && themes) && (
-
                 <div className='board-page-content'
                     style={{
                         'backgroundImage': (themes[boards[boardId]?.theme_id]?.background_image_url ? `url(${themes[boards[boardId]?.theme_id]?.background_image_url})` : `linear-gradient(0.37turn, ${themes[boards[boardId]?.theme_id]?.gradient_left} , ${themes[boards[boardId]?.theme_id]?.gradient_right} )`),
@@ -186,9 +185,6 @@ export default function BoardPage() {
                         </div>
                     </div>
                 </div>
-
-
-
             )}
         </>
     )
