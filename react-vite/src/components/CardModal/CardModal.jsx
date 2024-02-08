@@ -150,7 +150,6 @@ export default function CardModal({ card }) {
         }
     }, [showNameEdit, showDescriptionEdit])
 
-
     return (
         <div className="card-modal-wrapper">
             <div className='close-modal-x' onClick={closeModal}><i className="fa-solid fa-xmark"></i></div>
@@ -267,7 +266,6 @@ export default function CardModal({ card }) {
             {(showDescriptionEdit) && (<div className="cover-everything" onClick={(e) => handleCardEditSubmit(e, 'description')} />)}
             {(showLabelEdit) && (<div className="cover-everything" onClick={() => setShowLabelEdit(false)} />)}
             {(showAssignmentEdit) && (<div className="cover-everything" onClick={() => setShowAssignmentEdit(false)} />)}
-
         </div>
     )
 }

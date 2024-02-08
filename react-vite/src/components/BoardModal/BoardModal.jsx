@@ -86,7 +86,6 @@ export default function BoardModal({ type }) {
                 closeModal()
             }
         }
-
     }
 
     // Change the preview theme displayed

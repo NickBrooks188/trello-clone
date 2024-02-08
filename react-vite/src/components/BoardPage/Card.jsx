@@ -49,7 +49,6 @@ export default function Card({ card, index }) {
                         />
                     </div>
                 </div>
-
             )}
         </Draggable>
     )
