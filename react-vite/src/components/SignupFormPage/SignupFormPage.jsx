@@ -112,7 +112,7 @@ function SignupFormPage() {
   return (
     <div className="signup-wrapper">
       <h1>Sign Up</h1>
-      <Link to={`/api/auth/oauth_login`}>Sign up with Google</Link>
+      <Link to={`localhost:8000/api/auth/oauth_login`}><button>OAUTH</button></Link>
 
       <form onSubmit={handleSubmit}>
         <label>
