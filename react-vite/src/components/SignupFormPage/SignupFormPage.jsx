@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
 import './SignupForm.css'
 import { uploadImage } from "../../redux/board";
@@ -112,7 +112,8 @@ function SignupFormPage() {
   return (
     <div className="signup-wrapper">
       <h1>Sign Up</h1>
-      <p>{errors.server}</p>
+      <Link to={`/api/auth/oauth_login`}>Sign up with Google</Link>
+
       <form onSubmit={handleSubmit}>
         <label>
           Email<span className='asterisk'>*</span>
