@@ -55,6 +55,8 @@ function LoginFormPage() {
   return (
     <div className="login-wrapper">
       <h1>Log In</h1>
+      <a href='https://workspace-deployed.onrender.com/api/auth/oauth_login' className="google-link"><button className="google-button"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png'></img>Log in with Google</button></a>
+
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit}>

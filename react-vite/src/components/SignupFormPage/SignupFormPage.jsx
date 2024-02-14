@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
 import './SignupForm.css'
 import { uploadImage } from "../../redux/board";
@@ -112,7 +112,7 @@ function SignupFormPage() {
   return (
     <div className="signup-wrapper">
       <h1>Sign Up</h1>
-      <a href='http://localhost:8000/api/auth/oauth_login'>OAUTH</a>
+      <a href='https://workspace-deployed.onrender.com/api/auth/oauth_login' className="google-link"><button className="google-button"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png'></img>Sign up with Google</button></a>
 
       <form onSubmit={handleSubmit}>
         <label>
