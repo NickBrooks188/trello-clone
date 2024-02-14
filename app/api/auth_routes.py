@@ -26,7 +26,7 @@ client_secrets = {
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_secret": CLIENT_SECRET,
     "redirect_uris": [
-      "http://localhost:8000/api/auth/callback"
+      "https://workspace-deployed.onrender.com/api/auth/callback"
     ]
   }
 }
@@ -40,7 +40,7 @@ os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for loca
 flow = Flow.from_client_secrets_file(
     client_secrets_file=secrets.name,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="http://localhost:8000/api/auth/callback"
+    redirect_uri="https://workspace-deployed.onrender.com/api/auth/callback"
 )
 
 secrets.close()

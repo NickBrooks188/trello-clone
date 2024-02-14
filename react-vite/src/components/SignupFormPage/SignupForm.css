@@ -64,3 +64,36 @@
     cursor: default;
     background-color: #aaa;
 }
+
+.google-link {
+    text-decoration: none;
+}
+
+.google-button {
+    width: 272px;
+    cursor: pointer;
+    height: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: none;
+    border-radius: 5px;
+    border: 2px solid #c1c5cc;
+    font-family: inherit;
+    color: #172B4E;
+    box-sizing: border-box;
+}
+
+.google-button:hover {
+    background-color: #F7F8F9;
+}
+
+.google-button:active {
+    background-color: #F1F2F3;
+}
+
+.google-button>img {
+    height: 24px;
+}
