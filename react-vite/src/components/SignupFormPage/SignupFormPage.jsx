@@ -112,7 +112,7 @@ function SignupFormPage() {
   return (
     <div className="signup-wrapper">
       <h1>Sign Up</h1>
-      <Link to={`localhost:8000/api/auth/oauth_login`}><button>OAUTH</button></Link>
+      <a href='http://localhost:8000/api/auth/oauth_login'>OAUTH</a>
 
       <form onSubmit={handleSubmit}>
         <label>
