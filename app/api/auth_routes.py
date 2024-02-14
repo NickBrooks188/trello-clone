@@ -67,7 +67,6 @@ def oauth_login():
 @auth_routes.route("/callback")
 def callback():
     flow.fetch_token(authorization_response=request.url)
-
     if not session["state"] == request.args["state"]:
         abort(500)
 
@@ -88,7 +87,8 @@ def callback():
 
     if not user_exists:
         user_exists = User(
-            username=id_info.get("name"),
+            first_name=id_info.get("name"),
+            last_name='',
             email=temp_email,
             password='OAUTH'
         )
