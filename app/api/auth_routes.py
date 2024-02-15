@@ -89,7 +89,7 @@ def callback():
         user_exists = User(
             first_name=id_info.get("given_name"),
             last_name=id_info.get("family_name"),
-            profile_image_url=id_info.get("picture"),
+            # profile_image_url=id_info.get("picture"),
             email=temp_email,
             password='OAUTH'
         )
