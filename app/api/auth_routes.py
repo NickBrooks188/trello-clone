@@ -88,7 +88,7 @@ def callback():
     if not user_exists:
         user_exists = User(
             first_name=id_info.get("given_name"),
-            last_name='',
+            last_name=id_info.get("family_name") if id_info.get("family_name") else '',
             profile_image_url=id_info.get("picture"),
             email=temp_email,
             password='OAUTH'
