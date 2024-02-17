@@ -94,7 +94,6 @@ def callback():
             password='OAUTH'
         )
 
-
         db.session.add(user_exists)
         db.session.commit()
 
