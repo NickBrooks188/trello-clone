@@ -27,7 +27,6 @@ export default function BoardPage() {
 
         if (!board.users) return
 
-
         if (!board?.users[sessionUser?.id]) {
             navigate('/main/home')
         }
