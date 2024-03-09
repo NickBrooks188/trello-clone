@@ -21,9 +21,14 @@ export default function BoardPage() {
     const [newListName, setNewListName] = useState('')
 
     useEffect(() => {
-        if (!board.users || !sessionUser) return
+        if (!sessionUser) {
+            return navigate('/main/home')
+        }
 
-        if (!board?.users[sessionUser.id]) {
+        if (!board.users) return
+
+
+        if (!board?.users[sessionUser?.id]) {
             navigate('/main/home')
         }
     }, [sessionUser, board, navigate])
