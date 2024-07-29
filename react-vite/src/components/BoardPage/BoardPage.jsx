@@ -20,6 +20,7 @@ export default function BoardPage() {
     const [showNewList, setShowNewList] = useState(false)
     const [newListName, setNewListName] = useState('')
 
+    // Redirect if user is not logged in or does not have access to the board
     useEffect(() => {
         if (!sessionUser) {
             return navigate('/main/home')
@@ -32,7 +33,7 @@ export default function BoardPage() {
         }
     }, [sessionUser, board, navigate])
 
-    // Dinamically update page title
+    // Dynamically update page title
     useEffect(() => {
         document.title = `Jello: ${board.name}`
     }, [board])
@@ -47,8 +48,8 @@ export default function BoardPage() {
         }
     }
 
+    // Main drag and drop logic
     const onDragEnd = async (result) => {
-
         const { destination, source, type } = result
 
         if (!(result.destination)) {
@@ -63,7 +64,6 @@ export default function BoardPage() {
             const listId = lists[source.index]
             lists.splice(source.index, 1)
             lists.splice(destination.index, 0, listId)
-
             boardTemp.list_order = JSON.stringify(lists)
             const putData = await dispatch(thunkEditBoard(boardTemp))
             if (!putData.errors) return
@@ -114,6 +114,7 @@ export default function BoardPage() {
         }
     }
 
+    // Focus on new input field when it appears
     useEffect(() => {
         if (document.getElementById('new-list-input')) {
             document.getElementById('new-list-input').focus()

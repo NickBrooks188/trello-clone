@@ -14,12 +14,14 @@ export default function List({ list, cards, index }) {
     const [showNewCard, setShowNewCard] = useState(false)
     const [newCardName, setNewCardName] = useState('')
 
+    // Cap list name to 50 characters
     const validateListName = (val) => {
         if (val.length < 50) {
             setListName(val)
         }
     }
 
+    // Cap card name to 50 characters
     const validateNewCardName = (val) => {
         if (val.length < 50) {
             setNewCardName(val)
@@ -64,12 +66,14 @@ export default function List({ list, cards, index }) {
         setShowListPopup(false)
     }
 
+    // Focus on input when editing list name
     useEffect(() => {
         if (document.getElementById('edit-list-input')) {
             document.getElementById('edit-list-input').focus()
         }
     }, [showListEdit])
 
+    // Focus on input when adding a new card
     useEffect(() => {
         if (document.getElementById('new-card-input')) {
             document.getElementById('new-card-input').focus()
