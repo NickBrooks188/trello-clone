@@ -35,7 +35,7 @@ export default function LoggedOutPage() {
                 <button className='demo-user-button' onClick={demoLogin}>Log in as demo user</button>
             </div>
             <div className='footer'>
-                Created by Nick Brooks • <Link to='https://github.com/NickBrooks188'><i className="fa-brands fa-github"></i></Link> <Link to='https://www.linkedin.com/in/nick-brooks-531661153/'><i className="fa-brands fa-linkedin"></i></Link>
+                Created by Nick Brooks • <Link to='https://github.com/NickBrooks188' target='_blank'><i className="fa-brands fa-github"></i></Link> <Link to='https://www.linkedin.com/in/nick-brooks-531661153/' target='_blank'><i className="fa-brands fa-linkedin"></i></Link>
             </div>
         </div>
     )

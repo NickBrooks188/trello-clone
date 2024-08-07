@@ -17,9 +17,9 @@ class List(db.Model):
     def to_dict(self, cards=False):
         dictionary = {
             'id': self.id,
-            'board_id':self.board_id,
-            'name':self.name,
-            'card_order':self.card_order
+            'board_id': self.board_id,
+            'name': self.name,
+            'card_order': self.card_order
         }
 
         if cards:
